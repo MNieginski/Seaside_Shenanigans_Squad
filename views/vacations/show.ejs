@@ -1,5 +1,16 @@
 <%- include('../partials/header')%>
 
-<h2>Test</h2>
+<section id="show-page">
+    <div>Location: 
+    <%= vacation.location %></div>
+    <div>Arrival Date: 
+    <%= vacation.arrival.toLocaleDateString() %></div>
+    <div>Departure Date: 
+    <%= vacation.departure.toLocaleDateString() %></div>
+    <div>Companions: 
+    <%= vacation.companions %></div>
+     <div>Activities: </div>
+    <!-- <div><%= vacation.activities %></div> -->
+  </section>
 
 <%- include('../partials/footer')%>
