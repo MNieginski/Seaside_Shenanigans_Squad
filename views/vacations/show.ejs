@@ -16,19 +16,18 @@
           </section>
     <div id="mySidebar" class="sidebar">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-      <form action="/vacations" method="POST">
+      <form action="/vacations" method="POST" class="activity-form">
 
-        <label>Where are you going?
+        <label>Activity name:
             <input type="text" name="location" >
           </label><br>
         
-          <label>Arrival Date:
+          <label>Date:
             <input type="date" name="arrival">
           </label><br>
-        
-          <label>Departure Date:
-            <input type="date" name="departure">
-          </label><br>
+
+        <p><label for="w3review">Description:</label></p>
+         <textarea id="w3review" name="w3review" rows="4" cols="20"></textarea>
         
           <button type="submit">Add Vacation</button>
     
