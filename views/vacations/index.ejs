@@ -1,5 +1,9 @@
 <%- include('../partials/header')%>
 
-
+<p>        <% vacations.forEach(f=>{ %>
+    <div><%= f.location %></div>
+    <div><%= f.arrival %></div>
+    <div><%= f.departure %></div>
+  <% }) %></p>
 
 <%- include('../partials/footer')%>
