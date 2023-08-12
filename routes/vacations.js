@@ -6,8 +6,8 @@ router.get('/', vacationCtrl.index);
 
 router.get('/new', vacationCtrl.new)
 
-//router.post('/', vactionCtrl.create)
+router.post('/', vacationCtrl.vacationCreate)
 
-//router.get('/:id', cactionCtrl.show)
+//router.get('/:id', vacationCtrl.show)
 
 module.exports = router;

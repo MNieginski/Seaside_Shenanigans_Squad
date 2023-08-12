@@ -4,7 +4,8 @@ const Schema = mongoose.Schema
 
 const vacationSchema = new Schema ({
    location: {type:String},
-   dates: {arrival: Date, departure: Date},
+   arrival: {type:Date},
+   departure: {type:Date},
    activities: [Schema.Types.ObjectId],
    companions: [Schema.Types.ObjectId]
 })
