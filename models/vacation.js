@@ -9,8 +9,4 @@ const vacationSchema = new Schema ({
    companions: [Schema.Types.ObjectId]
 })
 
-
 module.exports = mongoose.model('Vacation', vacationSchema)
-
-
-

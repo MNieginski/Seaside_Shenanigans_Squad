@@ -1,8 +1,149 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;300;500&display=swap');
+
+:root {
+  --aqua-blue: #8cd6d7ff;
+  --blue-green: #005e6aff;
+  --light-white: #eaffffff;
 }
 
-a {
-  color: #00B7FF;
+*{
+  /* border: 1px dotted transparent; */
+}
+
+body {
+  margin: 0;
+  padding-top: 0;
+  background-color: var(--aqua-blue);
+  font: 14px "Work Sans", Helvetica, Arial, sans-serif;
+  height: 100vh;
+}
+
+nav a, h1, h3 {
+  color: var(--light-white);
+  text-decoration: none;
+}
+
+nav a{
+height: 100%;
+}
+
+header{
+  position: relative;
+}
+
+.navlink{
+  padding: 0 2vw;
+  border-radius: 10%;
+  border: 1px solid var(--blue-green);
+}
+
+.navlink:hover{
+  background-color: var(--light-white);
+  color: var(--blue-green);
+}
+
+.navlink:hover h1,h3{
+  color: var(--blue-green);
+}
+
+
+
+.logout{
+font-weight: 300;
+}
+
+.logo{
+  margin-right: 20px;
+  margin-left: 0px;
+}
+
+
+nav{
+  padding: 0;
+  display: flex;
+  background-color: var(--blue-green);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-div{
+display: flex;
+align-items: center;
+height: 100%;
+}
+
+
+nav div a{
+margin: auto 4vw;
+}
+
+
+footer{
+position: absolute;
+display: flex;
+justify-content: center;
+width: 100%;
+bottom: 0;
+margin-bottom: 30px;
+}
+
+footer>p{
+  font-size: 1.3rem;
+}
+
+
+.home{
+  background-image: url('/images/beach.png');
+  background-size: cover;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  justify-content: center;
+  text-align: center;
+}
+
+.title{
+  grid-row: 2;
+}
+
+.subtitle{
+  grid-row: 3;
+  color: var(--light-white);
+}
+
+.enter{
+  grid-row: 4;
+  height: fit-content;
+  width: fit-content;
+  justify-self: center;
+  border-radius: 10px;
+  padding: 12px 24px;
+  color: var(--light-white);
+  transition: background-color 500ms;
+  background-color: var(--aqua-blue);
+  transition: box-shadow 250ms;
+}
+
+.enter:hover{
+  box-shadow: 0 0 10px 10px rgb(24, 24, 24);
+  transition: 250ms;
+  background-color: var(--blue-green);
+}
+
+.here {
+  background: linear-gradient(90deg, red, orange, yellow, green, blue, purple);
+  animation: animate 5s linear infinite;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-decoration: none;
+}
+
+@keyframes animate {
+  0%,
+  100% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(360deg);
+  }
 }

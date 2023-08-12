@@ -1,7 +1,7 @@
 const Vacation = require("../models/vacation")
 
 async function vacationCreate(req, res){
-    Vacation.deleteMany({},)
+
 }
 
 async function vacationDeleteAll(req, res){
@@ -13,7 +13,7 @@ async function getVacations(req, res){
 }
 
 function index(req, res){
-res.send('hit index')
+res.render('vacations/index')
 }
 
 module.exports = {
