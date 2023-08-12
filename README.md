@@ -17,5 +17,6 @@ Keep track of upcoming and previous vacations, and let our site be your digital 
 - Mongoose
 - Express
 - Google OAuth
+- Bootstrap
 
 ## Future Features
