@@ -120,16 +120,25 @@ footer>p{
   background-size: cover;
 }
 .beach{
-  background-image: url('/images/beach.png');
+  background-image: url('/images/aerial-beach.jpg');
 }
 .bus{
-  background-image: url('/images/bus.png');
+  background-image: url('/images/lil-bus.jpg');
 }
 .dog{
-  background-image: url('/images/dog.png');
+  background-image: url('/images/travel-dog.jpg');
 }
-.cat{
-  background-image: url('/images/Tilly.png');
+.paris{
+  background-image: url('/images/louvre-paris.jpg');
+}
+.lake{
+  background-image: url('/images/mountain-lake.jpg');
+}
+.san-fran{
+  background-image: url('/images/san-francisco.jpg');
+}
+.city{
+  background-image: url('/images/seaside-city.jpg');
 }
 
 .title{
