@@ -1,7 +1,17 @@
 const Vacation = require("../models/vacation")
 
-async function vacationCreate(req, res){
+function newVacation(req, res){
+    res.render("vacations/new", {title: "Add Vacation", errorMsg: ""})
+}
 
+async function vacationCreate(req, res){
+    const vactionData = {...req.body}
+    try{
+        const createdVacation = await Vacation.create(vacationData)
+        res.redirect("/vacations")
+    } catch (err) {
+        res.render("vacations/new", {errorMsg: err.message})
+    }
 }
 
 async function vacationDeleteAll(req, res){
@@ -17,6 +27,7 @@ res.render('vacations/index')
 }
 
 module.exports = {
+new: newVacation,
 vacationCreate,
 getVacations,
 vacationDeleteAll,
