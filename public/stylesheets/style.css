@@ -7,7 +7,7 @@
 }
 
 *{
-  /* border: 1px dotted red; */
+  /* border: 1px solid red; */
 }
 
 body {
@@ -52,11 +52,6 @@ header{
 font-weight: 300;
 }
 
-.logo{
-  margin-right: 20px;
-  margin-left: 0px;
-}
-
 
 nav{
   padding: 0;
@@ -93,14 +88,48 @@ footer>p{
 
 /* ////////////////////////////Home Page */
 .home{
-  background-image: url('/images/beach.png');
-  background-size: cover;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   grid-template-columns: 1fr;
   justify-content: center;
   justify-items: center;
   text-align: center;
+}
+
+.slide-container{
+  position: absolute;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+}
+
+#myCarousel{
+  height: 100%;
+  position: relative;
+}
+
+.carousel-inner{
+  height: 100%;
+  /* border: 3px solid yellow; */
+}
+
+.item{
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+}
+.beach{
+  background-image: url('/images/beach.png');
+}
+.bus{
+  background-image: url('/images/bus.png');
+}
+.dog{
+  background-image: url('/images/dog.png');
+}
+.cat{
+  background-image: url('/images/Tilly.png');
 }
 
 .title{
@@ -113,7 +142,7 @@ footer>p{
 .subtitle{
   grid-row: 3;
   color: var(--light-white);
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 300;
   text-shadow: 0 0 5px var(--aqua-blue);
   font-style: italic;
