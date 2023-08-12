@@ -1,24 +1,41 @@
 <%- include('../partials/header')%>
 <section id="new-page">
-<h2>PLAN A TRIP</h2>
+  <h2>PLAN YOUR TRIP</h2>
 
-<form action="/vacations" method="POST">
+  <form class="new-form" action="/vacations" method="POST">
+    <main>
+      <div class="new-titles">
+        <h2>LOCATION:</h2>
+        <h2>DATE RANGE:</h2>
+        <h2>TRAVEL BUDDIES:</h2>
+      </div>
+      <div class="spacer"></div>
 
-    <label>Where are you going?
-        <input type="text" name="location" >
-      </label><br>
-    
-      <label>Arrival Date:
-        <input type="date" name="arrival" required>
-      </label><br>
-    
-      <label>Departure Date:
-        <input type="date" name="departure" required>
-      </label><br>
-    
-      <button type="submit">Add Vacation</button>
-
-</form>
-
+      <div class="new-vacation">
+        <div class="new-form-ctr">
+          <input class="new-location" type="text" name="location" />
+          <div id="date-inputs">
+            <input class="new-arrival" type="date" name="arrival" required />
+            <p id="to">to</p>
+            <input
+              class="new-departure"
+              type="date"
+              name="departure"
+              required
+            />
+          </div>
+          <input
+            class="new-companions"
+            type="text"
+            name="companions"
+            placeholder="Joe Smith, Jane Brain, ..."
+          />
+        </div>
+      </div>
+    </main>
+    <button class="enter" id="new-form-submit" type="submit">
+      Add Vacation
+    </button>
+  </form>
 </section>
 <%- include('../partials/footer')%>
