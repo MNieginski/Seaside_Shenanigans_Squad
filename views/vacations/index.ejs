@@ -9,12 +9,14 @@
       </tr>
     </thead>
     <tbody>
-     
+        <% vacations.forEach(f=>{ %>
+            <tr>
+                <td><%= f.location %></td>
+                <td><%= f.arrival.toLocaleDateString() %></td>
+                <td><%= f.departure.toLocaleDateString() %></td>
+            </tr>
+        <% }) %>
       </tbody>
-    </table><p>        <% vacations.forEach(f=>{ %>
-    <div><%= f.location %></div>
-    <div><%= f.arrival %></div>
-    <div><%= f.departure %></div>
-  <% }) %></p>
+    </table>
 
 <%- include('../partials/footer')%>
