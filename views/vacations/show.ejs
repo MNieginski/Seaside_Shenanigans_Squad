@@ -16,10 +16,23 @@
           </section>
     <div id="mySidebar" class="sidebar">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-      <a href="#">About</a>
-      <a href="#">Services</a>
-      <a href="#">Clients</a>
-      <a href="#">Contact</a>
+      <form action="/vacations" method="POST">
+
+        <label>Where are you going?
+            <input type="text" name="location" >
+          </label><br>
+        
+          <label>Arrival Date:
+            <input type="date" name="arrival">
+          </label><br>
+        
+          <label>Departure Date:
+            <input type="date" name="departure">
+          </label><br>
+        
+          <button type="submit">Add Vacation</button>
+    
+    </form>
     </div>
     
     <div id="main">
