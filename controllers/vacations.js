@@ -4,6 +4,11 @@ function newVacation(req, res){
     res.render("vacations/new", {title: "Add Vacation", errorMsg: ""})
 }
 
+async function showVacations(req, res) {
+    const vacation = await Vacation.findById(req.params.id)
+    res.render("vacations/show", { title: "Vacation Details", vacation})
+}
+
 async function vacationCreate(req, res){
     const vacationData = {...req.body}
     console.log(req.body)
@@ -41,5 +46,6 @@ new: newVacation,
 vacationCreate,
 getVacations,
 vacationDeleteAll,
+show: showVacations,
 index
 }
