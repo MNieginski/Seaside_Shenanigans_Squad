@@ -16,7 +16,8 @@ async function vacationCreate(req, res){
         console.log(vacationData)
         //const createdVacation = 
         const createVacation = await Vacation.create(vacationData);
-        console.log(createVacation)
+        console.log(new Date().toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) 
+        )
         res.redirect("/vacations/")
     } catch (err) {
         res.render("vacations/new", {errorMsg: err.message})

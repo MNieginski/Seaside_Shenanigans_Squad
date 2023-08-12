@@ -1,16 +1,56 @@
 <%- include('../partials/header')%>
 
-<section id="show-page">
-    <div>Location: 
-    <%= vacation.location %></div>
-    <div>Arrival Date: 
-    <%= vacation.arrival.toLocaleDateString() %></div>
-    <div>Departure Date: 
-    <%= vacation.departure.toLocaleDateString() %></div>
-    <div>Companions: 
-    <%= vacation.companions %></div>
-     <div>Activities: </div>
-    <!-- <div><%= vacation.activities %></div> -->
-  </section>
+<h2>Test</h2>
+    <body>
+        <section id="show-page">
+            <div>Location: 
+            <%= vacation.location %></div>
+            <div>Arrival Date: 
+            <%= vacation.arrival.toLocaleDateString() %></div>
+            <div>Departure Date: 
+            <%= vacation.departure.toLocaleDateString() %></div>
+            <div>Companions: 
+            <%= vacation.companions %></div>
+             <div>Activities: </div>
+            <!-- <div><%= vacation.activities %></div> -->
+          </section>
+    <div id="mySidebar" class="sidebar">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+      <form action="/vacations" method="POST">
+
+        <label>Where are you going?
+            <input type="text" name="location" >
+          </label><br>
+        
+          <label>Arrival Date:
+            <input type="date" name="arrival">
+          </label><br>
+        
+          <label>Departure Date:
+            <input type="date" name="departure">
+          </label><br>
+        
+          <button type="submit">Add Vacation</button>
+    
+    </form>
+    </div>
+    
+    <div id="main">
+      <button class="openbtn" onclick="openNav()">☰ Add an Activity</button>  
+    </div>
+    
+    <script>
+    function openNav() {
+      document.getElementById("mySidebar").style.width = "250px";
+      document.getElementById("main").style.marginLeft = "250px";
+    }
+    
+    function closeNav() {
+      document.getElementById("mySidebar").style.width = "0";
+      document.getElementById("main").style.marginLeft= "0";
+    }
+    </script>
+       
+    </body>
 
 <%- include('../partials/footer')%>
