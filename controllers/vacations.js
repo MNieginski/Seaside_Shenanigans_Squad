@@ -11,13 +11,13 @@ async function showVacations(req, res) {
 
 async function vacationCreate(req, res){
     const vacationData = {...req.body}
-    console.log(req.body)
+    for (let key in vacationData) {
+        if (vacationData[key] === "") delete vacationData[key]; // if any fields store an empty string, remove the correspoding key so the default data is sent instead.
+      }
     try{
         console.log(vacationData)
-        //const createdVacation = 
         const createVacation = await Vacation.create(vacationData);
-        console.log(new Date().toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) 
-        )
+        console.log(createVacation)
         res.redirect("/vacations/")
     } catch (err) {
         res.render("vacations/new", {errorMsg: err.message})
