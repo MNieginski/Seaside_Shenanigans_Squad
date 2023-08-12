@@ -1,3 +1,28 @@
 <%- include('../partials/header')%>
 
+<h2>Enter a new Vacation</h2>
+
+<form action="/vacations" method="POST">
+
+    <label>Where are you going?
+        <input type="text" name="location" >
+      </label><br>
+    
+      <label>Arrival Date:
+        <input type="date" name="arrival">
+      </label><br>
+    
+      <label>Departure Date:
+        <input type="date" name="departure">
+      </label><br>
+    
+    
+      <label>Who's else is going?
+        <input type="text" name="companions">
+      </label><br>
+    
+      <button type="submit">Add Vacation</button>
+
+</form>
+
 <%- include('../partials/footer')%>
