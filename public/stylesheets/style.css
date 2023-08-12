@@ -1,8 +1,204 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;300;500&display=swap');
+
+:root {
+  --aqua-blue: #8cd6d7ff;
+  --blue-green: #005e6aff;
+  --light-white: #eaffffff;
 }
 
-a {
-  color: #00B7FF;
+*{
+  /* border: 1px solid red; */
+}
+
+body {
+  margin: 0;
+  padding-top: 0;
+  background-color: var(--aqua-blue);
+  font: 14px "Work Sans", Helvetica, Arial, sans-serif;
+  height: 100vh;
+}
+
+nav a, h1, h3 {
+  color: var(--light-white);
+  text-decoration: none;
+}
+
+nav a{
+height: 100%;
+}
+
+header{
+  position: relative;
+}
+
+.navlink{
+  padding: 0 2vw;
+  border-radius: 10px;
+  border: 1px solid var(--blue-green);
+}
+
+.navlink:hover{
+  background-color: var(--light-white);
+  color: var(--blue-green);
+}
+
+.navlink:hover h1,h3{
+  color: var(--blue-green);
+}
+
+
+
+.logout{
+font-weight: 300;
+}
+
+
+nav{
+  padding: 0;
+  display: flex;
+  background-color: var(--blue-green);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-div{
+display: flex;
+align-items: center;
+height: 100%;
+}
+
+
+nav div a{
+margin: auto 4vw;
+}
+
+/* ////////////////////////////Footer */
+footer{
+position: absolute;
+display: flex;
+justify-content: center;
+width: 100%;
+bottom: 0;
+margin-bottom: 30px;
+}
+
+footer>p{
+  font-size: 1.3rem;
+}
+
+/* ////////////////////////////Home Page */
+.home{
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  justify-items: center;
+  text-align: center;
+}
+
+.slide-container{
+  position: absolute;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+}
+
+#myCarousel{
+  height: 100%;
+  position: relative;
+}
+
+.carousel-inner{
+  height: 100%;
+  /* border: 3px solid yellow; */
+}
+
+.item{
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+}
+.beach{
+  background-image: url('/images/aerial-beach.jpg');
+}
+.bus{
+  background-image: url('/images/lil-bus.jpg');
+}
+.dog{
+  background-image: url('/images/travel-dog.jpg');
+}
+.paris{
+  background-image: url('/images/louvre-paris.jpg');
+}
+.lake{
+  background-image: url('/images/mountain-lake.jpg');
+}
+.san-fran{
+  background-image: url('/images/san-francisco.jpg');
+}
+.city{
+  background-image: url('/images/seaside-city.jpg');
+}
+
+.title{
+  grid-row: 2;
+  align-self: end;
+  margin: 0 auto;
+  width: 75%;
+}
+
+.subtitle{
+  grid-row: 3;
+  color: var(--light-white);
+  font-size: 2.5rem;
+  font-weight: 300;
+  text-shadow: 0 0 5px var(--aqua-blue);
+  font-style: italic;
+}
+
+.enter{
+  border-radius: 10px;
+  padding: 12px 24px;
+  color: var(--light-white);
+  transition: background-color 500ms;
+  background-color: var(--aqua-blue);
+  transition: box-shadow 250ms;
+  border: none;
+}
+
+.enter-ctr{
+  grid-row: 4;
+  height: fit-content;
+  width: fit-content;
+  justify-self: center;
+
+}
+
+.enter:hover{
+  box-shadow: 0 0 10px 10px rgb(24, 24, 24);
+  transition: 250ms;
+  background-color: var(--blue-green);
+  cursor: pointer;
+}
+
+
+/* ////////////////////////////Rainbow Stuff*/
+.here {
+  background: linear-gradient(90deg, red, orange, yellow, green, blue, purple);
+  animation: animate 5s linear infinite;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-decoration: none;
+}
+
+@keyframes animate {
+  0%,
+  100% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(360deg);
+  }
 }
