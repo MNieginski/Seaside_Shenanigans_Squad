@@ -1,12 +1,19 @@
 <%- include('../partials/header')%>
 
 <h2>Test</h2>
-<style>
-    
-    </style>
-    </head>
     <body>
-    
+        <section id="show-page">
+            <div>Location: 
+            <%= vacation.location %></div>
+            <div>Arrival Date: 
+            <%= vacation.arrival.toLocaleDateString() %></div>
+            <div>Departure Date: 
+            <%= vacation.departure.toLocaleDateString() %></div>
+            <div>Companions: 
+            <%= vacation.companions %></div>
+             <div>Activities: </div>
+            <!-- <div><%= vacation.activities %></div> -->
+          </section>
     <div id="mySidebar" class="sidebar">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
       <a href="#">About</a>
@@ -16,9 +23,7 @@
     </div>
     
     <div id="main">
-      <button class="openbtn" onclick="openNav()">☰ Open Sidebar</button>  
-      <h2>Collapsed Sidebar</h2>
-      <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p>
+      <button class="openbtn" onclick="openNav()">☰ Add an Activity</button>  
     </div>
     
     <script>
