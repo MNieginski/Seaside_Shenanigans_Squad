@@ -27,7 +27,7 @@ async function getVacations(req, res){
 
 async function index(req, res){
     try {
-        const results = await Vacation.find({}) 
+        const results = await Vacation.find({})
         res.render('vacations/index', {title: "All Vacations", vacations: results})
     } catch (err){
         console.log(err.message)
