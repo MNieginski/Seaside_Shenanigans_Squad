@@ -8,6 +8,6 @@ router.get('/new', vacationCtrl.new)
 
 router.post('/', vacationCtrl.vacationCreate)
 
-//router.get('/:id', vacationCtrl.show)
+router.get('/:id', vacationCtrl.show)
 
 module.exports = router;
