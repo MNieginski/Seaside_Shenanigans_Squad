@@ -10,8 +10,9 @@ async function vacationCreate(req, res){
     try{
         console.log(vacationData)
         //const createdVacation = 
-        await Vacation.create(vacationData)
-        res.redirect("/vacations")
+        const createVacation = await Vacation.create(vacationData);
+        console.log(createVacation)
+        res.redirect("/vacations/")
     } catch (err) {
         res.render("vacations/new", {errorMsg: err.message})
     }
@@ -27,7 +28,7 @@ async function getVacations(req, res){
 
 async function index(req, res){
     try {
-        const results = await Vacation.find({}) 
+        const results = await Vacation.find({})
         res.render('vacations/index', {title: "All Vacations", vacations: results})
     } catch (err){
         console.log(err.message)
