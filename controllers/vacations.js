@@ -59,7 +59,12 @@ function edit(req, res) {
 
 async function update(req, res) {
     const updateData = {...req.body}
-    const saveData = await Vacation.findOneAndUpdate({_id: req.params.id}, {updateData})
+    console.log(updateData)
+    for (let key in updateData) {
+        if (updateData[key] === "") delete updateData[key]; 
+      }
+    const saveData = await Vacation.findOneAndUpdate({_id: req.params.id}, updateData)
+    console.log(saveData)
     await saveData.save()
     res.redirect('/vacations/'+req.params.id)
 
