@@ -101,12 +101,12 @@ margin: 30px auto 0 auto;
   letter-spacing: 2px;
   line-height: 50px;
   margin: 3% auto;
-  /* text-align: center; */
   margin-left: 15vw;
 }
 
 
 .details{
+  font: 14px "Work Sans", Helvetica, Arial, sans-serif;
   text-align: center;
   background-color: var(--blue-green);
   font-size: .8rem;

@@ -12,7 +12,6 @@ async function showVacations(req, res) {
 newComp = await User.findById(vacation.companions[i])
 companionNames.push(newComp.name)
     }
- console.log(companionNames)
     res.render("vacations/show", { title: "Vacation Details", vacation, companionNames})
 }
 
@@ -69,7 +68,6 @@ async function update(req, res) {
         if (updateData[key] === "") delete updateData[key]; 
       }
     const saveData = await Vacation.findOneAndUpdate({_id: req.params.id}, updateData)
-    console.log(saveData)
     await saveData.save()
     res.redirect('/vacations/'+req.params.id)
 
