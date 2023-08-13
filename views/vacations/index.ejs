@@ -12,7 +12,7 @@
       f.arrival.getUTCDate()%>, <%=f.arrival.getFullYear()%> •
       <a href="/vacations/<%= f._id %>"><button class="details">Details</button></a>
       <form id="delete-vacation" method="POST" action="/vacations/<%= f._id %>?_method=DELETE">
-        <button>Delete</button></form>
+        <button class="details" >Delete</button></form>
     </li>
     <%}%> <% }) %>
   </ul>
@@ -29,7 +29,7 @@
       f.arrival.getUTCDate()%>, <%=f.arrival.getFullYear()%> •
       <a href="/vacations/<%= f._id %>"><button class="details">Details</button></a>
       <form id="delete-vacation" method="POST" action="/vacations/<%= f._id %>?_method=DELETE">
-        <button>Delete</button></form>
+        <button class="details">Delete</button></form>
     </li>
     <%}%> <% }) %>
   </ul>
