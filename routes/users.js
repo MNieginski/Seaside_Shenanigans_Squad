@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const ensureLoggedIn = require('../config/ensureLoggedIn')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
