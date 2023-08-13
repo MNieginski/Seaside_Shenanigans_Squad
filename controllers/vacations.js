@@ -53,6 +53,10 @@ async function deleteVacation(req, res) {
     res.redirect('/vacations')
 }
 
+function edit(req, res) {
+    res.render('vacations/edit', {title: "Edit Vacation", _id: req.params.id})
+}
+
 function compareDates(a, b){
     return a.departure - b.departure
 }
@@ -69,5 +73,6 @@ vacationDeleteAll,
 show: showVacations,
 index,
 months,
-delete: deleteVacation
+delete: deleteVacation,
+edit
 }
