@@ -39,12 +39,16 @@ async function index(req, res){
 
     try {
         const results = await Vacation.find({userId: req.user._id})
-        res.render('vacations/index', {title: "All Vacations", vacations: results})
+        res.render('vacations/index', {title: "All Vacations", vacations: results, months})
     } catch (err){
         console.log(err.message)
         res.redirect('/')
     }
 }
+
+
+const months= ["January","February","March","April","May","June","July",
+            "August","September","October","November","December"];
 
 module.exports = {
 new: newVacation,
@@ -52,5 +56,6 @@ vacationCreate,
 getVacations,
 vacationDeleteAll,
 show: showVacations,
-index
+index,
+months
 }
