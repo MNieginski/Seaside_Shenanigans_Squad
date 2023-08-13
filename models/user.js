@@ -4,7 +4,10 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   name: String,
   image: String,
-  vacations: [Schema.Types.ObjectId],
+  vacations:[{
+    type: Schema.Types.ObjectId,
+    ref: 'Vacation'
+  }],
   //over21: Boolean,
   //location:
   googleId: {
