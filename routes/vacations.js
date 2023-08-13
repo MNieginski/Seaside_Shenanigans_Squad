@@ -11,4 +11,6 @@ router.post('/', ensureLoggedIn, vacationCtrl.vacationCreate)
 
 router.get('/:id', ensureLoggedIn, vacationCtrl.show)
 
+router.delete('/:id', vacationCtrl.delete)
+
 module.exports = router;

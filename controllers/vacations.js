@@ -48,6 +48,11 @@ async function index(req, res){
     }
 }
 
+async function deleteVacation(req, res) {
+    await Vacation.deleteOne({_id: req.params.id})
+    res.redirect('/vacations')
+}
+
 function compareDates(a, b){
     return a.departure - b.departure
 }
@@ -63,5 +68,6 @@ getVacations,
 vacationDeleteAll,
 show: showVacations,
 index,
-months
+months,
+delete: deleteVacation
 }
