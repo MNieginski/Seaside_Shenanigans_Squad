@@ -106,9 +106,9 @@ margin: 30px auto 0 auto;
 .details{
   text-align: center;
   background-color: var(--blue-green);
-  font-size: .9rem;
+  font-size: .8rem;
   border-radius: 10px;
-  padding: 12px 24px;
+  padding: 12px 12px;
   color: var(--light-white);
   transition: box-shadow 250ms;
   vertical-align: middle;
@@ -117,6 +117,14 @@ margin: 30px auto 0 auto;
 .details:hover{
   box-shadow: 0 0 10px 2px rgb(24, 24, 24);
   cursor: pointer;
+}
+
+#delete-vacation{
+  display: inline
+}
+
+#delete-vacation>button{
+  background-color: rgb(74, 22, 22);
 }
 
 
