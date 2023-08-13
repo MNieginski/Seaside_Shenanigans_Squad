@@ -54,7 +54,15 @@ async function deleteVacation(req, res) {
 }
 
 function edit(req, res) {
-    res.render('vacations/edit', {title: "Edit Vacation", _id: req.params.id})
+    res.render('vacations/edit', {title: "Edit Vacation", vacation: req.params.id})
+}
+
+async function update(req, res) {
+    const updateData = {...req.body}
+    const saveData = await Vacation.findOneAndUpdate({_id: req.params.id}, {updateData})
+    await saveData.save()
+    res.redirect('/vacations/'+req.params.id)
+
 }
 
 function compareDates(a, b){
@@ -74,5 +82,6 @@ show: showVacations,
 index,
 months,
 delete: deleteVacation,
-edit
+edit,
+update
 }

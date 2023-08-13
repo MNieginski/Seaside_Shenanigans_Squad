@@ -1,5 +1,44 @@
 <%- include('../partials/header')%>
 
-<h2>moar testing</h2>
+<section id="new-page">
+    <h2>EDIT YOUR TRIP</h2>
+  
+    <form class="new-form" method="POST" action="/vacations/<%= vacation %>?_method=PUT">
+      <main>
+        <div class="new-titles">
+          <h2>LOCATION:</h2>
+          <h2>DATE RANGE:</h2>
+          <h2>TRAVEL BUDDIES:</h2>
+        </div>
+        <div class="spacer"></div>
+  
+        <div class="new-vacation">
+          <div class="new-form-ctr">
+            <input class="new-location" type="text" name="location" />
+            <div id="date-inputs">
+              <input class="new-departure" type="date" name="departure" required />
+              <p id="to">to</p>
+              <input
+                class="new-arrival"
+                type="date"
+                name="arrival"
+                required
+              />
+            </div>
+            <input
+              class="new-companions"
+              type="text"
+              name="companions"
+              placeholder="Joe Smith, Jane Brain, ..."
+            />
+          </div>
+        </div>
+      </main>
+      <input type="hidden" name="userId" value=<%=user._id%>>
+      <button class="enter" id="new-form-submit" type="submit">
+        Accept Changes
+      </button>
+    </form>
+  </section>
 
 <%- include('../partials/footer')%>
