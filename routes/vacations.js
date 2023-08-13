@@ -15,4 +15,6 @@ router.delete('/:id', vacationCtrl.delete)
 
 router.get('/:id/edit', ensureLoggedIn, vacationCtrl.edit)
 
+router.put('/:id', ensureLoggedIn, vacationCtrl.update)
+
 module.exports = router;
