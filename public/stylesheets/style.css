@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;300;500;700;900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Monoton&family=Work+Sans:wght@100;300;500;800&display=swap');
 :root {
   --aqua-blue: #8cd6d7ff;
   --blue-green: #005e6aff;
@@ -16,6 +15,10 @@ body {
   background-color: var(--aqua-blue);
   font: 14px "Work Sans", Helvetica, Arial, sans-serif;
   height: 100vh;
+}
+
+.monoton{
+font-family: 'Monoton', cursive;
 }
 
 nav a, h1, h3 {
@@ -126,6 +129,15 @@ margin: 30px auto 0 auto;
 #delete-vacation>button{
   background-color: rgb(74, 22, 22);
 }
+
+
+/* ////////////////////////////Show Page */
+.show-info{
+  text-align: center;
+}
+
+
+
 
 
 
@@ -378,20 +390,15 @@ body {
 .openbtn {
   font-size: 20px;
   cursor: pointer;
-  background-color: #111;
   color: white;
   padding: 10px 15px;
   border: none;
 }
 
-.openbtn:hover {
-  background-color: #444;
-}
-
-#main {
+/* #main {
   transition: margin-left .5s;
   padding: 16px;
-}
+} */
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {

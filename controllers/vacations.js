@@ -6,12 +6,17 @@ function newVacation(req, res){
 }
 
 async function showVacations(req, res) {
+    let companionNames = []
     const vacation = await Vacation.findById(req.params.id)
-    res.render("vacations/show", { title: "Vacation Details", vacation})
+    for(i=0; i<vacation.companions.length; i++){
+newComp = await User.findById(vacation.companions[i])
+companionNames.push(newComp.name)
+    }
+ console.log(companionNames)
+    res.render("vacations/show", { title: "Vacation Details", vacation, companionNames})
 }
 
 async function vacationCreate(req, res){
-    console.log(req.body)
     const vacationData = {...req.body}
     for (let key in vacationData) {
         if (vacationData[key] === "") delete vacationData[key]; // if any fields store an empty string, remove the correspoding key so the default data is sent instead.
