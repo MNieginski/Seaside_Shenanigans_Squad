@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
 var passport = require('passport');
+var methodOverride = require('method-override');
 
 
 require('dotenv').config()
@@ -39,9 +40,11 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.use(methodOverride('_method'));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/vacations', vacationsRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
