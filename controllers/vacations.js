@@ -39,11 +39,17 @@ async function index(req, res){
 
     try {
         const results = await Vacation.find({userId: req.user._id})
+        //SORT HERE
+        results.sort(compareDates)
         res.render('vacations/index', {title: "All Vacations", vacations: results, months})
     } catch (err){
         console.log(err.message)
         res.redirect('/')
     }
+}
+
+function compareDates(a, b){
+    return a.departure - b.departure
 }
 
 
