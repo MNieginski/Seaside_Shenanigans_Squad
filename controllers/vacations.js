@@ -1,7 +1,8 @@
 const Vacation = require("../models/vacation")
+const User = require('../models/user')
 
 function newVacation(req, res){
-    res.render("vacations/new", {title: "Add Vacation", errorMsg: ""})
+    res.render("vacations/new", {title: "Add Vacation", errorMsg: "", user: req.user})
 }
 
 async function showVacations(req, res) {
@@ -10,22 +11,24 @@ async function showVacations(req, res) {
 }
 
 async function vacationCreate(req, res){
+    console.log(req.body)
     const vacationData = {...req.body}
     for (let key in vacationData) {
         if (vacationData[key] === "") delete vacationData[key]; // if any fields store an empty string, remove the correspoding key so the default data is sent instead.
       }
     try{
-        console.log(vacationData)
-        const createVacation = await Vacation.create(vacationData);
-        console.log(createVacation)
-        res.redirect("/vacations/")
+         const createVacation = await Vacation.create(vacationData);
+         let user = await (User.findById(req.user._id))
+        await user.vacations.push(createVacation._id)
+        user.save()
+        res.redirect("/vacations")
     } catch (err) {
         res.render("vacations/new", {errorMsg: err.message})
     }
 }
 
 async function vacationDeleteAll(req, res){
-    await Vacation.deleteMany({location: 'france'})
+    await Vacation.deleteMany({})
 }
     
 async function getVacations(req, res){
@@ -33,14 +36,25 @@ async function getVacations(req, res){
 }
 
 async function index(req, res){
+
     try {
-        const results = await Vacation.find({})
-        res.render('vacations/index', {title: "All Vacations", vacations: results})
+        const results = await Vacation.find({userId: req.user._id})
+        //SORT HERE
+        results.sort(compareDates)
+        res.render('vacations/index', {title: "All Vacations", vacations: results, months})
     } catch (err){
         console.log(err.message)
         res.redirect('/')
     }
 }
+
+function compareDates(a, b){
+    return a.departure - b.departure
+}
+
+
+const months= ["January","February","March","April","May","June","July",
+            "August","September","October","November","December"];
 
 module.exports = {
 new: newVacation,
@@ -48,5 +62,6 @@ vacationCreate,
 getVacations,
 vacationDeleteAll,
 show: showVacations,
-index
+index,
+months
 }
