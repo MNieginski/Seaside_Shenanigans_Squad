@@ -1,48 +1,37 @@
 <%- include('../partials/header')%>
-<h2>UPCOMING TRIPS:</h2>
-<ul class="trips upcoming">
-  <% vacations.forEach(f=>{%>
-    <% if(Date.now() < f.arrival){%>
-  <li>
-    <%= f.location %> • 
-    <%=months[f.departure.getUTCMonth()]%> 
-    <%=f.departure.getUTCDate() %> - 
+<div class="index-page">
+  <img src="/images/title3.png" alt="">
+<div class="upcoming-ctr">
+  <ul class="trips upcoming">
+    <h2 class="trip-list-title">UPCOMING TRIPS:</h2>
+    <% vacations.forEach(f=>{%> <% if(Date.now() < f.arrival){%>
+    <li>
+      <%= f.location.toUpperCase() %> • <%=months[f.departure.getUTCMonth()].toUpperCase()%>
+      <%=f.departure.getUTCDate() %> - <%if(f.departure.getUTCMonth() !==
+      f.arrival.getUTCMonth()){%> <%=months[f.arrival.getUTCMonth()].toUpperCase()%> <%}%> <%=
+      f.arrival.getUTCDate()%>, <%=f.arrival.getFullYear()%> •
+      <a href="/vacations/<%= f._id %>"><button class="details">Details</button></a>
+    </li>
+    <%}%> <% }) %>
+  </ul>
+</div>
 
-
-    <%if(f.departure.getUTCMonth() !== f.arrival.getUTCMonth()){%>
-      <%=months[f.arrival.getUTCMonth()]%> 
-      <%}%>
-    <%=
-    f.arrival.getUTCDate()%>, 
-    <%=f.arrival.getFullYear()%>  •
-    <a href="/vacations/<%= f._id %>"><button>Details</button></a>
-  </li>
-  <%}%>
-  <% }) %>
-</ul>
-
-<h2>PREVIOUS TRIPS:</h2>
-<ul class="trips upcoming">
-  <% vacations.forEach(f=>{%>
-    <% if(Date.now() > f.arrival){%>
-  <li>
-    <%= f.location %> • 
-    <%=months[f.departure.getUTCMonth()]%> 
-    <%=f.departure.getUTCDate() %> - 
-    <%if(f.departure.getUTCMonth() !== f.arrival.getUTCMonth()){%>
-      <%=months[f.arrival.getUTCMonth()]%> 
-      <%}%>
-    <%=
-    f.arrival.getUTCDate()%>, 
-    <%=f.arrival.getFullYear()%>  •
-    <a href="/vacations/<%= f._id %>"><button>Details</button></a>
-  </li>
-  <%}%>
-  <% }) %>
-</ul>
-
+<div class="previous-ctr">
+  <ul class="trips upcoming">
+    <h2 class="trip-list-title">PREVIOUS TRIPS:</h2>
+    <% vacations.forEach(f=>{%> <% if(Date.now() > f.arrival){%>
+    <li>
+      <%= f.location.toUpperCase() %> • <%=months[f.departure.getUTCMonth()].toUpperCase()%>
+      <%=f.departure.getUTCDate() %> - <%if(f.departure.getUTCMonth() !==
+      f.arrival.getUTCMonth()){%> <%=months[f.arrival.getUTCMonth()]%> <%}%> <%=
+      f.arrival.getUTCDate()%>, <%=f.arrival.getFullYear()%> •
+      <a href="/vacations/<%= f._id %>"><button class="details">Details</button></a>
+    </li>
+    <%}%> <% }) %>
+  </ul>
+</div>
+</div>
 <%- include('../partials/footer')%>
-
 
 <!-- dates are a day behind - fix this so they store right
 months need to show when different -->

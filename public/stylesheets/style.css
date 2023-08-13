@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;300;500;700;900&display=swap');
 
 :root {
   --aqua-blue: #8cd6d7ff;
@@ -71,6 +71,56 @@ height: 100%;
 nav div a{
 margin: auto 4vw;
 }
+
+
+/* ////////////////////////////Index Page */
+.index-page>h1{
+  font-size: 3rem;
+text-align: center;
+color: var(--light-white);
+}
+
+.index-page>img{
+width: 75%;
+display: block;
+margin: 30px auto 0 auto;
+}
+
+.trip-list-title{
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.trips{
+  list-style: none;
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+  line-height: 50px;
+  margin: 3% auto;
+  /* text-align: center; */
+  margin-left: 15vw;
+}
+
+
+.details{
+  text-align: center;
+  background-color: var(--blue-green);
+  font-size: .9rem;
+  border-radius: 10px;
+  padding: 12px 24px;
+  color: var(--light-white);
+  transition: box-shadow 250ms;
+  vertical-align: middle;
+}
+
+.details:hover{
+  box-shadow: 0 0 10px 2px rgb(24, 24, 24);
+  cursor: pointer;
+}
+
+
+
 /* ////////////////////////////New Page */
 #new-page{
 display: flex;
@@ -138,7 +188,6 @@ display: flex
   background-color: var(--blue-green);
   font-size: 2rem;
   margin-top: 20px;
-  
 }
 
 .new-form{
