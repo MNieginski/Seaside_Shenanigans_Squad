@@ -13,4 +13,6 @@ router.get('/:id', ensureLoggedIn, vacationCtrl.show)
 
 router.delete('/:id', vacationCtrl.delete)
 
+//router.get('/edit', ensureLoggedIn, vacationCtrl.edit)
+
 module.exports = router;
