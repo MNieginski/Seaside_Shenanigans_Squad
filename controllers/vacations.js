@@ -1,5 +1,6 @@
 const Vacation = require("../models/vacation")
-const User = require('../models/user')
+const User = require('../models/user');
+const vacation = require("../models/vacation");
 const months= ["January","February","March","April","May","June","July",
             "August","September","October","November","December"];
 
@@ -21,9 +22,6 @@ async function vacationCreate(req, res){
     const vacationData = {...req.body}
     vacationData.companions = vacationData.companions.split(/\s*,\s*/)
     vacationData.companions = await getFriends(vacationData.companions)
-    console.log(vacationData.companions)
-   
-   
     for (let key in vacationData) {
         if (vacationData[key] === "") delete vacationData[key]; // if any fields store an empty string, remove the correspoding key so the default data is sent instead.
       }
@@ -91,6 +89,8 @@ async function edit(req, res) {
 
 async function update(req, res) {
     const updateData = {...req.body}
+    updateData.companions = updateData.companions.split(/\s*,\s*/)
+    updateData.companions = await getFriends(updateData.companions)
     for (let key in updateData) {
         if (updateData[key] === "") delete updateData[key]; 
       }
@@ -125,7 +125,6 @@ async function getFriends(companions){
     let friends = []
         for(i=0; i<companions.length; i++){
         newguy = await User.findOne({username: companions[i]})
-        console.log(2, newguy)
         friends.push(newguy)
         }
         return friends
