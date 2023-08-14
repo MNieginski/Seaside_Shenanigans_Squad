@@ -20,7 +20,10 @@ companionNames.push(newComp.name)
 async function vacationCreate(req, res){
     const vacationData = {...req.body}
     vacationData.companions = vacationData.companions.split(/\s*,\s*/)
+    vacationData.companions = await getFriends(vacationData.companions)
     console.log(vacationData.companions)
+   
+   
     for (let key in vacationData) {
         if (vacationData[key] === "") delete vacationData[key]; // if any fields store an empty string, remove the correspoding key so the default data is sent instead.
       }
@@ -59,9 +62,7 @@ async function index(req, res){
 
 async function newUsername(req,res) {
     const username = req.body
-    console.log('username', username)
     const findUser = await User.find(username)
-    console.log('findUser', findUser[0])
     if (findUser[0]?.username === req.body.username) {res.render('vacations/username', {message: 'This username has been taken!'})
         } else { await User.findOneAndUpdate({_id: req.user._id}, username);
     res.redirect('/vacations')
@@ -83,15 +84,13 @@ async function edit(req, res) {
     if(`${a[2]}`.length<2){a[2]=`0${a[2]}`}
     for(i=0; i<vacation.companions.length; i++){
         newComp = await User.findById(vacation.companions[i])
-        companionNames+=`, ${newComp.name}`
+        companionNames+=`, ${newComp.username}`
             }
-            console.log(companionNames)
     res.render('vacations/edit', {title: "Edit Vacation", vacation, d, a, companionNames})
 }
 
 async function update(req, res) {
     const updateData = {...req.body}
-    console.log(updateData)
     for (let key in updateData) {
         if (updateData[key] === "") delete updateData[key]; 
       }
@@ -120,4 +119,14 @@ delete: deleteVacation,
 edit,
 update,
 newUsername,
+}
+
+async function getFriends(companions){
+    let friends = []
+        for(i=0; i<companions.length; i++){
+        newguy = await User.findOne({username: companions[i]})
+        console.log(2, newguy)
+        friends.push(newguy)
+        }
+        return friends
 }
