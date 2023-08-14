@@ -22,9 +22,11 @@ async function create(req, res) {
 async function deleteActivity(req, res) {
     const vacation = await Vacation.findById(req.params.vid)
     //const activityString = activity._id.toString()
-    let idx = vacation.activities.findIndex(activity=>{activity._id.toString()==req.params.aid
-    console.log(activity._id.toString(), req.params.aid)})
-    console.log(idx)
+    let idx = vacation.activities.findIndex(activity=>{
+        return activity._id.toString()===req.params.aid
+})
+    vacation.activities.splice(idx, 1)
+    await vacation.save()
     // await Activity.deleteOne({_id: req.params.aid})
     res.redirect(`/vacations/${vacation._id}`)
 }
