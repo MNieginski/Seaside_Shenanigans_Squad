@@ -50,16 +50,24 @@
   <!-- SIDE BAR -->
   <div id="mySidebar" class="sidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <h2 class="add-activity">ADD AN ACTIVITY</h2>
+
     <form action="/vacations" method="POST">
-      <label>Where are you going? <input type="text" name="location" /> </label
-      ><br />
-
-      <label>Arrival Date: <input type="date" name="arrival" /> </label><br />
-
-      <label>Departure Date: <input type="date" name="departure" /> </label
-      ><br />
-
-      <button type="submit">Add Vacation</button>
+      <div class="sidebar-content">
+      <div class="sidebar-title-ctr">
+      <h3 class="sidebar-title">ACTIVITY:</h3> 
+      <h3 class="sidebar-title">DATE & TIME</h3> 
+      <h3 class="sidebar-title">DESCRIPTION:</h3> 
+    </div>
+    
+    <div class="sidebar-input-ctr">
+  <input type="text" name="name"/>
+<input id='date-activity' type="datetime-local" name="dateTime"/>
+  <textarea rows="3" name="description"></textarea>
+    </div>
+  </div>
+  <button class='details activity-btn' type="submit">SUBMIT</button>
+    
     </form>
   </div>
 
@@ -70,13 +78,11 @@
 <!-- sidebar script -->
 <script>
   function openNav() {
-    document.getElementById("mySidebar").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
+    document.getElementById("mySidebar").style.width = "350px";
   }
 
   function closeNav() {
     document.getElementById("mySidebar").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
   }
 </script>
 </body>

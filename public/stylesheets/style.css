@@ -17,6 +17,8 @@ body {
   height: 100vh;
 }
 
+
+
 .monoton{
   font-family: 'Monoton', cursive;
   font-weight: lighter;
@@ -165,6 +167,10 @@ margin: 30px auto 0 auto;
  margin-top: 2rem; 
 }
 
+#date-activity{
+  margin-top: 2.5vh;
+}
+
 /* ////////////////////////////New Page */
 #new-page{
   font: 14px "Work Sans", Helvetica, Arial, sans-serif;
@@ -178,6 +184,7 @@ justify-content: start;
 #new-page h2{
   font-size: 40px;
   font-weight: 500;
+ 
 }
 
 #new-page input{
@@ -378,10 +385,7 @@ footer>p{
   }
 }
 
-body {
-  font-family: "Lato", sans-serif;
-}
-
+/* ////////////////////////////Sidebar*/
 .sidebar {
   height: 100%;
   width: 0;
@@ -389,11 +393,13 @@ body {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: var(--light-white);
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
+  text-align: center;
 }
+
 
 .sidebar a {
   padding: 8px 8px 8px 32px;
@@ -424,10 +430,47 @@ body {
   border: none;
 }
 
-/* #main {
-  transition: margin-left .5s;
-  padding: 16px;
-} */
+.add-activity{
+  text-align: center;
+  margin-top: 15vh;
+  margin-bottom: 5vh;
+}
+
+.sidebar-content{
+  display: flex;
+  position: relative;
+  height: 20vh;
+}
+
+.sidebar-title-ctr{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 40%;
+}
+
+.sidebar-title{
+  color: black;
+  font-weight: 400;
+text-align: right;
+margin: 0;
+}
+
+.sidebar-input-ctr{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 15px 0 8px;
+}
+
+.sidebar-line{
+  display: flex;
+}
+
+.activity-btn{
+  margin-top: 5vh;
+}
+
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
