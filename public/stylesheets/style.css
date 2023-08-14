@@ -10,21 +10,28 @@
 }
 
 body {
+  font: 14px "Work Sans", Helvetica, Arial, sans-serif;
   margin: 0;
   padding-top: 0;
   background-color: var(--aqua-blue);
-  font: 14px "Work Sans", Helvetica, Arial, sans-serif;
   height: 100vh;
 }
 
 .monoton{
-font-family: 'Monoton', cursive;
+  font-family: 'Monoton', cursive;
+  font-weight: lighter;
+}
+
+.bold{
+  font-weight: bolder;
 }
 
 nav a, h1, h3 {
   color: var(--light-white);
   text-decoration: none;
 }
+
+
 
 nav a{
 height: 100%;
@@ -115,6 +122,7 @@ margin: 30px auto 0 auto;
   color: var(--light-white);
   transition: box-shadow 250ms;
   vertical-align: middle;
+  border: none;
 }
 
 .details:hover{
@@ -133,17 +141,34 @@ margin: 30px auto 0 auto;
 
 /* ////////////////////////////Show Page */
 .show-info{
+  font: 14px "Work Sans", Helvetica, Arial, sans-serif;
   text-align: center;
 }
 
+#show-page h1{
+  font-weight: 500;
+  font-size: 3rem;
+  color: black;
+}
 
+.show-info{
+  font-size: 2rem;
+  font-weight: 500;
+}
 
+.dot{
+  margin: 0;
+  font-size: 18px;
+}
 
-
+.openbtn{
+ margin-top: 2rem; 
+}
 
 /* ////////////////////////////New Page */
 #new-page{
-display: flex;
+  font: 14px "Work Sans", Helvetica, Arial, sans-serif;
+  display: flex;
 flex-direction: column;
 align-items: center;
 text-align: left;
@@ -151,7 +176,8 @@ justify-content: start;
 }
 
 #new-page h2{
-font-size: 40px;
+  font-size: 40px;
+  font-weight: 500;
 }
 
 #new-page input{
@@ -208,6 +234,8 @@ display: flex
   background-color: var(--blue-green);
   font-size: 2rem;
   margin-top: 20px;
+  font: 32px "Work Sans", Helvetica, Arial, sans-serif;
+
 }
 
 .new-form{
@@ -222,6 +250,7 @@ letter-spacing: 1px;
 
 /* ////////////////////////////Footer */
 footer{
+  font: 14px "Work Sans", Helvetica, Arial, sans-serif;
 display: flex;
 justify-content: center;
 width: 100%;
