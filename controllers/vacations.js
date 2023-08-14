@@ -85,6 +85,7 @@ async function deleteVacation(req, res) {
     let creator = await User.findById(vacation.userId)
      creator.vacations.splice(creator.vacations.findIndex(v => {return v._id.toString(0) === req.params.id}), 1)
      await creator.save()
+    await removeVacationFromCompanions(vacation)
     await Vacation.deleteOne({_id: req.params.id})
     res.redirect('/vacations')
 }
@@ -149,6 +150,14 @@ for(i=0; i<vacations.length; i++){
     vacationsFind.push(vacation)
 }
 return vacationsFind
+}
+
+async function removeVacationFromCompanions(vacation){
+    for(i=0; i<vacation.companions.length; i++){
+        let companion = await User.findById(vacation.companions[i])
+        companion.vacations.splice(companion.vacations.findIndex(v => {return v._id.toString(0) === vacation._id}), 1)
+     await companion.save()
+    }
 }
 
 
