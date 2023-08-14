@@ -57,6 +57,7 @@ async function getVacations(req, res){
 //         res.redirect('/')
 //     }
 // }
+
 async function index(req, res){
     const userinfo = req.user
     try {
@@ -80,6 +81,10 @@ async function newUsername(req,res) {
 }}
 
 async function deleteVacation(req, res) {
+    let vacation = await Vacation.findById(req.params.id)
+    let creator = await User.findById(vacation.userId)
+     creator.vacations.splice(creator.vacations.findIndex(v => {return v._id.toString(0) === req.params.id}), 1)
+     await creator.save()
     await Vacation.deleteOne({_id: req.params.id})
     res.redirect('/vacations')
 }
@@ -143,7 +148,6 @@ for(i=0; i<vacations.length; i++){
     let vacation = await Vacation.findById(vacations[i])
     vacationsFind.push(vacation)
 }
-console.log(vacationsFind)
 return vacationsFind
 }
 
