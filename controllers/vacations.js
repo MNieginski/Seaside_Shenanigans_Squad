@@ -45,11 +45,23 @@ async function getVacations(req, res){
     console.log(await Vacation.find({}))
 }
 
+// async function index(req, res){
+//     const userinfo = req.user
+//     try {
+//         if (userinfo.username !== '') {const results = await Vacation.find({userId: req.user._id})
+//         results.sort(compareDates)
+//         res.render('vacations/index', {title: "All Vacations", vacations: results, months})
+//     } else {res.render('vacations/username', {message: '', avatar: userinfo.avatar})}
+//     } catch (err){
+//         console.log(err.message)
+//         res.redirect('/')
+//     }
+// }
 async function index(req, res){
     const userinfo = req.user
     try {
-        if (userinfo.username !== '') {const results = await Vacation.find({userId: req.user._id})
-        //SORT HERE
+        if (userinfo.username !== '') {const user = await User.findById(req.user._id)
+            const results = await findUserVacations(user.vacations)
         results.sort(compareDates)
         res.render('vacations/index', {title: "All Vacations", vacations: results, months})
     } else {res.render('vacations/username', {message: '', avatar: userinfo.avatar})}
@@ -123,6 +135,16 @@ let companion = await User.findById(companions[i])
 companion.vacations.push(vacationId)
 await companion.save()
 }
+}
+
+async function findUserVacations(vacations){
+    let vacationsFind = []
+for(i=0; i<vacations.length; i++){
+    let vacation = await Vacation.findById(vacations[i])
+    vacationsFind.push(vacation)
+}
+console.log(vacationsFind)
+return vacationsFind
 }
 
 
