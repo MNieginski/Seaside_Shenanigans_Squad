@@ -19,6 +19,8 @@ companionNames.push(newComp.name)
 
 async function vacationCreate(req, res){
     const vacationData = {...req.body}
+    vacationData.companions = vacationData.companions.split(/\s*,\s*/)
+    console.log(vacationData.companions)
     for (let key in vacationData) {
         if (vacationData[key] === "") delete vacationData[key]; // if any fields store an empty string, remove the correspoding key so the default data is sent instead.
       }
