@@ -57,8 +57,13 @@ async function deleteVacation(req, res) {
     res.redirect('/vacations')
 }
 
-function edit(req, res) {
-    res.render('vacations/edit', {title: "Edit Vacation", vacation: req.params.id})
+async function edit(req, res) {
+    const vacation = await Vacation.findById(req.params.id)
+    const d=[vacation.departure.getFullYear(),vacation.departure.getUTCMonth()+1, vacation.departure.getUTCDate()]
+    if(`${d[1]}`.length<2){d[1]=`0${d[1]}`}
+    const a=[vacation.arrival.getFullYear(),vacation.arrival.getUTCMonth()+1, vacation.arrival.getUTCDate()]
+    if(`${a[1]}`.length<2){a[1]=`0${a[1]}`}
+    res.render('vacations/edit', {title: "Edit Vacation", vacation, d, a})
 }
 
 async function update(req, res) {
