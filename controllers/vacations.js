@@ -58,12 +58,18 @@ async function deleteVacation(req, res) {
 }
 
 async function edit(req, res) {
+    let companionNames = ''
     const vacation = await Vacation.findById(req.params.id)
     const d=[vacation.departure.getFullYear(),vacation.departure.getUTCMonth()+1, vacation.departure.getUTCDate()]
     if(`${d[1]}`.length<2){d[1]=`0${d[1]}`}
     const a=[vacation.arrival.getFullYear(),vacation.arrival.getUTCMonth()+1, vacation.arrival.getUTCDate()]
     if(`${a[1]}`.length<2){a[1]=`0${a[1]}`}
-    res.render('vacations/edit', {title: "Edit Vacation", vacation, d, a})
+    for(i=0; i<vacation.companions.length; i++){
+        newComp = await User.findById(vacation.companions[i])
+        companionNames+=`, ${newComp.name}`
+            }
+            console.log(companionNames)
+    res.render('vacations/edit', {title: "Edit Vacation", vacation, d, a, companionNames})
 }
 
 async function update(req, res) {
