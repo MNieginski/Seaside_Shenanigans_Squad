@@ -30,8 +30,8 @@ router.get('/oauth2callback', passport.authenticate(
     successRedirect: '/vacations',
     failureRedirect: '/'
   }
+  
 ));
-
 
 router.get('/logout', function(req, res){
   req.logout(function() {

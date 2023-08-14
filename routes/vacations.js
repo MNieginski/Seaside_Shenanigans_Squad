@@ -5,6 +5,8 @@ const ensureLoggedIn = require('../config/ensureLoggedIn')
 
 router.get('/', ensureLoggedIn, vacationCtrl.index);
 
+router.put('/', ensureLoggedIn, vacationCtrl.newUsername)
+
 router.get('/new', ensureLoggedIn, vacationCtrl.new)
 
 router.post('/', ensureLoggedIn, vacationCtrl.vacationCreate)
