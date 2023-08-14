@@ -25,13 +25,14 @@
       
       <p class="dot">•</p>
     <%if(vacation.activities.length === 0){%>
-      <div>NO ACTIVITES PLANNED YET</div>
+      <div>NO ACTIVITIES PLANNED YET</div>
 
     <%}else{%>
     <div>HERE'S WHAT YOU HAVE PLANNED</div>
     <%}%>
       <div class="activities-list">
         <%vacation.activities.forEach(function(activity){%>
+            -<%=activity.name%>
         <%})%>
       </div>
     <div id="open-sidebar-ctr">
@@ -52,7 +53,7 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
     <h2 class="add-activity">ADD AN ACTIVITY</h2>
 
-    <form action="/vacations" method="POST">
+    <form action="/vacations/<%= vacation._id %>/activities" method="POST">
       <div class="sidebar-content">
       <div class="sidebar-title-ctr">
       <h3 class="sidebar-title">ACTIVITY:</h3> 
