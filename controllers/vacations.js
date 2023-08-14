@@ -1,17 +1,23 @@
 const Vacation = require("../models/vacation")
 const User = require('../models/user')
+const months= ["January","February","March","April","May","June","July",
+            "August","September","October","November","December"];
 
 function newVacation(req, res){
     res.render("vacations/new", {title: "Add Vacation", errorMsg: "", user: req.user})
 }
 
 async function showVacations(req, res) {
+    let companionNames = []
     const vacation = await Vacation.findById(req.params.id)
-    res.render("vacations/show", { title: "Vacation Details", vacation})
+    for(i=0; i<vacation.companions.length; i++){
+newComp = await User.findById(vacation.companions[i])
+companionNames.push(newComp.name)
+    }
+    res.render("vacations/show", { title: "Vacation Details", vacation, companionNames, months})
 }
 
 async function vacationCreate(req, res){
-    console.log(req.body)
     const vacationData = {...req.body}
     for (let key in vacationData) {
         if (vacationData[key] === "") delete vacationData[key]; // if any fields store an empty string, remove the correspoding key so the default data is sent instead.
@@ -53,8 +59,21 @@ async function deleteVacation(req, res) {
     res.redirect('/vacations')
 }
 
-function edit(req, res) {
-    res.render('vacations/edit', {title: "Edit Vacation", vacation: req.params.id})
+async function edit(req, res) {
+    let companionNames = ''
+    const vacation = await Vacation.findById(req.params.id)
+    const d=[vacation.departure.getFullYear(),vacation.departure.getUTCMonth()+1, vacation.departure.getUTCDate()]
+    if(`${d[1]}`.length<2){d[1]=`0${d[1]}`}
+    if(`${d[2]}`.length<2){d[2]=`0${d[2]}`}
+    const a=[vacation.arrival.getFullYear(),vacation.arrival.getUTCMonth()+1, vacation.arrival.getUTCDate()]
+    if(`${a[1]}`.length<2){a[1]=`0${a[1]}`}
+    if(`${a[2]}`.length<2){a[2]=`0${a[2]}`}
+    for(i=0; i<vacation.companions.length; i++){
+        newComp = await User.findById(vacation.companions[i])
+        companionNames+=`, ${newComp.name}`
+            }
+            console.log(companionNames)
+    res.render('vacations/edit', {title: "Edit Vacation", vacation, d, a, companionNames})
 }
 
 async function update(req, res) {
@@ -64,7 +83,6 @@ async function update(req, res) {
         if (updateData[key] === "") delete updateData[key]; 
       }
     const saveData = await Vacation.findOneAndUpdate({_id: req.params.id}, updateData)
-    console.log(saveData)
     await saveData.save()
     res.redirect('/vacations/'+req.params.id)
 
@@ -75,8 +93,7 @@ function compareDates(a, b){
 }
 
 
-const months= ["January","February","March","April","May","June","July",
-            "August","September","October","November","December"];
+
 
 module.exports = {
 new: newVacation,
