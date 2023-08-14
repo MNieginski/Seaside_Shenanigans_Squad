@@ -3,7 +3,7 @@
 <section id="new-page">
     <h2>EDIT YOUR TRIP</h2>
   
-    <form class="new-form" method="POST" action="/vacations/<%= vacation._id %>?_method=PUT">
+    <form id='new-e-form' class="new-form" method="POST" action="/vacations/<%= vacation._id %>?_method=PUT">
       <main>
         <div class="new-titles">
           <h2>LOCATION:</h2>
@@ -16,9 +16,10 @@
           <div class="new-form-ctr">
             <input class="new-location" type="text" name="location" value='<%=vacation.location%>' />
             <div id="date-inputs">
-              <input class="new-departure" type="date" name="departure" value='<%=d[0]%>-<%=d[1]%>-<%=d[2]%>'/>
+              <input id="new-depart"  class="new-departure" type="date" name="departure" value='<%=d[0]%>-<%=d[1]%>-<%=d[2]%>'/>
               <p id="to">to</p>
               <input
+              id="new-arrive"
                 class="new-arrival"
                 type="date"
                 name="arrival"
@@ -40,5 +41,18 @@
       </button>
     </form>
   </section>
+
+  <script>
+    function checkDates() {
+      var departDate = document.getElementById("new-depart").value;
+      var arriveDate = document.getElementById("new-arrive").value;
+      console.log(departDate, arriveDate)
+      if (departDate >= arriveDate) {
+        alert("Return date should be after arrival date, idiot!");
+        return false;
+      }
+    }
+    document.getElementById("new-e-form").onsubmit = checkDates;
+  </script>
 
 <%- include('../partials/footer')%>
