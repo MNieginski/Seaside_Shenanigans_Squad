@@ -25,13 +25,16 @@
       
       <p class="dot">•</p>
     <%if(vacation.activities.length === 0){%>
-      <div>NO ACTIVITES PLANNED YET</div>
+      <div>NO ACTIVITIES PLANNED YET</div>
 
     <%}else{%>
     <div>HERE'S WHAT YOU HAVE PLANNED</div>
     <%}%>
       <div class="activities-list">
         <%vacation.activities.forEach(function(activity){%>
+            -<%=activity.name%> 
+            <form id="delete-activity" method="POST" action="/vacations/<%= vacation._id %>/<%= activity._id %>?_method=DELETE">
+                <button class="details">Delete</button></form>
         <%})%>
       </div>
     <div id="open-sidebar-ctr">
@@ -52,7 +55,7 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
     <h2 class="add-activity">ADD AN ACTIVITY</h2>
 
-    <form action="/vacations" method="POST">
+    <form id="edit-activity-form" action="/vacations/<%= vacation._id %>/activities" method="POST">
       <div class="sidebar-content">
       <div class="sidebar-title-ctr">
       <h3 class="sidebar-title">ACTIVITY:</h3> 
@@ -62,17 +65,14 @@
     
     <div class="sidebar-input-ctr">
   <input type="text" name="name"/>
-<input id='date-activity' type="datetime-local" name="dateTime"/>
+<input id="date-activity" type="datetime-local" name="dateTime"/>
   <textarea rows="3" name="description"></textarea>
     </div>
   </div>
-  <button class='details activity-btn' type="submit">SUBMIT</button>
+  <button class='details activity-btn' type="submit" >SUBMIT</button>
     
     </form>
   </div>
-
-
-
 
 </section>
 <!-- sidebar script -->
@@ -84,9 +84,19 @@
   function closeNav() {
     document.getElementById("mySidebar").style.width = "0";
   }
+
+  function checkDates() {
+    var activityDate = new Date(document.getElementById("date-activity").value);
+    var departDate = new Date('<%=vacation.departure%>');
+    var arriveDate = new Date('<%=vacation.arrival%>');
+    if (activityDate < departDate || activityDate > arriveDate){
+      alert("Honestly, go fuck yourself");
+      return false;
+    }
+  }
+  document.getElementById("edit-activity-form").onsubmit=checkDates;
 </script>
+
 </body>
 
 <%- include('../partials/footer')%>
-
-<!-- dates display early -->
