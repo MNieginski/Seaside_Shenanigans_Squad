@@ -24,12 +24,13 @@ async function vacationCreate(req, res){
     vacationData.companions = await getFriends(vacationData.companions)
     for (let key in vacationData) {
         if (vacationData[key] === "") delete vacationData[key]; // if any fields store an empty string, remove the correspoding key so the default data is sent instead.
-      }
+    }
     try{
-         const createVacation = await Vacation.create(vacationData);
-         let user = await (User.findById(req.user._id))
+        const createVacation = await Vacation.create(vacationData);
+        let user = await (User.findById(req.user._id))
         await user.vacations.push(createVacation._id)
         user.save()
+        await addVacationToCompanions(vacationData.companions, createVacation._id)
         res.redirect("/vacations")
     } catch (err) {
         res.render("vacations/new", {errorMsg: err.message})
@@ -106,6 +107,24 @@ function compareDates(a, b){
 
 
 
+async function getFriends(companions){
+    let friends = []
+        for(i=0; i<companions.length; i++){
+        newguy = await User.findOne({username: companions[i]})
+        friends.push(newguy)
+        }
+        return friends
+}
+
+
+async function addVacationToCompanions(companions, vacationId){
+for(i=0; i<companions.length; i++){
+let companion = await User.findById(companions[i])
+companion.vacations.push(vacationId)
+await companion.save()
+}
+}
+
 
 module.exports = {
 new: newVacation,
@@ -121,11 +140,5 @@ update,
 newUsername,
 }
 
-async function getFriends(companions){
-    let friends = []
-        for(i=0; i<companions.length; i++){
-        newguy = await User.findOne({username: companions[i]})
-        friends.push(newguy)
-        }
-        return friends
-}
+
+//64daa073f063bdaee917931c
