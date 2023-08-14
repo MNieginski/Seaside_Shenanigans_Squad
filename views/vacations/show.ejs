@@ -32,10 +32,13 @@
     <%}%>
       <div class="activities-list">
         <%vacation.activities.forEach(function(activity){%>
-            -<%=activity.name%> 
-            <form id='laurietest' method="POST" action="/vacations/<%= vacation._id %>/<%= activity._id %>?_method=DELETE">
-                <button  id="delete-activity">X</button></form>
+          <div class="activity">
+            -<%=activity.name%>, <%=activity.dateTime.toLocaleString()%>
+            <form id="laurietest" method="POST" action="/vacations/<%= vacation._id %>/<%= activity._id %>?_method=DELETE">
+                <button id="delete-activity" >X</button></form>
+                <%=activity.description%>
         <%})%>
+      </div>
       </div>
     <div id="open-sidebar-ctr">
       <button class="openbtn details" onclick="openNav()">ADD AN ACTIVITY</button>

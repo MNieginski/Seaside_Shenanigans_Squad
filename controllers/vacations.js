@@ -42,17 +42,28 @@ async function getVacations(req, res){
 }
 
 async function index(req, res){
-
+    const userinfo = req.user
     try {
-        const results = await Vacation.find({userId: req.user._id})
+        if (userinfo.username !== '') {const results = await Vacation.find({userId: req.user._id})
         //SORT HERE
         results.sort(compareDates)
         res.render('vacations/index', {title: "All Vacations", vacations: results, months})
+    } else {res.render('vacations/username', {message: ''})}
     } catch (err){
         console.log(err.message)
         res.redirect('/')
     }
 }
+
+async function newUsername(req,res) {
+    const username = req.body
+    console.log('username', username)
+    const findUser = await User.find(username)
+    console.log('findUser', findUser[0])
+    if (findUser[0]?.username === req.body.username) {res.render('vacations/username', {message: 'This username has been taken!'})
+        } else { await User.findOneAndUpdate({_id: req.user._id}, username);
+    res.redirect('/vacations')
+}}
 
 async function deleteVacation(req, res) {
     await Vacation.deleteOne({_id: req.params.id})
@@ -105,5 +116,6 @@ index,
 months,
 delete: deleteVacation,
 edit,
-update
+update,
+newUsername,
 }

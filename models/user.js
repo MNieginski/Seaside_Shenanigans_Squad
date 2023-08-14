@@ -16,7 +16,7 @@ const userSchema = new Schema({
   },
   email: String,
   avatar: String,
-  username: String
+  username: {type: String, default:''}
 }, {
   timestamps: true
 });

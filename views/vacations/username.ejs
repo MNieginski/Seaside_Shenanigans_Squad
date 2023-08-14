@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <title>Seaside Shenanigans</title>
+
+    <body>
+        <nav>
+            <div class="nav-right nav-div">
+                <img class="logo" src="/images/logo.png" alt="" /></a>
+            </div>
+          </nav>
+
+          <form id='username-form' class="username-form" method="POST" action="/vacations?_method=PUT">
+            <main>
+                <div class="new-username">
+                    <h2>CREATE A USERNAME</h2>
+                </div>
+                <div class="spacer"></div>
+                <input id="new-username" class="new-username" type="text" name="username" />
+                <p><%=message%></p>
+                <button class="enter" id="new-form-submit" type="submit">
+                    SUBMIT
+                </button>
+          </form>
+        <script>
+            function checkUsername() {
+                var newUser = document.getElementById("new-username")
+                console.log(newUser)
+                }
+          document.getElementById("username-form").onsubmit=checkUsername;
+        </script>
+
+<%- include('../partials/footer')%>
