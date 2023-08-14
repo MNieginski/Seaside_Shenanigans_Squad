@@ -19,10 +19,18 @@
                     <h2>CREATE A USERNAME</h2>
                 </div>
                 <div class="spacer"></div>
-                <input class="new-username" type="text" name="username" />
+                <input id="new-username" class="new-username" type="text" name="username" />
+                <p><%=message%></p>
                 <button class="enter" id="new-form-submit" type="submit">
                     SUBMIT
                 </button>
           </form>
+        <script>
+            function checkUsername() {
+                var newUser = document.getElementById("new-username")
+                console.log(newUser)
+                }
+          document.getElementById("username-form").onsubmit=checkUsername;
+        </script>
 
 <%- include('../partials/footer')%>
