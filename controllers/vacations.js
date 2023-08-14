@@ -48,7 +48,7 @@ async function index(req, res){
         //SORT HERE
         results.sort(compareDates)
         res.render('vacations/index', {title: "All Vacations", vacations: results, months})
-    } else {res.render('vacations/username', {message: ''})}
+    } else {res.render('vacations/username', {message: '', avatar: userinfo.avatar})}
     } catch (err){
         console.log(err.message)
         res.redirect('/')
