@@ -1,5 +1,7 @@
 const Vacation = require("../models/vacation")
 const User = require('../models/user')
+const months= ["January","February","March","April","May","June","July",
+            "August","September","October","November","December"];
 
 function newVacation(req, res){
     res.render("vacations/new", {title: "Add Vacation", errorMsg: "", user: req.user})
@@ -12,7 +14,7 @@ async function showVacations(req, res) {
 newComp = await User.findById(vacation.companions[i])
 companionNames.push(newComp.name)
     }
-    res.render("vacations/show", { title: "Vacation Details", vacation, companionNames})
+    res.render("vacations/show", { title: "Vacation Details", vacation, companionNames, months})
 }
 
 async function vacationCreate(req, res){
@@ -62,8 +64,10 @@ async function edit(req, res) {
     const vacation = await Vacation.findById(req.params.id)
     const d=[vacation.departure.getFullYear(),vacation.departure.getUTCMonth()+1, vacation.departure.getUTCDate()]
     if(`${d[1]}`.length<2){d[1]=`0${d[1]}`}
+    if(`${d[2]}`.length<2){d[2]=`0${d[2]}`}
     const a=[vacation.arrival.getFullYear(),vacation.arrival.getUTCMonth()+1, vacation.arrival.getUTCDate()]
     if(`${a[1]}`.length<2){a[1]=`0${a[1]}`}
+    if(`${a[2]}`.length<2){a[2]=`0${a[2]}`}
     for(i=0; i<vacation.companions.length; i++){
         newComp = await User.findById(vacation.companions[i])
         companionNames+=`, ${newComp.name}`
@@ -89,8 +93,7 @@ function compareDates(a, b){
 }
 
 
-const months= ["January","February","March","April","May","June","July",
-            "August","September","October","November","December"];
+
 
 module.exports = {
 new: newVacation,

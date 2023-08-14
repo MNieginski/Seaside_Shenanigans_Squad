@@ -4,7 +4,7 @@
   <section id="show-page">
     <div class="show-info">
     <h1><%=user.name.split(' ')[0].toUpperCase()%>'S TRIP TO <span class="monoton"><%= vacation.location.toUpperCase() %></span></h1>
-    <div><span class="bold"><%=vacation.departure.toLocaleDateString()%></span> THROUGH <span class="bold"><%= vacation.arrival.toLocaleDateString() %></span></div>
+    <div><span class="bold"><%=months[vacation.departure.getUTCMonth()].toUpperCase()%> <%=vacation.departure.getUTCDate()%>, <%= vacation.arrival.getFullYear()%></span> THROUGH <span class="bold"><%=months[vacation.arrival.getUTCMonth()].toUpperCase()%> <%=vacation.arrival.getUTCDate()%>, <%= vacation.arrival.getFullYear()%></span></div>
     <p class="dot">•</p>
 
 
