@@ -53,7 +53,7 @@
 <script defer>
   let usersArray = "<%=userArray%>";
   usersArray = usersArray.split(",");
-
+  let user = '<%=user.username%>'
   document.getElementById("new-v-form").onsubmit = checkDates;
 
  // const checkUserLink = document.getElementById("checkUser");
@@ -80,10 +80,15 @@
       return false;
     }
     let match;
+
     for (companion of companions) {
+      if(companion === user){
+        alert("Can't add youself as a travel buddy!");
+        return false
+      }
       match = usersArray.includes(companion);
       if(match === false){
-        alert("you're fucked");
+        alert("Invalid travel buddies!");
         return false
       }
     }
@@ -130,4 +135,11 @@ function checkUsers(companions) {
     }
   }
 return true
+} -->
+
+<!-- 
+duplicates = companions.filter((item, index) => arr.indexOf(item) !== index)
+if(duplicates !== []){
+  alert("Duplicates found in travel bussies!");
+  return false;
 } -->
