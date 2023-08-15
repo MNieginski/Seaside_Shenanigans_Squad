@@ -20,11 +20,13 @@ companionNames.push(newComp.name)
 
 async function vacationCreate(req, res){
     const vacationData = {...req.body}
-    vacationData.companions = vacationData.companions.split(/\s*,\s*/)
-    vacationData.companions = await getFriends(vacationData.companions)
     for (let key in vacationData) {
         if (vacationData[key] === "") delete vacationData[key]; // if any fields store an empty string, remove the correspoding key so the default data is sent instead.
     }
+    if (vacationData.companions){
+    vacationData.companions = vacationData.companions.split(/\s*,\s*/)
+    vacationData.companions = await getFriends(vacationData.companions)
+}else{vacationData.companions = []}
     try{
         const createVacation = await Vacation.create(vacationData);
         let user = await (User.findById(req.user._id))
@@ -60,6 +62,7 @@ async function getVacations(req, res){
 
 async function index(req, res){
     const userinfo = req.user
+    console.log()
     try {
         if (userinfo.username !== '') {const user = await User.findById(req.user._id)
             const results = await findUserVacations(user.vacations)
@@ -175,6 +178,3 @@ edit,
 update,
 newUsername,
 }
-
-
-//64daa073f063bdaee917931c
