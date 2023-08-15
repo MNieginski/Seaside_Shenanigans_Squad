@@ -4,8 +4,15 @@ const vacation = require("../models/vacation");
 const months= ["January","February","March","April","May","June","July",
             "August","September","October","November","December"];
 
-function newVacation(req, res){
-    res.render("vacations/new", {title: "Add Vacation", errorMsg: "", user: req.user})
+async function newVacation(req, res){
+    const users = await User.find()
+    let userArray = []
+    users.forEach(user=>{
+        userArray.push(user.username)
+    })
+    // userArray=userArray.join(',')
+    console.log(userArray)
+    res.render("vacations/new", {title: "Add Vacation", errorMsg: "", user: req.user, userArray})
 }
 
 async function showVacations(req, res) {
@@ -47,6 +54,8 @@ async function getVacations(req, res){
     console.log(await Vacation.find({}))
 }
 
+
+//This function finds all trips you've created
 // async function index(req, res){
 //     const userinfo = req.user
 //     try {
@@ -111,8 +120,10 @@ async function edit(req, res) {
 
 async function update(req, res) {
     const updateData = {...req.body}
-    updateData.companions = updateData.companions.split(/\s*,\s*/)
-    updateData.companions = await getFriends(updateData.companions)
+    if (updateData.companions){
+        updateData.companions = updateData.companions.split(/\s*,\s*/)
+        updateData.companions = await getFriends(updateData.companions)
+    }else{updateData.companions = []}
     for (let key in updateData) {
         if (updateData[key] === "") delete updateData[key]; 
       }
@@ -163,7 +174,6 @@ async function removeVacationFromCompanions(vacation){
      await companion.save()
     }
 }
-
 
 module.exports = {
 new: newVacation,

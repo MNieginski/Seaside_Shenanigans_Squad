@@ -24,19 +24,25 @@
               required
             />
             <p id="to">&nbsp;to&nbsp;</p>
-            <input id="new-arrive" class="new-arrival" type="date" name="arrival" required />
+            <input
+              id="new-arrive"
+              class="new-arrival"
+              type="date"
+              name="arrival"
+              required
+            />
           </div>
           <input
-            
+            id="new-companions"
             class="new-companions"
             type="text"
             name="companions"
-            placeholder="username1, username2, ..."
+            placeholder="username1, username2"
           />
         </div>
       </div>
     </main>
-    <input type="hidden" name="userId" value="<%=user._id%>" >
+    <input type="hidden" name="userId" value="<%=user._id%>" />
     <button class="enter" id="new-form-submit" type="submit">
       Add Vacation
     </button>
@@ -44,15 +50,30 @@
 </section>
 
 <script>
+ document.getElementById("new-v-form").onsubmit = checkDates;
+
   function checkDates() {
     var departDate = document.getElementById("new-depart").value;
     var arriveDate = document.getElementById("new-arrive").value;
-    console.log(departDate, arriveDate)
+    let companions = document.getElementById("new-companions").value;
     if (departDate >= arriveDate) {
       alert("Return date should be after arrival date, idiot!");
       return false;
     }
   }
-  document.getElementById("new-v-form").onsubmit = checkDates;
+
+  
+  function checkUsers() {
+    let companions = document.getElementById("new-companions").value;
+    companions.forEach(companion=>{
+      console.log(companion)
+      if(usersArray.includes(companion)) {
+        alert("Companions must be valid usernames.");
+        return false
+      }
+    })
+      } 
+
+
 </script>
 <%- include('../partials/footer')%>
