@@ -233,7 +233,7 @@ async function getFriendsNames(companions) {
     console.log('in getfriendsnames',companions, companions[i])
     newguy = await User.findById(companions[i]);
     console.log('newguy user find - ', newguy)
-    friends.push(newguy.username);
+    friends.push(newguy.name);
   }
   return friends;
 }
