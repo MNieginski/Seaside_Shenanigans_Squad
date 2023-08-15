@@ -32,15 +32,8 @@ async function newVacation(req, res) {
 }
 
 async function showVacations(req, res) {
-//   let companionNames = [];
   const vacation = await Vacation.findById(req.params.id);
-//   for (i = 0; i < vacation.companions.length; i++) {
-//     // newComp = await User.findById(vacation.companions[i]);
-//     // companionNames.push(newComp.name);
-// }
-console.log('vacation.companions - ', vacation.companions)
 let companionNames = await getFriendsNames(vacation.companions)
-console.log('companionNames - ', companionNames)
   res.render("vacations/show", {
     title: "Vacation Details",
     vacation,
@@ -52,7 +45,7 @@ console.log('companionNames - ', companionNames)
 async function vacationCreate(req, res) {
   const vacationData = { ...req.body };
   for (let key in vacationData) {
-    if (vacationData[key] === "") delete vacationData[key]; // if any fields store an empty string, remove the correspoding key so the default data is sent instead.
+    if (vacationData[key] === "") delete vacationData[key];
   }
   if (vacationData.companions) {
     vacationData.companions = vacationData.companions.split(/\s*,\s*/);
@@ -96,7 +89,6 @@ async function getVacations(req, res) {
 
 async function index(req, res) {
   const userinfo = req.user;
-  console.log();
   try {
     if (userinfo.username !== "") {
       const user = await User.findById(req.user._id);
@@ -181,7 +173,6 @@ async function edit(req, res) {
   users.forEach((user) => {
     userArray.push(user.username);
   });
- // console.log(userArray);
   res.render("vacations/edit", {
     title: "Edit Vacation",
     vacation,
@@ -230,9 +221,7 @@ async function getFriends(companions) {
 async function getFriendsNames(companions) {
   let friends = [];
   for (i = 0; i < companions.length; i++) {
-    console.log('in getfriendsnames',companions, companions[i])
     newguy = await User.findById(companions[i]);
-    console.log('newguy user find - ', newguy)
     friends.push(newguy.name);
   }
   return friends;
