@@ -50,34 +50,30 @@
 </section>
 
 <script>
- let userArray =  `<%=userArray%>`
-var realArray = [...userArray.split(',')]
-
- console.log(realArray)
  document.getElementById("new-v-form").onsubmit = checkDates;
- document.getElementById("new-v-form").onsubmit = checkUsers;
 
   function checkDates() {
     var departDate = document.getElementById("new-depart").value;
     var arriveDate = document.getElementById("new-arrive").value;
-    console.log(departDate, arriveDate)
+    let companions = document.getElementById("new-companions").value;
     if (departDate >= arriveDate) {
       alert("Return date should be after arrival date, idiot!");
       return false;
     }
   }
 
-
-
+  
   function checkUsers() {
-  let companions = document.getElementById("new-companions").value;
-  companions.forEach(companion=>{
-    if(userArray.includes(companion)) {
-      alert("Companions must be valud usernames.");
-      return false
-    }
-  })
-    }
+    let companions = document.getElementById("new-companions").value;
+    companions.forEach(companion=>{
+      console.log(companion)
+      if(usersArray.includes(companion)) {
+        alert("Companions must be valud usernames.");
+        return false
+      }
+    })
+      } 
+
+
 </script>
 <%- include('../partials/footer')%>
-<%%>
