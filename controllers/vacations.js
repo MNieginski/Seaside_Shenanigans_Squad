@@ -137,9 +137,10 @@ async function getFriends(companions){
 
 async function addVacationToCompanions(companions, vacationId){
 for(i=0; i<companions.length; i++){
-let companion = await User.findById(companions[i])
-companion.vacations.push(vacationId)
-await companion.save()
+    let companion = await User.findById(companions[i])
+    companion.vacations.push(vacationId)
+    await companion.save()
+    console.log('saved- ', companions[i].name)
 }
 }
 
