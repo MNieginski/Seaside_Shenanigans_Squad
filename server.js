@@ -6,6 +6,7 @@ var logger = require('morgan');
 var session = require('express-session');
 var passport = require('passport');
 var methodOverride = require('method-override');
+var { Configuration, OpenAIApi } = require("openai");
 
 
 require('dotenv').config()
