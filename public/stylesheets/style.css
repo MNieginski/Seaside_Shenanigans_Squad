@@ -6,7 +6,7 @@
 }
 
 *{
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 
 body {
@@ -439,6 +439,14 @@ footer>p{
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
+}
+
+#open-sidebar-ctr{
+  text-align: center;
+}
+
+#edit-vacation{
+  text-align: center;
 }
 
 .openbtn {
