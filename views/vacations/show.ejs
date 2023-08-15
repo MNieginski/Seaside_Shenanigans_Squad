@@ -85,10 +85,13 @@
   <button class='details activity-btn' type="submit" >SUBMIT</button>
     
     </form>
+    <div class="gpt-ctr">
+      <h2>OR</h2>
+    <form  action="/vacations/<%= vacation._id %>/activities/new" method="GET">
+      <button id="generate-activity" class="details">GENERATE NEW SUGGESTION</button> </form>
+    </div>
   </div>
-<form  action="/vacations/<%= vacation._id %>/activities/new" method="GET">
-  <button id="generate-activity">generate</button> </form>
-<!-- <a href="/vacations/<%= vacation._id %>/activities/new">generate</a> -->
+
 </section>
 <!-- sidebar script -->
 <script>
