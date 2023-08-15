@@ -56,43 +56,75 @@
 
   document.getElementById("new-v-form").onsubmit = checkDates;
 
-  const checkUserLink = document.getElementById("checkUser");
-  checkUserLink.addEventListener("click", testFetch);
+ // const checkUserLink = document.getElementById("checkUser");
+  //checkUserLink.addEventListener("click", testFetch);
 
-  async function testFetch(e) {
-    e.preventDefault();
-    try {
-      const response = await fetch("http://localhost:3000/api/test");
-      const data = await response.json();
-      console.log(data);
-    } catch (err) {
-      console.log(err);
-    }
-  }
+//  async function testFetch(e) {
+  //  e.preventDefault();
+    //try {
+      //const response = await fetch("http://localhost:3000/api/test");
+     // const data = await response.json();
+  //    console.log(data);
+    //} catch (err) {
+//      console.log(err);
+//    }
+//  }
 
   function checkDates(e) {
     var departDate = document.getElementById("new-depart").value;
     var arriveDate = document.getElementById("new-arrive").value;
-    let companion = document.getElementById("new-companions").value;
+    let companions = document.getElementById("new-companions").value;
+    companions = companions.split(", ");
     if (departDate >= arriveDate) {
       alert("Return date should be after arrival date, idiot!");
       return false;
     }
-    checkUsers(companion);
-  }
-
-  function checkUsers(companion) {
-    let match = false;
-    for (user of usersArray) {
-      console.log(user, companion);
-      if (user === companion) {
-        match = true;
+    let match;
+    for (companion of companions) {
+      match = usersArray.includes(companion);
+      if(match === false){
+        alert("you're fucked");
+        return false
       }
     }
-    if (match === false) {
-      alert("you're fucked");
-      return false;
+  return true
+  }
+
+
+
+  function checkUsers(companions) {
+    let match;
+    for (companion of companions) {
+      match = usersArray.includes(companion);
+      if(match === false){
+        alert("you're fucked");
+        return false
+      }
     }
+  return true
   }
 </script>
 <%- include('../partials/footer')%>
+
+<!-- if (match === false) {
+  alert("you're fucked");
+  return false;
+} -->
+
+
+
+
+<!-- function checkUsers(companions) {
+  let match;
+  for (companion of companions) {
+    match = false;
+    for (user of usersArray) {
+    while (match === false) {
+        if (user === companion) {
+          match = true;
+        }
+      }
+    }
+  }
+  alert(match);
+} -->
