@@ -2,16 +2,23 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 
+const activitiesSchema = new Schema ({
+   name: {type: String}, 
+   description: {type: String},
+   dateTime: {type: Date},
+})
+
 const vacationSchema = new Schema ({
    location: {type:String},
-   arrival: {type:Date,
-      default: function() {
-      new Date().toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) 
-;
-   }},
-   departure: {type:Date},
-   activities: [Schema.Types.ObjectId],
-   companions: [Schema.Types.ObjectId]
+   arrival: {type:Date, required: true},
+   departure: {type:Date, required: true},
+   companions:{
+      type: [Schema.Types.ObjectId],
+      ref: 'User',
+      required: true
+    },
+    userId: String,
+    activities: [activitiesSchema]
 })
 
 module.exports = mongoose.model('Vacation', vacationSchema)

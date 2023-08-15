@@ -1,55 +1,83 @@
 <%- include('../partials/header')%>
 
-<h2>Test</h2>
-    <body>
-        <section id="show-page">
-            <div>Location: 
-            <%= vacation.location %></div>
-            <div>Arrival Date: 
-            <%= vacation.arrival.toLocaleDateString() %></div>
-            <div>Departure Date: 
-            <%= vacation.departure.toLocaleDateString() %></div>
-            <div>Companions: 
-            <%= vacation.companions %></div>
-             <div>Activities: </div>
-            <!-- <div><%= vacation.activities %></div> -->
-          </section>
-    <div id="mySidebar" class="sidebar">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-      <form action="/vacations" method="POST" class="activity-form">
+<body>
+  <section id="show-page">
+    <div class="show-info">
+    <h1><%=user.name.split(' ')[0].toUpperCase()%>'S TRIP TO <span class="monoton"><%= vacation.location.toUpperCase() %></span></h1>
+    <div><span class="bold"><%=months[vacation.departure.getUTCMonth()].toUpperCase()%> <%=vacation.departure.getUTCDate()%>, <%= vacation.arrival.getFullYear()%></span> THROUGH <span class="bold"><%=months[vacation.arrival.getUTCMonth()].toUpperCase()%> <%=vacation.arrival.getUTCDate()%>, <%= vacation.arrival.getFullYear()%></span></div>
+    <p class="dot">•</p>
 
-        <label>Activity name:
+
+        <label>Where are you going?
             <input type="text" name="location" >
           </label><br>
         
-          <label>Date:
+          <label>Arrival Date:
             <input type="date" name="arrival">
           </label><br>
-
-        <p><label for="w3review">Description:</label></p>
-         <textarea id="w3review" name="w3review" rows="4" cols="20"></textarea>
+        
+          <label>Departure Date:
+            <input type="date" name="departure">
+          </label><br>
         
           <button type="submit">Add Vacation</button>
     
+    <form
+    id="edit-vacation"
+    method="GET"
+    action="/vacations/<%= vacation._id %>/edit"
+    >
+    <button class="details openbtn">EDIT TRIP DETAILS</button>
+  </form>
+  </div>
+
+  <!-- SIDE BAR -->
+  <div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <h2 class="add-activity">ADD AN ACTIVITY</h2>
+
+    <form id="edit-activity-form" action="/vacations/<%= vacation._id %>/activities" method="POST">
+      <div class="sidebar-content">
+      <div class="sidebar-title-ctr">
+      <h3 class="sidebar-title">ACTIVITY:</h3> 
+      <h3 class="sidebar-title">DATE & TIME</h3> 
+      <h3 class="sidebar-title">DESCRIPTION:</h3> 
+    </div>
+    
+    <div class="sidebar-input-ctr">
+  <input type="text" name="name"/>
+<input id="date-activity" type="datetime-local" name="dateTime"/>
+  <textarea rows="3" name="description"></textarea>
+    </div>
+  </div>
+  <button class='details activity-btn' type="submit" >SUBMIT</button>
+    
     </form>
-    </div>
-    
-    <div id="main">
-      <button class="openbtn" onclick="openNav()">☰ Add an Activity</button>  
-    </div>
-    
-    <script>
-    function openNav() {
-      document.getElementById("mySidebar").style.width = "250px";
-      document.getElementById("main").style.marginLeft = "250px";
+  </div>
+
+</section>
+<!-- sidebar script -->
+<script>
+  function openNav() {
+    document.getElementById("mySidebar").style.width = "350px";
+  }
+
+  function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+  }
+
+  function checkDates() {
+    var activityDate = new Date(document.getElementById("date-activity").value);
+    var departDate = new Date('<%=vacation.departure%>');
+    var arriveDate = new Date('<%=vacation.arrival%>');
+    if (activityDate < departDate || activityDate > arriveDate){
+      alert("Honestly, go love yourself (date outside trip range)");
+      return false;
     }
-    
-    function closeNav() {
-      document.getElementById("mySidebar").style.width = "0";
-      document.getElementById("main").style.marginLeft= "0";
-    }
-    </script>
-       
-    </body>
+  }
+  document.getElementById("edit-activity-form").onsubmit=checkDates;
+</script>
+
+</body>
 
 <%- include('../partials/footer')%>

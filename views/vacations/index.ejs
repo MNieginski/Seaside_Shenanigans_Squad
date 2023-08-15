@@ -1,23 +1,38 @@
 <%- include('../partials/header')%>
+<div class="index-page">
+  <img src="/images/title3.png" alt="">
+<div class="upcoming-ctr">
+  <ul class="trips upcoming">
+    <h2 class="trip-list-title">UPCOMING TRIPS:</h2>
+    <% vacations.forEach(f=>{%> <% if(Date.now() < f.arrival){%>
+    <li>
+      <%= f.location.toUpperCase() %> • <%=months[f.departure.getUTCMonth()].toUpperCase()%>
+      <%=f.departure.getUTCDate() %> - <%if(f.departure.getUTCMonth() !==
+      f.arrival.getUTCMonth()){%> <%=months[f.arrival.getUTCMonth()].toUpperCase()%> <%}%> <%=
+      f.arrival.getUTCDate()%>, <%=f.arrival.getFullYear()%> •
+      <a href="/vacations/<%= f._id %>"><button class="details">Details</button></a>
+      <form id="delete-vacation" method="POST" action="/vacations/<%= f._id %>?_method=DELETE">
+        <button class="details" >Delete</button></form>
+    </li>
+    <%}%> <% }) %>
+  </ul>
+</div>
 
-<table id="list">
-    <thead>
-      <tr>
-        <th>Location</th>
-        <th>Dates</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-        <% vacations.forEach(f=>{ %>
-            <tr>
-                <td><%= f.location %></td>
-                <td><%= f.arrival.toLocaleDateString() %></td>
-                <td><%= f.departure.toLocaleDateString() %></td>
-                <td><a href="/vacations/<%= f._id %>">Details</a></td>
-            </tr>
-        <% }) %>
-      </tbody>
-    </table>
-
+<div class="previous-ctr">
+  <ul class="trips upcoming">
+    <h2 class="trip-list-title">PREVIOUS TRIPS:</h2>
+    <% vacations.forEach(f=>{%> <% if(Date.now() > f.arrival){%>
+    <li>
+      <%= f.location.toUpperCase() %> • <%=months[f.departure.getUTCMonth()].toUpperCase()%>
+      <%=f.departure.getUTCDate() %> - <%if(f.departure.getUTCMonth() !==
+      f.arrival.getUTCMonth()){%> <%=months[f.arrival.getUTCMonth()]%> <%}%> <%=
+      f.arrival.getUTCDate()%>, <%=f.arrival.getFullYear()%> •
+      <a href="/vacations/<%= f._id %>"><button class="details">Details</button></a>
+      <form id="delete-vacation" method="POST" action="/vacations/<%= f._id %>?_method=DELETE">
+        <button class="details">Delete</button></form>
+    </li>
+    <%}%> <% }) %>
+  </ul>
+</div>
+</div>
 <%- include('../partials/footer')%>
