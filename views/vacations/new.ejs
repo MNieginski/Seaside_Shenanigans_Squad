@@ -74,7 +74,7 @@
     var departDate = document.getElementById("new-depart").value;
     var arriveDate = document.getElementById("new-arrive").value;
     let companions = document.getElementById("new-companions").value;
-    companions = companions.split(", ");
+    companions = companions.split(/\s*,\s*/);
     if (departDate >= arriveDate) {
       alert("Return date should be after arrival date, idiot!");
       return false;
@@ -92,17 +92,7 @@
 
 
 
-  function checkUsers(companions) {
-    let match;
-    for (companion of companions) {
-      match = usersArray.includes(companion);
-      if(match === false){
-        alert("you're fucked");
-        return false
-      }
-    }
-  return true
-  }
+
 </script>
 <%- include('../partials/footer')%>
 
@@ -127,4 +117,17 @@
     }
   }
   alert(match);
+} -->
+
+<!-- 
+function checkUsers(companions) {
+  let match;
+  for (companion of companions) {
+    match = usersArray.includes(companion);
+    if(match === false){
+      alert("you're fucked");
+      return false
+    }
+  }
+return true
 } -->
