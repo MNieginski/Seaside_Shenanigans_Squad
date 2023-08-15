@@ -10,7 +10,6 @@ async function newVacation(req, res){
     users.forEach(user=>{
         userArray.push(user.username)
     })
-    // userArray=userArray.join(',')
     console.log(userArray)
     res.render("vacations/new", {title: "Add Vacation", errorMsg: "", user: req.user, userArray})
 }
@@ -188,3 +187,4 @@ edit,
 update,
 newUsername,
 }
+

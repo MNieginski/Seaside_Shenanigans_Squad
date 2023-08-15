@@ -39,5 +39,12 @@ router.get('/logout', function(req, res){
   });
 });
 
+router.get('/api/test', function(req, res){
+  // req.logout(function() {
+  //   res.redirect('/');
+  // });
+  res.json({message: 'success!!'})
+});
+
 
 module.exports = router;
