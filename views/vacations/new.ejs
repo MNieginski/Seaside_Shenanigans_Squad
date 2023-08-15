@@ -80,7 +80,17 @@
       return false;
     }
     let match;
+    let duplicates = companions.filter((item, index) => companions.indexOf(item) !== index)
+   
+   
+   duplicates = duplicates.join('')
+    console.log(duplicates)
 
+
+    if(duplicates !== ''){
+      alert("Duplicates found in travel bussies!");
+      return false;
+    }
     for (companion of companions) {
       if(companion === user){
         alert("Can't add youself as a travel buddy!");
@@ -94,9 +104,6 @@
     }
   return true
   }
-
-
-
 
 </script>
 <%- include('../partials/footer')%>
@@ -137,9 +144,3 @@ function checkUsers(companions) {
 return true
 } -->
 
-<!-- 
-duplicates = companions.filter((item, index) => arr.indexOf(item) !== index)
-if(duplicates !== []){
-  alert("Duplicates found in travel bussies!");
-  return false;
-} -->
