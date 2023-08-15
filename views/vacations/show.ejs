@@ -3,42 +3,52 @@
 <body>
   <section id="show-page">
     <div class="show-info">
-    <h1><%=user.name.split(' ')[0].toUpperCase()%>'S TRIP TO <span class="monoton"><%= vacation.location.toUpperCase() %></span></h1>
-    <div><span class="bold"><%=months[vacation.departure.getUTCMonth()].toUpperCase()%> <%=vacation.departure.getUTCDate()%>, <%= vacation.arrival.getFullYear()%></span> THROUGH <span class="bold"><%=months[vacation.arrival.getUTCMonth()].toUpperCase()%> <%=vacation.arrival.getUTCDate()%>, <%= vacation.arrival.getFullYear()%></span></div>
-    <p class="dot">•</p>
+      <h1><%=user.name.split(' ')[0].toUpperCase()%>'S TRIP TO <span class="monoton"><%= vacation.location.toUpperCase() %></span></h1>
+      <div>
+        <span class="bold"><%=months[vacation.departure.getUTCMonth()].toUpperCase()%> <%=vacation.departure.getUTCDate()%>, <%= vacation.arrival.getFullYear()%></span> THROUGH <span class="bold"><%=months[vacation.arrival.getUTCMonth()].toUpperCase()%> <%=vacation.arrival.getUTCDate()%>, <%= vacation.arrival.getFullYear()%>
+        </span>
+      </div>
+      <p class="dot">•</p>
 
 
     <%if(companionNames.length>0){%>
     <div>
       <%for(i=0; i<companionNames.length-1; i++){%>
-      <span class="bold"><%= companionNames[i].toUpperCase() %></span>
-      <%if(companionNames.length>2){%>
-        ,
-    <%}%>
+        <span class="bold"><%= companionNames[i].toUpperCase() %></span>
+        <%if(companionNames.length>2){%>
+          ,
+        <%}%>
       <%}%>
-& <span class="bold"><%=companionNames[companionNames.length-1].toUpperCase()%></span> ARE COMING WITH YOU
+      & <span class="bold"><%=companionNames[companionNames.length-1].toUpperCase()%></span> ARE COMING WITH YOU
     </div>
     <%}else{%>
       
-      <div>NO REGISTERED TRAVEL BUDDIES</div>
-      <%}%>
+      <div>
+        NO REGISTERED TRAVEL BUDDIES
+      </div>
       
-      <p class="dot">•</p>
-    <%if(vacation.activities.length === 0){%>
-      <div>NO ACTIVITIES PLANNED YET</div>
-
-    <%}else{%>
-    <div>HERE'S WHAT YOU HAVE PLANNED</div>
     <%}%>
-      <div class="activities-list">
-        <%vacation.activities.forEach(function(activity){%>
-          <div class="activity">
+      
+    <p class="dot">•</p>
+    
+    <%if(vacation.activities.length === 0){%>
+      <div>
+        NO ACTIVITIES PLANNED YET
+      </div>
+    <%}else{%>
+      <div>
+        HERE'S WHAT YOU HAVE PLANNED
+      </div>
+    <%}%>
+    <div class="activities-list">
+      <%vacation.activities.forEach(function(activity){%>
+        <div class="activity">
             -<%=activity.name%>, <%=activity.dateTime.toLocaleString()%>
             <form id="laurietest" method="POST" action="/vacations/<%= vacation._id %>/<%= activity._id %>?_method=DELETE">
-                <button id="delete-activity" >X</button></form>
-                <%=activity.description%>
-        <%})%>
-      </div>
+            <button id="delete-activity" >X</button></form>
+            <%=activity.description%>
+          <%})%>
+        </div>
       </div>
     <div id="open-sidebar-ctr">
       <button class="openbtn details" onclick="openNav()">ADD AN ACTIVITY</button>
@@ -67,9 +77,9 @@
     </div>
     
     <div class="sidebar-input-ctr">
-  <input type="text" name="name"/>
-<input id="date-activity" type="datetime-local" name="dateTime"/>
-  <textarea rows="3" name="description"></textarea>
+  <input type="text" name="name" required/>
+<input id="date-activity" type="datetime-local" name="dateTime" required/>
+  <textarea rows="3" name="description" required></textarea>
     </div>
   </div>
   <button class='details activity-btn' type="submit" >SUBMIT</button>
@@ -92,8 +102,8 @@
     var activityDate = new Date(document.getElementById("date-activity").value);
     var departDate = new Date('<%=vacation.departure%>');
     var arriveDate = new Date('<%=vacation.arrival%>');
-    if (activityDate < departDate || activityDate > arriveDate){
-      alert("Honestly, go fuck yourself");
+    if (activityDate <= departDate+1 || activityDate >= arriveDate+1){
+      alert("Honestly, go love yourself (date outside trip range)");
       return false;
     }
   }

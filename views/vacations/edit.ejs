@@ -16,7 +16,7 @@
           <div class="new-form-ctr">
             <input class="new-location" type="text" name="location" value='<%=vacation.location%>' />
             <div id="date-inputs">
-              <input class="new-departure" type="date" name="departure" value='<%=d[0]%>-<%=d[1]%>-<%=d[2]%>'/>
+              <input id='new-depart' class="new-departure" type="date" name="departure" value='<%=d[0]%>-<%=d[1]%>-<%=d[2]%>'/>
               <p id="to">&nbsp;to&nbsp;</p>
               <input
               id="new-arrive"
@@ -27,10 +27,11 @@
               />
             </div>
             <input
+            id="new-companions"
               class="new-companions"
               type="text"
               name="companions"
-              value= '<%=companionNames.slice(2)%>''
+              value= '<%=companionNames.slice(2)%>'
             />
           </div>
         </div>
@@ -43,16 +44,58 @@
   </section>
 
   <script>
+    let usersArray = "<%=userArray%>";
+    usersArray = usersArray.split(",");
+    let user = '<%=user.username%>'
+
+
+    
     function checkDates() {
       var departDate = document.getElementById("new-depart").value;
       var arriveDate = document.getElementById("new-arrive").value;
-      console.log(departDate, arriveDate)
+      let companions = document.getElementById("new-companions").value;
+      
+      
+      companions = companions.split(/\s*,\s*/);
+      console.log(companions)
       if (departDate >= arriveDate) {
         alert("Return date should be after arrival date, idiot!");
         return false;
       }
+      let match;
+      let duplicates = companions.filter((item, index) => companions.indexOf(item) !== index)
+     duplicates = duplicates.join('')
+  
+      if(duplicates !== ''){
+        alert("Duplicates found in travel bussies!");
+        return false;
+      }
+      for (companion of companions) {
+        if(companion === user){
+          alert("Can't add youself as a travel buddy!");
+          return false
+        }
+        match = usersArray.includes(companion);
+        if(match === false){
+          alert("Invalid travel buddies!");
+          return false
+        }
+      }
+    return true
     }
     document.getElementById("new-e-form").onsubmit = checkDates;
   </script>
 
 <%- include('../partials/footer')%>
+
+
+<!-- 
+function checkDates() {
+  var departDate = document.getElementById("new-depart").value;
+  var arriveDate = document.getElementById("new-arrive").value;
+  console.log(departDate, arriveDate)
+  if (departDate >= arriveDate) {
+    alert("Return date should be after arrival date, idiot!");
+    return false;
+  }
+} -->
