@@ -52,7 +52,9 @@ async function getResponse(req,res, next) {
         messages: [
             {
                 role: 'system',
-                content: `I will be in ${thisVacation.location} between ${thisVacation.departure} and ${thisVacation.arrival}, suggest one activity for me to do. Create an Activity Title (3 words or less) and a Description (3 sentences or less), but do not include the words "Activity Title" or "Description". Do not create the same activity title or description more than once for ${thisVacation}`
+                content: `I will be in ${thisVacation.location} between ${thisVacation.departure} and ${thisVacation.arrival}, suggest one activity for me to do. Create an Activity Title (3 words or less) and a Description (2-3 sentences), but do not include the words "Activity Title" or "Description" at all. Do not create the same activity title or description more than once for ${thisVacation}.
+                The activity should be formatted like this:
+                (Activity Title): (Activity Description)`
             },
         ],
         temperature: 0,
