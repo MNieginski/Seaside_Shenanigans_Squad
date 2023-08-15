@@ -43,7 +43,7 @@
     <div class="activities-list">
       <%vacation.activities.forEach(function(activity){%>
         <div class="activity">
-            -<%=activity.name%>, <%=activity.dateTime.toLocaleString()%>
+            -<%=activity.name%>,
             <form id="laurietest" method="POST" action="/vacations/<%= vacation._id %>/<%= activity._id %>?_method=DELETE">
             <button id="delete-activity" >X</button></form>
             <%=activity.description%>
@@ -86,7 +86,9 @@
     
     </form>
   </div>
-
+<form  action="/vacations/<%= vacation._id %>/activities/new" method="GET">
+  <button id="generate-activity">generate</button> </form>
+<!-- <a href="/vacations/<%= vacation._id %>/activities/new">generate</a> -->
 </section>
 <!-- sidebar script -->
 <script>
