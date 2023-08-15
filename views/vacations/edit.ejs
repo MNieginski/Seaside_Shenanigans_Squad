@@ -55,13 +55,12 @@
       var arriveDate = document.getElementById("new-arrive").value;
       let companions = document.getElementById("new-companions").value;
       
-      
-      companions = companions.split(/\s*,\s*/);
-      // console.log(companions)
       if (departDate >= arriveDate) {
         alert("Return date should be after arrival date, idiot!");
         return false;
       }
+      if(companions !== ''){
+        companions = companions.split(/\s*,\s*/);
       let match;
       let duplicates = companions.filter((item, index) => companions.indexOf(item) !== index)
      duplicates = duplicates.join('')
@@ -83,6 +82,7 @@
       }
     return true
     }
+  }
     document.getElementById("new-e-form").onsubmit = checkDates;
   </script>
 
