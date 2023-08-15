@@ -6,7 +6,7 @@
 }
 
 *{
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 body {
@@ -17,7 +17,9 @@ body {
   height: 100vh;
 }
 
-
+.hidden{
+  color: transparent
+}
 
 .monoton{
   font-family: 'Monoton', cursive;
@@ -167,28 +169,70 @@ margin: 30px auto 0 auto;
  margin-top: 2rem; 
 }
 
+.activities-list{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 3vh;
+  padding: 3vh;
+  margin: 3vh 20vh 3vh 20vh;
+  background-color: var(--blue-green);
+  color: var(--light-white); 
+  box-shadow: 0px 0px 10px black
+}
+
+.activity{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  min-width: 300px
+}
+
+.activity-title{
+  text-align: right;
+  width: 35%;
+}
+
+
+.activity-description{
+   text-align: left;
+   width: 60%;
+   padding-left: 5%;
+   padding-right: 5%;
+}
+
 #date-activity{
   margin-top: 2.5vh;
 }
 
 #delete-activity {
   background-color: #8cd6d7ff;
-  border: 1px solid black;
+  border: 1px black solid;
+  border-radius: 4px;
 }
 #laurietest :hover {
   background-color: rgb(74, 22, 22);
-  border: none;
+  transition: 150ms;
+  border-radius: 50%;;
   color: white;
   cursor: pointer;
 }
 
 .gpt-ctr{
-  margin-top: 100px;
+  margin-top: 8vh;
 }
 
 #generate-activity{
-  margin-top: 50px;
+  margin-top: 30px;
+  font-size: 1.1rem;
 }
+
+
+.activity{
+  font-size: 1.5rem;
+}
+
 
 /* ////////////////////////////New Page */
 #new-page{
@@ -238,7 +282,6 @@ width: 3vw;
 
 .new-vacation{
 width: 40vw;
-/* border: 5px solid yellow; */
 display: flex
 }
 
@@ -417,6 +460,7 @@ footer>p{
   transition: 0.5s;
   padding-top: 60px;
   text-align: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, .75);
 }
 
 
@@ -452,9 +496,14 @@ footer>p{
 .openbtn {
   font-size: 20px;
   cursor: pointer;
-  color: white;
+  color: var(--light-white);
   padding: 10px 15px;
   border: none;
+  background-color: var(--aqua-blue);
+}
+
+#edit-trip{
+  background-color: var(--blue-green);
 }
 
 .add-activity{

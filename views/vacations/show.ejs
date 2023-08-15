@@ -28,42 +28,45 @@
       </div>
       
     <%}%>
-      
-    <p class="dot">•</p>
-    
-    <%if(vacation.activities.length === 0){%>
-      <div>
-        NO ACTIVITIES PLANNED YET
-      </div>
-    <%}else{%>
-      <div>
-        HERE'S WHAT YOU HAVE PLANNED
-      </div>
-    <%}%>
-    <div class="activities-list">
-      <%vacation.activities.forEach(function(activity){%>
-        <div class="activity">
-            -<%=activity.name%> 
-            <%if(activity.dateTime){%>
-                , <%=activity.dateTime.toLocaleString()%>
-            <%}%>
-            <form id="laurietest" method="POST" action="/vacations/<%= vacation._id %>/<%= activity._id %>?_method=DELETE">
-            <button id="delete-activity" >X</button></form>
-            <%=activity.description%>
-          <%})%>
-        </div>
-      </div>
-    <div id="open-sidebar-ctr">
-      <button class="openbtn details" onclick="openNav()">ADD AN ACTIVITY</button>
-    </div>
     
     <form
     id="edit-vacation"
     method="GET"
     action="/vacations/<%= vacation._id %>/edit"
     >
-    <button class="details openbtn">EDIT TRIP DETAILS</button>
+    <button id='edit-trip' class="details openbtn">EDIT TRIP DETAILS</button>
   </form>
+    
+    <div class="activities-list">
+        <%if(vacation.activities.length === 0){%>
+          <div>
+            NO ACTIVITIES PLANNED YET
+          </div>
+        <%}else{%>
+          <div>
+            HERE'S WHAT YOU HAVE PLANNED
+          </div>
+        <%}%>
+        <%vacation.activities.forEach(function(activity){%>
+          <div class="activity">
+            <%if(activity.dateTime){%>
+             <p class="activity-time"><%=activity.dateTime.toLocaleString([], {month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit'})%></p>
+              <%}else{%>
+                <p class="activity-time hidden"><%=new Date().toLocaleString([], {month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit'})%></p>
+
+                <%}%>
+            <h2 class="activity-title"><%=activity.name%> </h2>
+              <p class="activity-description"><%=activity.description%></p>
+              <form id="laurietest" method="POST" action="/vacations/<%= vacation._id %>/<%= activity._id %>?_method=DELETE">
+                <button id="delete-activity" >X</button></form>
+              </div>
+              <%})%>
+              <div id="open-sidebar-ctr">
+                <button class="openbtn details" onclick="openNav()">ADD AN ACTIVITY</button>
+              </div>
+   
+      </div>
+  
   </div>
 
   <!-- SIDE BAR -->
@@ -89,7 +92,7 @@
     
     </form>
     <div class="gpt-ctr">
-      <h2>OR</h2>
+      <h2>-OR-</h2>
     <form  action="/vacations/<%= vacation._id %>/activities/new" method="GET">
       <button id="generate-activity" class="details">GENERATE NEW SUGGESTION</button> </form>
     </div>
