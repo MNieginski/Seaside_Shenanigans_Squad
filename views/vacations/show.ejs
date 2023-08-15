@@ -77,9 +77,9 @@
     </div>
     
     <div class="sidebar-input-ctr">
-      <input type="text" name="name"/>
-      <input id="date-activity" type="datetime-local" name="dateTime"/>
-      <textarea rows="3" name="description"></textarea>
+  <input type="text" name="name" required/>
+<input id="date-activity" type="datetime-local" name="dateTime" required/>
+  <textarea rows="3" name="description" required></textarea>
     </div>
   </div>
   <button class='details activity-btn' type="submit" >SUBMIT</button>
@@ -102,7 +102,7 @@
     var activityDate = new Date(document.getElementById("date-activity").value);
     var departDate = new Date('<%=vacation.departure%>');
     var arriveDate = new Date('<%=vacation.arrival%>');
-    if (activityDate < departDate || activityDate > arriveDate){
+    if (activityDate <= departDate+1 || activityDate >= arriveDate+1){
       alert("Honestly, go love yourself (date outside trip range)");
       return false;
     }
