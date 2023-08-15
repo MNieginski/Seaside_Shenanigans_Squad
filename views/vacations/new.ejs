@@ -1,4 +1,4 @@
-<%- include('../partials/header')%>
+<%- include('../partials/header')%> <%- include('../partials/test')%>
 
 <section id="new-page">
   <h2>PLAN YOUR TRIP</h2>
@@ -46,34 +46,53 @@
     <button class="enter" id="new-form-submit" type="submit">
       Add Vacation
     </button>
+    <a href="#" id="checkUser">???!</a>
   </form>
 </section>
 
-<script>
- document.getElementById("new-v-form").onsubmit = checkDates;
+<script defer>
+  let usersArray = "<%=userArray%>";
+  usersArray = usersArray.split(",");
 
-  function checkDates() {
+  document.getElementById("new-v-form").onsubmit = checkDates;
+
+  const checkUserLink = document.getElementById("checkUser");
+  checkUserLink.addEventListener("click", testFetch);
+
+  async function testFetch(e) {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:3000/api/test");
+      const data = await response.json();
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  function checkDates(e) {
     var departDate = document.getElementById("new-depart").value;
     var arriveDate = document.getElementById("new-arrive").value;
-    let companions = document.getElementById("new-companions").value;
+    let companion = document.getElementById("new-companions").value;
     if (departDate >= arriveDate) {
       alert("Return date should be after arrival date, idiot!");
       return false;
     }
+    checkUsers(companion);
   }
 
-  
-  function checkUsers() {
-    let companions = document.getElementById("new-companions").value;
-    companions.forEach(companion=>{
-      console.log(companion)
-      if(usersArray.includes(companion)) {
-        alert("Companions must be valid usernames.");
-        return false
+  function checkUsers(companion) {
+    let match = false;
+    for (user of usersArray) {
+      console.log(user, companion);
+      if (user === companion) {
+        match = true;
       }
-    })
-      } 
-
-
+    }
+    if (match === false) {
+      alert("you're fucked");
+      return false;
+    }
+  }
 </script>
 <%- include('../partials/footer')%>
