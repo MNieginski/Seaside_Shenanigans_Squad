@@ -4,8 +4,15 @@ const vacation = require("../models/vacation");
 const months= ["January","February","March","April","May","June","July",
             "August","September","October","November","December"];
 
-function newVacation(req, res){
-    res.render("vacations/new", {title: "Add Vacation", errorMsg: "", user: req.user})
+async function newVacation(req, res){
+    const users = await User.find()
+    let userArray = []
+    users.forEach(user=>{
+        userArray.push(user.username)
+    })
+    // userArray=userArray.join(',')
+    console.log(userArray)
+    res.render("vacations/new", {title: "Add Vacation", errorMsg: "", user: req.user, userArray})
 }
 
 async function showVacations(req, res) {
@@ -168,7 +175,6 @@ async function removeVacationFromCompanions(vacation){
     }
 }
 
-
 module.exports = {
 new: newVacation,
 vacationCreate,
@@ -182,3 +188,5 @@ edit,
 update,
 newUsername,
 }
+
+
