@@ -52,7 +52,7 @@ async function getResponse(req,res, next) {
         messages: [
             {
                 role: 'system',
-                content: `I will be in ${thisVacation.location} between ${thisVacation.departure} and ${thisVacation.arrival}, suggest one activity for me to do. Create an Activity Title (3 words or less) and a Description (3 sentences or less), but do not include the words "Activity Title" or "Description".`,
+                content: `I will be in ${thisVacation.location} between ${thisVacation.departure} and ${thisVacation.arrival}, suggest one activity for me to do. Create an Activity Title (3 words or less) and a Description (3 sentences or less), but do not include the words "Activity Title" or "Description". Do not create the same activity title or description more than once for ${thisVacation}`
             },
         ],
         temperature: 0,
@@ -65,6 +65,7 @@ async function getResponse(req,res, next) {
     const activityContent = message.content
     const splitEm = activityContent.split(': ')
     const newTitle = splitEm[0]
+    console.log('newTitle', newTitle)
     const newActivity = splitEm[1]
     const activityObj = {name: newTitle, description: newActivity}
     showActivity(req, res, next, activityObj);

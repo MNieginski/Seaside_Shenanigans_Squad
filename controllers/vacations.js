@@ -38,9 +38,9 @@ async function showVacations(req, res) {
 //     // newComp = await User.findById(vacation.companions[i]);
 //     // companionNames.push(newComp.name);
 // }
-console.log('vacation.companions - ', vacation.companions)
+// console.log('vacation.companions - ', vacation.companions)
 let companionNames = await getFriendsNames(vacation.companions)
-console.log('companionNames - ', companionNames)
+// console.log('companionNames - ', companionNames)
   res.render("vacations/show", {
     title: "Vacation Details",
     vacation,
@@ -230,9 +230,9 @@ async function getFriends(companions) {
 async function getFriendsNames(companions) {
   let friends = [];
   for (i = 0; i < companions.length; i++) {
-    console.log('in getfriendsnames',companions, companions[i])
+    // console.log('in getfriendsnames',companions, companions[i])
     newguy = await User.findById(companions[i]);
-    console.log('newguy user find - ', newguy)
+    // console.log('newguy user find - ', newguy)
     friends.push(newguy.name);
   }
   return friends;

@@ -43,7 +43,7 @@
     <div class="activities-list">
       <%vacation.activities.forEach(function(activity){%>
         <div class="activity">
-            -<%=activity.name%>,
+            -<%=activity.name%>
             <form id="laurietest" method="POST" action="/vacations/<%= vacation._id %>/<%= activity._id %>?_method=DELETE">
             <button id="delete-activity" >X</button></form>
             <%=activity.description%>
