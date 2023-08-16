@@ -567,6 +567,7 @@ margin-left: 90%
 
 #edit-trip{
   background-color: var(--blue-green);
+  margin-top: 2vh;
 }
 
 .add-activity{
