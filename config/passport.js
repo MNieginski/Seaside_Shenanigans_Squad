@@ -12,14 +12,15 @@ passport.use(
 
     async function (accessToken, refreshToken, profile, cb) {
       try {
-       let user = await User.findOne({googleId: profile.id})
-       if(user){return cb(null, user)}
+        let user = await User.findOne({googleId: profile.id})
+        if(user){return cb(null, user)}
         user = await User.create({
-            name: profile.displayName,
-            googleId: profile.id,
-            email: profile.emails[0].value,
-            avatar: profile.photos[0].value,
+          name: profile.displayName,
+          googleId: profile.id,
+          email: profile.emails[0].value,
+          avatar: profile.photos[0].value,
         })
+        console.log('hit')
       } catch (err) {
         return cb(err);
       }
