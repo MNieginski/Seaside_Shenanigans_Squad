@@ -449,20 +449,21 @@ margin-left: 90%
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 75vh;
+  /* height: 75vh; */
 }
 #username-form{
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 75vh;
+  /* height: 75vh; */
+  margin: 0;
 }
 
 .user-icon{
   border-radius: 50%;
   width: 25%;
-  max-width: 300px;
-  margin-top: 10%;
+  max-width: 200px;
+  margin: 5vh 0 1vh 0;
   margin-bottom: 3%;
 }
 
@@ -477,7 +478,9 @@ margin-left: 90%
 }
 
 
-
+.name-taken{
+  font-size: 2rem;
+}
 
 /* ////////////////////////////Rainbow Stuff*/
 .here {

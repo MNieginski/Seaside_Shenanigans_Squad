@@ -13,7 +13,8 @@
             </div>
           </nav>
           <main class="username-main">
-        <img class="user-icon" src="<%= avatar %>">
+        <img class="user-icon" src="<%=user.avatar%>">
+        <p class="name-taken"><%=message%></p>
           <form id='username-form' class="username-form" method="POST" action="/vacations?_method=PUT">
          
                 <div class="new-username">
