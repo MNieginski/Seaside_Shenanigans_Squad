@@ -5,24 +5,26 @@
 	action="/vacations/<%=vacation._id%>/photos/single" 
 	enctype="multipart/form-data"
 >
-  <label id="add-photo-btn" class="photo-submit">
-    <input id="img-input" type="file" name="imageUpload" required accept="image/*, pdf">
-<p id="photo-btn" class='details openbtn'>UPLOAD PHOTO</p>
-</label>
-</form>
 
 <div class="image-ctr">
-<% if(vacation.images.length){ %>
-  <% vacation.images.forEach(p => { %>
-    <img class='uploaded-img' src="<%=p.url%>" alt="<%=p.alt%>" />
-    <% }) %>
-    <% } else { %>
-      <p>No images yet...</p>
-      <% } %>
-    </section>
-  </div>
-  
+  <% if(vacation.images.length){ %>
+    <% vacation.images.forEach(p => { %>
+      <img class='uploaded-img' src="<%=p.url%>" alt="<%=p.alt%>" />
+      <% }) %>
+      <% } else { %>
+        <p>No images yet...</p>
+        <% } %>
+      </section>
+    </div>
+    
+    <label id="add-photo-btn" class="photo-submit">
+      <input id="img-input" type="file" name="imageUpload" required accept="image/*, pdf">
+    <p id="photo-btn" class='details openbtn'>UPLOAD PHOTO</p>
+    </label>
+    </form>
 <script>
+
+  
 const imgInputEl = document.getElementById('img-input')
 const imgFormEl = document.getElementById('img-form')
 imgInputEl.addEventListener('change', submitImgForm)

@@ -313,9 +313,19 @@ margin: 30px auto 0 auto;
 .uploaded-img{
   max-width: 350px;
   max-height: 350px;
+  margin: 12px;
+  transition: box-shadow 300ms;
+  cursor: pointer;
+}
+.uploaded-img:hover{
+ box-shadow: 0 0 30px 5px black;
+ transition: 300ms;
 }
 
 .image-ctr{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
   width: 75%;
   margin: 0 auto;
   margin-top: 50px;
