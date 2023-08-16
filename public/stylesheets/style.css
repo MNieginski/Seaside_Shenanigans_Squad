@@ -51,6 +51,15 @@ header{
   border: 1px solid var(--blue-green);
 }
 
+.nav-right{
+
+}
+
+.user-logo{
+  max-height: 75px;
+  border-radius: 50%;
+}
+
 .navlink:hover{
   background-color: var(--light-white);
   color: var(--blue-green);
@@ -434,7 +443,7 @@ footer>p{
 margin-left: 90%
 }
 
-main{
+.username-main{
   display: flex;
   flex-direction: column;
   align-items: center;
