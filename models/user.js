@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
   name: String,
-  image: String,
   vacations:[{
     type: Schema.Types.ObjectId,
     ref: 'Vacation'
