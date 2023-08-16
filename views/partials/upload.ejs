@@ -1,31 +1,43 @@
-<form method="POST" 
+<section class="show-images">
+  <h1>PHOTO GALLERY</h1>
+<form class='img-form' id="img-form" method="POST" 
 	autocomplete="off" 
 	action="/vacations/<%=vacation._id%>/photos/single" 
 	enctype="multipart/form-data"
 >
-    <label>
-        <h3>Image Description</h3>
-        <input type="file" name="imageUpload" required />
-    </label>
-    <label>
-        <h3>Image Description</h3>
-        <input type="text" name="description"/>
-    </label>
-    <label>
-        <h3>Image Alt Text</h3>
-        <input type="text" name="alt"/>
-    </label>
-    <br />
-    <input type="submit" value="Create Post">
+  <label id="add-photo-btn" class="photo-submit">
+    <input id="img-input" type="file" name="imageUpload" required accept="image/*, pdf">
+<p id="photo-btn" class='details openbtn'>UPLOAD PHOTO</p>
+</label>
 </form>
 
-<section>
-    <h3>Current Images</h3>
-    <% if(vacation.images.length){ %>
-      <% vacation.images.forEach(p => { %>
-       <img src="<%=p.url%>" alt="<%=p.alt%>" />
-      <% }) %>
+
+<% if(vacation.images.length){ %>
+  <% vacation.images.forEach(p => { %>
+    <img class='uploaded-img' src="<%=p.url%>" alt="<%=p.alt%>" />
+    <% }) %>
     <% } else { %>
       <p>No images yet...</p>
-    <% } %>
-  </section>
+      <% } %>
+    </section>
+
+<script>
+const imgInputEl = document.getElementById('img-input')
+const imgFormEl = document.getElementById('img-form')
+imgInputEl.addEventListener('change', submitImgForm)
+  function submitImgForm(){
+    console.log('hit function')
+ imgFormEl.submit();
+  }
+</script>
+
+
+
+    <!-- <label id="add-photo-btn">
+      <input type="file" name="imageUpload" required accept="image/*, pdf">
+      Choose File
+    </label>
+    <h3>Image Description</h3>
+    <input type="text" name="description"/>
+    </label> -->
+      <!-- <br /> -->

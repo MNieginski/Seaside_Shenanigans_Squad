@@ -6,7 +6,7 @@
 }
 
 *{
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 
 body {
@@ -15,6 +15,7 @@ body {
   padding-top: 0;
   background-color: var(--aqua-blue);
   height: 100vh;
+  min-width: 800px;
 }
 
 .hidden{
@@ -108,7 +109,6 @@ margin: auto 4vw;
   top: 80px;
   font-size: 1rem;
   left: -50%;
-  transition: 250ms;
 }
 
 #bottom::before {
@@ -227,10 +227,6 @@ margin: 30px auto 0 auto;
   font-size: 18px;
 }
 
-.openbtn{
- /* margin-top: 2rem;  */
-}
-
 .activities-list{
   display: flex;
   flex-direction: column;
@@ -240,7 +236,8 @@ margin: 30px auto 0 auto;
   margin: 3vh 20vh 3vh 20vh;
   background-color: var(--blue-green);
   color: var(--light-white); 
-  box-shadow: 0px 0px 10px black
+  box-shadow: 0px 0px 10px black;
+
 }
 
 .activity{
@@ -248,12 +245,12 @@ margin: 30px auto 0 auto;
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  min-width: 300px
 }
 
 .activity-title{
   text-align: right;
   width: 35%;
+  word-wrap: break-word;
 }
 
 
@@ -293,6 +290,29 @@ margin: 30px auto 0 auto;
 
 .activity{
   font-size: 1.5rem;
+}
+
+.show-images{
+  text-align: center;
+}
+
+#photo-btn { 
+  background-color: var(--blue-green);
+  width: fit-content;
+  margin: 0 auto;
+}
+#add-photo-btn > input[type=file] {
+    display: none;
+  }
+
+  .img-form{
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+.uploaded-img{
+  max-width: 100px;
+  max-height: 100px;
 }
 
 
@@ -570,6 +590,7 @@ margin-left: 90%
   text-align: center;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, .75);
   overflow: hidden;
+  color: var(--blue-green);
 }
 
 
@@ -596,6 +617,7 @@ margin-left: 90%
 
 #open-sidebar-ctr{
   text-align: center;
+  margin-top: 20px;
 }
 
 #edit-vacation{
@@ -609,7 +631,6 @@ margin-left: 90%
   padding: 10px 15px;
   border: none;
   background-color: var(--aqua-blue);
-  /* padding-top: 3vh; */
 }
 
 #edit-trip{
@@ -619,7 +640,7 @@ margin-left: 90%
 
 .add-activity{
   text-align: center;
-  margin-top: 15vh;
+  margin-top: 5vh;
   margin-bottom: 5vh;
 }
 
@@ -627,6 +648,16 @@ margin-left: 90%
   display: flex;
   position: relative;
   height: 20vh;
+}
+
+.activity-info{
+margin-top: 5px;
+padding: 0;
+}
+
+.activity-location{
+  font-size: 2rem;
+  margin: 0;
 }
 
 .sidebar-title-ctr{
@@ -637,7 +668,6 @@ margin-left: 90%
 }
 
 .sidebar-title{
-  color: black;
   font-weight: 400;
 text-align: right;
 margin: 0;
