@@ -124,7 +124,7 @@ async function newUsername(req, res) {
   const findUser = await User.find(username);
   if (findUser[0]?.username === req.body.username) {
     res.render("vacations/username", {
-      message: "This username has been taken!",
+      message: "This username is already taken!",
     });
   } else {
     await User.findOneAndUpdate({ _id: req.user._id }, username);

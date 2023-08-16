@@ -10,9 +10,14 @@
       </div>
       <p class="dot">•</p>
 
-
-    <%if(companionNames.length>0){%>
-    <div>
+      <div>
+      <%if(companionNames.length<1){%>
+          NO REGISTERED TRAVEL BUDDIES
+   
+      <%}else if(companionNames.length===1){%>  
+        <span class="bold"><%=companionNames[0].toUpperCase()%></span> IS COMING WITH YOU
+        <%}else{%>
+  
       <%for(i=0; i<companionNames.length-1; i++){%>
         <span class="bold"><%= companionNames[i].toUpperCase() %></span>
         <%if(companionNames.length>2){%>
@@ -20,47 +25,50 @@
         <%}%>
       <%}%>
       & <span class="bold"><%=companionNames[companionNames.length-1].toUpperCase()%></span> ARE COMING WITH YOU
+      <%}%>
     </div>
-    <%}else{%>
       
-      <div>
-        NO REGISTERED TRAVEL BUDDIES
-      </div>
-      
-    <%}%>
-      
-    <p class="dot">•</p>
     
-    <%if(vacation.activities.length === 0){%>
-      <div>
-        NO ACTIVITIES PLANNED YET
-      </div>
-    <%}else{%>
-      <div>
-        HERE'S WHAT YOU HAVE PLANNED
-      </div>
-    <%}%>
-    <div class="activities-list">
-      <%vacation.activities.forEach(function(activity){%>
-        <div class="activity">
-            -<%=activity.name%>
-            <form id="laurietest" method="POST" action="/vacations/<%= vacation._id %>/<%= activity._id %>?_method=DELETE">
-            <button id="delete-activity" >X</button></form>
-            <%=activity.description%>
-          <%})%>
-        </div>
-      </div>
-    <div id="open-sidebar-ctr">
-      <button class="openbtn details" onclick="openNav()">ADD AN ACTIVITY</button>
-    </div>
+  
     
     <form
     id="edit-vacation"
     method="GET"
     action="/vacations/<%= vacation._id %>/edit"
     >
-    <button class="details openbtn">EDIT TRIP DETAILS</button>
+    <button id='edit-trip' class="details openbtn">EDIT TRIP DETAILS</button>
   </form>
+    
+    <div class="activities-list">
+        <%if(vacation.activities.length === 0){%>
+          <div>
+            NO ACTIVITIES PLANNED YET
+          </div>
+        <%}else{%>
+          <div>
+            HERE'S WHAT YOU HAVE PLANNED
+          </div>
+        <%}%>
+        <%vacation.activities.forEach(function(activity){%>
+          <div class="activity">
+            <%if(activity.dateTime){%>
+             <p class="activity-time"><%=activity.dateTime.toLocaleString([], {month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit'})%></p>
+              <%}else{%>
+                <p class="activity-time hidden"><%=new Date().toLocaleString([], {month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit'})%></p>
+
+                <%}%>
+            <h2 class="activity-title"><%=activity.name%> </h2>
+              <p class="activity-description"><%=activity.description%></p>
+              <form id="laurietest" method="POST" action="/vacations/<%= vacation._id %>/<%= activity._id %>?_method=DELETE">
+                <button id="delete-activity" >X</button></form>
+              </div>
+              <%})%>
+              <div id="open-sidebar-ctr">
+                <button class="openbtn details" onclick="openNav()">ADD AN ACTIVITY</button>
+              </div>
+   
+      </div>
+  
   </div>
 
   <!-- SIDE BAR -->
@@ -78,17 +86,21 @@
     
     <div class="sidebar-input-ctr">
   <input type="text" name="name" required/>
-<input id="date-activity" type="datetime-local" name="dateTime" required/>
+<input id="date-activity" type="datetime-local" name="dateTime"/>
   <textarea rows="3" name="description" required></textarea>
     </div>
   </div>
   <button class='details activity-btn' type="submit" >SUBMIT</button>
     
     </form>
+    <div class="gpt-ctr">
+      <h2>-OR-</h2>
+    <form  action="/vacations/<%= vacation._id %>/activities/new" method="GET">
+      <button id="generate-activity" class="details">GENERATE NEW SUGGESTION</button> </form>
+    </div>
+    <img class='robogif hidden' id='robogif' src="/images/doggonaut.webp" alt="">
   </div>
-<form  action="/vacations/<%= vacation._id %>/activities/new" method="GET">
-  <button id="generate-activity">generate</button> </form>
-<!-- <a href="/vacations/<%= vacation._id %>/activities/new">generate</a> -->
+
 </section>
 <!-- sidebar script -->
 <script>
@@ -109,7 +121,16 @@
       return false;
     }
   }
+
+  function showBot(){
+roboGifEl.classList.add('unhidden')
+
+  }
+
   document.getElementById("edit-activity-form").onsubmit=checkDates;
+  const generateBtnEl = document.getElementById("generate-activity")
+  const roboGifEl = document.getElementById("robogif")
+  generateBtnEl.addEventListener('click', showBot)
 </script>
 
 </body>
