@@ -32,15 +32,11 @@ async function newVacation(req, res) {
 }
 
 async function showVacations(req, res) {
-//   let companionNames = [];
-  const vacation = await Vacation.findById(req.params.id);
-//   for (i = 0; i < vacation.companions.length; i++) {
-//     // newComp = await User.findById(vacation.companions[i]);
-//     // companionNames.push(newComp.name);
-// }
-// console.log('vacation.companions - ', vacation.companions)
+const vacation = await Vacation.findById(req.params.id);
+let creatorUser = await User.findById(vacation.userId);
+let creatorName = creatorUser.name;
 let companionNames = await getFriendsNames(vacation.companions)
-// console.log('companionNames - ', companionNames)
+companionNames.splice(companionNames.findIndex((name)=>name===req.user.name), 1, creatorName)
   res.render("vacations/show", {
     title: "Vacation Details",
     vacation,
@@ -176,6 +172,7 @@ async function edit(req, res) {
   for (i = 0; i < vacation.companions.length; i++) {
     newComp = await User.findById(vacation.companions[i]);
     companionNames += `, ${newComp.username}`;
+    
   }
   let userArray = [];
   users.forEach((user) => {
