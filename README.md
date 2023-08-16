@@ -21,12 +21,12 @@ Create a new trip
 
 _________________
 
-![Wireframe screenshot](public/images/wireframe-showpage.jpg)
+![Wireframe screenshot](public/images/Wireframe-showpage.jpg)
 Show details of a specific trip
 
 _________________
 
-![Wireframe screenshot](public/images/wireframe-images.jpg)
+![Wireframe screenshot](public/images/Wireframe-images.jpg)
 Gallery of user-uploaded images
 
 ## Technology Used
