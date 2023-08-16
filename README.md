@@ -6,7 +6,7 @@
 Keep track of upcoming and previous vacations, and let our site be your digital journal. Take a look at activities you've done and pictures from your trip.
 
 ## Wireframes
-
+![Wireframe screenshot](public/images/Wireframe-Details-1.jpg)
 
 ## Technology Used
 - HTML
