@@ -96,7 +96,7 @@ async function getVacations(req, res) {
 
 async function index(req, res) {
   const userinfo = req.user;
-  console.log();
+  console.log('hit index');
   try {
     if (userinfo.username !== "") {
       const user = await User.findById(req.user._id);
