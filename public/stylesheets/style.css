@@ -279,10 +279,10 @@ main{
 .new-titles{
 grid-column: 1 / span 1;
 text-align: end;
-width: 40vw;
 display: grid;
 grid-template-rows: 33% 33% 33%;
 align-items: center;
+width:
 }
 
 .spacer{
@@ -299,7 +299,7 @@ width: 3vw;
 }
 
 .new-vacation{
-width: 40vw;
+/* width: 40vw; */
 grid-column: 3 / span 1;
 align-items: center;
 }
