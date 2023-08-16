@@ -11,7 +11,7 @@
 </label>
 </form>
 
-
+<div class="image-ctr">
 <% if(vacation.images.length){ %>
   <% vacation.images.forEach(p => { %>
     <img class='uploaded-img' src="<%=p.url%>" alt="<%=p.alt%>" />
@@ -20,7 +20,8 @@
       <p>No images yet...</p>
       <% } %>
     </section>
-
+  </div>
+  
 <script>
 const imgInputEl = document.getElementById('img-input')
 const imgFormEl = document.getElementById('img-form')

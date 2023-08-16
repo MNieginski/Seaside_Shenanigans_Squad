@@ -311,9 +311,16 @@ margin: 30px auto 0 auto;
   }
 
 .uploaded-img{
-  max-width: 100px;
-  max-height: 100px;
+  max-width: 350px;
+  max-height: 350px;
 }
+
+.image-ctr{
+  width: 75%;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
 
 
 /* ////////////////////////////New Page */
