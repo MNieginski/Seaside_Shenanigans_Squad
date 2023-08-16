@@ -14,8 +14,12 @@
       f.arrival.getUTCMonth()){%> <%=months[f.arrival.getUTCMonth()].toUpperCase()%> <%}%> <%=
       f.arrival.getUTCDate()%>, <%=f.arrival.getFullYear()%> •
       <a href="/vacations/<%= f._id %>"><button class="details">Details</button></a>
+
+      <%if(user._id.toString() === f.userId){%>
       <form id="delete-vacation" method="POST" action="/vacations/<%= f._id %>?_method=DELETE">
         <button class="details" >Delete</button></form>
+<%}%>
+
     </li>
     <%}%> <% }) %>
   </ul>
