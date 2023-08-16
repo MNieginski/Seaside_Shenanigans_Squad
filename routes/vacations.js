@@ -3,7 +3,7 @@ var router = express.Router();
 var vacationCtrl = require('../controllers/vacations')
 const ensureLoggedIn = require('../config/ensureLoggedIn')
 
-router.get('/', ensureLoggedIn, vacationCtrl.index);
+router.get('/', vacationCtrl.index);
 
 router.put('/', ensureLoggedIn, vacationCtrl.newUsername)
 
