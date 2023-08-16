@@ -178,7 +178,6 @@ async function edit(req, res) {
   users.forEach((user) => {
     userArray.push(user.username);
   });
- // console.log(userArray);
   res.render("vacations/edit", {
     title: "Edit Vacation",
     vacation,
@@ -227,9 +226,7 @@ async function getFriends(companions) {
 async function getFriendsNames(companions) {
   let friends = [];
   for (i = 0; i < companions.length; i++) {
-    // console.log('in getfriendsnames',companions, companions[i])
     newguy = await User.findById(companions[i]);
-    // console.log('newguy user find - ', newguy)
     friends.push(newguy.name);
   }
   return friends;
