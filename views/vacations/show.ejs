@@ -98,6 +98,7 @@
     <form  action="/vacations/<%= vacation._id %>/activities/new" method="GET">
       <button id="generate-activity" class="details">GENERATE NEW SUGGESTION</button> </form>
     </div>
+    <img class='robogif hidden' id='robogif' src="/images/robogif.gif" alt="">
   </div>
 
 </section>
@@ -120,7 +121,16 @@
       return false;
     }
   }
+
+  function showBot(){
+roboGifEl.classList.add('unhidden')
+
+  }
+
   document.getElementById("edit-activity-form").onsubmit=checkDates;
+  const generateBtnEl = document.getElementById("generate-activity")
+  const roboGifEl = document.getElementById("robogif")
+  generateBtnEl.addEventListener('click', showBot)
 </script>
 
 </body>
