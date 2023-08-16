@@ -181,7 +181,7 @@ margin: 30px auto 0 auto;
 }
 
 .openbtn{
- margin-top: 2rem; 
+ /* margin-top: 2rem;  */
 }
 
 .activities-list{
@@ -562,10 +562,12 @@ margin-left: 90%
   padding: 10px 15px;
   border: none;
   background-color: var(--aqua-blue);
+  /* padding-top: 3vh; */
 }
 
 #edit-trip{
   background-color: var(--blue-green);
+  margin-top: 2vh;
 }
 
 .add-activity{
