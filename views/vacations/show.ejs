@@ -19,11 +19,11 @@
         <%}else{%>
   
       <%for(i=0; i<companionNames.length-1; i++){%>
-        <span class="bold"><%= companionNames[i].toUpperCase() %></span>
         <%if(companionNames.length>2){%>
-          ,
-        <%}%>
-      <%}%>
+          <span class="bold"><%= companionNames[i].toUpperCase()%>,</span>
+        <%} else {%> 
+          <span class="bold"><%= companionNames[i].toUpperCase()%></span>
+      <%}}%>
       & <span class="bold"><%=companionNames[companionNames.length-1].toUpperCase()%></span> ARE COMING WITH YOU
       <%}%>
     </div>
