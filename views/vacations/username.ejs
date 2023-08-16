@@ -8,23 +8,23 @@
 
     <body>
         <nav>
-            <div class="nav-right nav-div">
-                <img class="logo" src="/images/logo.png" alt="" /></a>
+            <div class="new-nav-right nav-div">
+                <img class="username-page-logo" src="/images/logo.png" alt="" /></a>
             </div>
           </nav>
+          <main>
         <img class="user-icon" src="<%= avatar %>">
           <form id='username-form' class="username-form" method="POST" action="/vacations?_method=PUT">
-            <main>
+         
                 <div class="new-username">
                     <h2>CREATE A USERNAME</h2>
                 </div>
-                <div class="spacer"></div>
                 <input id="new-username" class="new-username" type="text" name="username" />
-                <p><%=message%></p>
                 <button class="enter" id="new-form-submit" type="submit">
                     SUBMIT
                 </button>
           </form>
+        </main>
         <script>
             function checkUsername() {
                 var newUser = document.getElementById("new-username")

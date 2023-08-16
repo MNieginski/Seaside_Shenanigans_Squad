@@ -6,7 +6,7 @@
 }
 
 *{
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 
 body {
@@ -98,6 +98,10 @@ color: var(--light-white);
 width: 75%;
 display: block;
 margin: 30px auto 0 auto;
+}
+
+.no-trips{
+  text-align: center;
 }
 
 .trip-list-title{
@@ -252,7 +256,7 @@ justify-content: start;
 
 #new-page input{
   height: 40px;
-  width: 74%;
+  width: 89%;
   font-size: 22px;
 }
 
@@ -286,17 +290,16 @@ display: flex
 }
 
 #date-inputs{
-  width: 75%;
+  width: 90%;
   display: flex;
   justify-content: space-between;
 }
 
 #date-inputs input{
   font-size: 12px;
-  width: 75%;
+  width: 90%;
   text-align: center;
 }
-
 
 #new-form-submit{
   text-align: center;
@@ -425,6 +428,44 @@ footer>p{
   background-color: var(--blue-green);
   cursor: pointer;
 }
+
+/* ////////////////////////////USERNAME Page*/
+.new-nav-right{
+margin-left: 90%
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 75vh;
+}
+#username-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 75vh;
+}
+
+.user-icon{
+  border-radius: 50%;
+  width: 25%;
+  max-width: 300px;
+  margin-top: 10%;
+  margin-bottom: 3%;
+}
+
+.new-username h2{
+  font-size: 2.5rem;;
+}
+
+#new-username{
+  margin: 0 auto;
+  width: 80%;
+  height: 22px;
+}
+
+
 
 
 /* ////////////////////////////Rainbow Stuff*/
