@@ -6,28 +6,28 @@
 Keep track of upcoming and previous vacations and let our site be your digital journal. Add dates, locations, activities and photos to all vacations, past and present. Travel buddies can be added if they've created an account on our website!
 
 ## Select wireframes
-![Wireframe screenshot](public/images/wireframe-homepage.jpg)  
-Homepage
+**Homepage**<br>
+![Wireframe screenshot](public/images/wireframe-homepage.jpg)<br>
 
 _________________
 
-![Wireframe screenshot](public/images/wireframe-index.jpg)  
-Vacation Index
+**Vacation Index**<br>
+![Wireframe screenshot](public/images/wireframe-index.jpg)<br>
 
 _________________
 
-![Wireframe screenshot](public/images/wireframe-new-trip.jpg)  
-Create a new trip
+**Create a new trip**<br>
+![Wireframe screenshot](public/images/wireframe-new-trip.jpg)<br>
 
 _________________
 
-![Wireframe screenshot](public/images/Wireframe-showpage.jpg)  
-Show details of a specific trip
+**Show details of a specific trip**<br>
+![Wireframe screenshot](public/images/Wireframe-showpage.jpg)<br> 
 
 _________________
 
+**Gallery of user-uploaded images**<br>
 ![Wireframe screenshot](public/images/Wireframe-images.jpg)  
-Gallery of user-uploaded images
 
 ## Technology Used
 - HTML
