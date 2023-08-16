@@ -15,13 +15,12 @@
           NO REGISTERED TRAVEL BUDDIES
    
       <%}else if(companionNames.length===1){%>  
-        <span class="bold"><%=companionNames[0].toUpperCase()%></span> IS COMING WITH YOU
+        <span class="bold"><%=companionNames[0].toUpperCase()%></span>IS COMING WITH YOU
         <%}else{%>
   
       <%for(i=0; i<companionNames.length-1; i++){%>
-        <span class="bold"><%= companionNames[i].toUpperCase() %></span>
+        <span class="bold"><%= companionNames[i].toUpperCase()%>,</span>
         <%if(companionNames.length>2){%>
-          ,
         <%}%>
       <%}%>
       & <span class="bold"><%=companionNames[companionNames.length-1].toUpperCase()%></span> ARE COMING WITH YOU
