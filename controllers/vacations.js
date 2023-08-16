@@ -36,7 +36,10 @@ const vacation = await Vacation.findById(req.params.id);
 let creatorUser = await User.findById(vacation.userId);
 let creatorName = creatorUser.name;
 let companionNames = await getFriendsNames(vacation.companions)
-companionNames.splice(companionNames.findIndex((name)=>name===req.user.name), 1, creatorName)
+let nameIdx = companionNames.findIndex((name)=>name===req.user.name)
+if (nameIdx !== -1) {
+companionNames.splice(nameIdx, 1, creatorName)
+}
   res.render("vacations/show", {
     title: "Vacation Details",
     vacation,
