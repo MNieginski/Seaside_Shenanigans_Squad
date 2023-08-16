@@ -8,7 +8,6 @@ var passport = require('passport');
 var methodOverride = require('method-override');
 var { Configuration, OpenAIApi } = require("openai");
 
-
 require('dotenv').config()
 require('./config/database')
 require('./config/passport');
