@@ -29,7 +29,7 @@
       
     
     <div id="shadow-cover" class="lower-shaow"></div>
-    
+    <%if(user._id.toString() === vacation.userId){%>
     <form
     id="edit-vacation"
     method="GET"
@@ -37,7 +37,7 @@
     >
     <button id='edit-trip' class="details openbtn">EDIT TRIP DETAILS</button>
   </form>
-    
+    <%}%>
     <div class="activities-list">
         <%if(vacation.activities.length === 0){%>
           <div>
