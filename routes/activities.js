@@ -16,7 +16,7 @@ router.post('/vacations/:id/activities', activityCtrl.create)
 
 router.delete('/vacations/:vid/:aid', activityCtrl.delete)
 
-router.get('/vacations/:id/activities/new',activityCtrl.getResponse)
+router.get('/vacations/:id/activities/new', activityCtrl.getResponse)
 
 router.post('/vacations/:id', activityCtrl.showActivity)
 
