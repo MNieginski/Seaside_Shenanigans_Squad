@@ -44,6 +44,7 @@
   </section>
 
   <script>
+    document.getElementById("new-e-form").onsubmit = checkDates;
     let usersArray = "<%=userArray%>";
     usersArray = usersArray.split(",");
     let user = '<%=user.username%>'
@@ -83,7 +84,7 @@
     return true
     }
   }
-    document.getElementById("new-e-form").onsubmit = checkDates;
+
   </script>
 
 <%- include('../partials/footer')%>

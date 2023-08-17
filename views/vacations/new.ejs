@@ -1,4 +1,4 @@
-<%- include('../partials/header')%> <%- include('../partials/test')%>
+<%- include('../partials/header')%>
 
 <section id="new-page">
   <h2>PLAN YOUR TRIP</h2>
@@ -50,10 +50,10 @@
 </section>
 
 <script defer>
+  document.getElementById("new-v-form").onsubmit = checkDates;
   let usersArray = "<%=userArray%>";
   usersArray = usersArray.split(",");
   let user = '<%=user.username%>'
-  document.getElementById("new-v-form").onsubmit = checkDates;
 
 
   function checkDates(e) {
@@ -92,4 +92,5 @@ if(companions !== ''){
 }
 
 </script>
+
 <%- include('../partials/footer')%>
