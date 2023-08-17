@@ -1,6 +1,5 @@
 <%- include('../partials/header')%>
 
-<body>
   <section id="show-page">
     <div class="show-info">
       <h1><%=user.name.split(' ')[0].toUpperCase()%>'S TRIP TO <span class="monoton"><%= vacation.location.toUpperCase() %></span></h1>
@@ -29,7 +28,7 @@
     </div>
       
     
-  
+    <div id="shadow-cover" class="lower-shaow"></div>
     
     <form
     id="edit-vacation"
@@ -117,7 +116,6 @@
   function closeNav() {
     document.getElementById("mySidebar").style.width = "0";
     document.getElementById("shadow-cover").style.backgroundColor = "rgba(0, 0, 0, 0)";
- //   document.getElementById("shadow-cover").style.display = "none";
   }
 
   function checkDates() {
@@ -141,6 +139,6 @@ roboGifEl.classList.add('unhidden')
   generateBtnEl.addEventListener('click', showBot)
 </script>
 
-</body>
+
 
 <%- include('../partials/footer')%>
