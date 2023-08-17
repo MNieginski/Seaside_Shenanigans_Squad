@@ -15,26 +15,24 @@ module.exports = {
 
 async function create(req, res) {
     const vacation = await Vacation.findById(req.params.id)
-
     vacation.activities.push(req.body)
-
     try {
         await vacation.save()
     } catch (err) {
         console.log(err)
     }
-
     res.redirect(`/vacations/${vacation._id}`)
 }
 
 async function deleteActivity(req, res) {
+    console.log('hit')
     const vacation = await Vacation.findById(req.params.vid)
     let idx = vacation.activities.findIndex(activity=>{
         return activity._id.toString()===req.params.aid
     })
     vacation.activities.splice(idx, 1)
     await vacation.save()
-    res.redirect(`/vacations/${vacation._id}`)
+   res.redirect(`/vacations/${vacation._id}`)
 }
 
 
