@@ -30,8 +30,6 @@ body {
 }
 
 
-
-
 .monoton{
   font-family: 'Monoton', cursive;
   font-weight: lighter;
@@ -334,7 +332,6 @@ min-width: 500px;
   #click-to-expand{
     bottom: 0;
     pointer-events: none;
-  
   }
   
   .img-hover{
@@ -780,6 +777,11 @@ margin: 0;
 .hidden{
   color: transparent;
   opacity: 0;
+}
+
+
+.no-click{
+pointer-events: none;
 }
 
 #hidden{

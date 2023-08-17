@@ -102,7 +102,6 @@ async function getVacations(req, res) {
 
 async function index(req, res) {
   const userinfo = req.user;
-  console.log('hit index');
   try {
     if (userinfo.username !== "") {
       const user = await User.findById(req.user._id);
@@ -291,7 +290,6 @@ function streamUpload(req) {
   return new Promise(function (resolve, reject) {
     let stream = cloudinary.uploader.upload_stream((error, result) => {
       if (result) {
-        console.log(result);
         resolve(result);
       } else {
         reject(error);
@@ -301,6 +299,18 @@ function streamUpload(req) {
     streamifier.createReadStream(req.file.buffer).pipe(stream);
   });
 }
+
+async function deletePhoto(req, res) {
+    const vacation = await Vacation.findById(req.params.vid)
+    console.log(vacation)
+    let idx = vacation.images.findIndex(photo=>{
+        return photo._id.toString()===req.params.pid
+})
+    vacation.images.splice(idx, 1)
+    await vacation.save()
+    res.redirect(`/vacations/${vacation._id}`)
+}
+
 
 module.exports = {
   new: newVacation,
@@ -315,6 +325,7 @@ module.exports = {
   update,
   newUsername,
   uploadPhoto,
+  deletePhoto
 };
 
 
