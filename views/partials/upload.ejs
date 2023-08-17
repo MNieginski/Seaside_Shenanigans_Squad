@@ -26,6 +26,8 @@
       <p id="photo-btn" class='details openbtn'>UPLOAD PHOTO</p>
     </label>
   </form>
+<img id="focused-img" class='focused hidden no-click' src="" alt="">
+
 <script>
   let expanded = false
   let focusedImg
@@ -35,6 +37,9 @@ const imgDeleteEls = document.querySelectorAll('#img-delete')
 const clickToExpandsEls = document.querySelectorAll('#click-to-expand')
 const imgInputEl = document.getElementById('img-input')
 const imgFormEl = document.getElementById('img-form')
+const focusedImgEl = document.getElementById('focused-img')
+
+focusedImgEl.addEventListener('click', expand)
 
 imgDeleteEls.forEach((el)=>{
   el.addEventListener('click', handleDeleteClick)
@@ -56,27 +61,20 @@ imgInputEl.addEventListener('change', submitImgForm)
 
 function expand(e){
   if(expanded===false){
-e.target.classList.add('focused')
+//e.target.classList.add('focused')
+focusedImgEl.setAttribute('src', e.target.src)
+focusedImgEl.classList.remove('hidden')
+focusedImgEl.classList.remove('no-click')
 shadowCoverEl.style.backgroundColor = "rgba(0, 0, 0, .5)";
-focusedImg = e.target
+//focusedImg = e.target
 expanded=true
-imgDeleteEls.forEach((el)=>{
-  el.setAttribute('id', 'hidden')
-}) 
-clickToExpandsEls.forEach((el)=>{
-  el.setAttribute('id', 'hidden')
-}) 
 }else{
-  focusedImg.classList.remove('focused')
+  focusedImgEl.classList.add('hidden')
+  focusedImgEl.classList.add('no-click')
+  //focusedImg.classList.remove('focused')
   shadowCoverEl.style.backgroundColor = "rgba(0, 0, 0, 0)";
-  focusedImg = ''
+  //focusedImg = ''
   expanded=false
-  imgDeleteEls.forEach((el)=>{
-    el.removeAttribute('id', 'hidden')
-  }) 
-  clickToExpandsEls.forEach((el)=>{
-    el.removeAttribute('id', 'hidden')
-  }) 
 }
 }
 

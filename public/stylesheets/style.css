@@ -6,7 +6,7 @@
 }
 
 *{
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 
 body {
@@ -28,8 +28,6 @@ body {
   display: block;
   pointer-events: none;
 }
-
-
 
 
 .monoton{
@@ -334,7 +332,6 @@ min-width: 500px;
   #click-to-expand{
     bottom: 0;
     pointer-events: none;
-  
   }
   
   .img-hover{
@@ -777,6 +774,11 @@ margin: 0;
 .hidden{
   color: transparent;
   opacity: 0;
+}
+
+
+.no-click{
+pointer-events: none;
 }
 
 #hidden{

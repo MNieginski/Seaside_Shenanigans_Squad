@@ -102,7 +102,6 @@ async function getVacations(req, res) {
 
 async function index(req, res) {
   const userinfo = req.user;
-  console.log('hit index');
   try {
     if (userinfo.username !== "") {
       const user = await User.findById(req.user._id);
@@ -291,7 +290,6 @@ function streamUpload(req) {
   return new Promise(function (resolve, reject) {
     let stream = cloudinary.uploader.upload_stream((error, result) => {
       if (result) {
-        console.log(result);
         resolve(result);
       } else {
         reject(error);
