@@ -31,9 +31,6 @@ body {
 
 
 
-.unhidden{
-  opacity: 1;
-}
 
 .monoton{
   font-family: 'Monoton', cursive;
@@ -775,12 +772,16 @@ margin: 0;
 }
 
 
-
 .hidden{
   color: transparent;
   opacity: 0;
 }
+
 #hidden{
   color: transparent;
   opacity: 0;
+}
+
+.unhidden{
+  opacity: 1;
 }
