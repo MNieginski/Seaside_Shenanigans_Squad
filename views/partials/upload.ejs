@@ -31,9 +31,9 @@
 const shadowCoverEl = document.getElementById('shadow-cover')
 const uploadedImgEls = document.querySelectorAll('.img-ctr')
 const imgDeleteEls = document.querySelectorAll('#img-delete')
+const clickToExpandsEls = document.querySelectorAll('#click-to-expand')
 const imgInputEl = document.getElementById('img-input')
 const imgFormEl = document.getElementById('img-form')
-
 
 imgDeleteEls.forEach((el)=>{
   el.addEventListener('click', handleDeleteClick)
@@ -52,22 +52,37 @@ imgInputEl.addEventListener('change', submitImgForm)
 
 
 function expand(e){
+  if(expanded===false){
 e.target.classList.add('focused')
 shadowCoverEl.style.backgroundColor = "rgba(0, 0, 0, .5)";
 focusedImg = e.target
 expanded=true
+imgDeleteEls.forEach((el)=>{
+  el.setAttribute('id', 'hidden')
+}) 
+clickToExpandsEls.forEach((el)=>{
+  el.setAttribute('id', 'hidden')
+}) 
+}else{
+  console.log(expanded)
+  focusedImg.classList.remove('focused')
+  shadowCoverEl.style.backgroundColor = "rgba(0, 0, 0, 0)";
+  console.log(shadowCoverEl)
+  focusedImg = ''
+  expanded=false
+  imgDeleteEls.forEach((el)=>{
+    el.removeAttribute('id', 'hidden')
+  }) 
+  clickToExpandsEls.forEach((el)=>{
+    el.removeAttribute('id', 'hidden')
+  }) 
+}
 }
 
 function handleDeleteClick(e){
-  if(expanded===true){
-    focusedImg.classList.remove('focused')
-    shadowCoverEl.style.backgroundColor = "rgba(0, 0, 0, 0)";//WHY DO YOU NOT WORK
-    console.log(shadowCoverEl)
-    focusedImg = ''
-  }else{
     console.log('DELETING THIS PHOTO')
   }
-  }
+
 
 
 
