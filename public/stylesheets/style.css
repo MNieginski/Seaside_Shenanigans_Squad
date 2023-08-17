@@ -332,6 +332,8 @@ margin: 30px auto 0 auto;
 
   #click-to-expand{
     bottom: 0;
+    pointer-events: none;
+  
   }
   
   .img-hover{
@@ -376,12 +378,11 @@ position: fixed;
 z-index: 20;
 left:0;
 right:0;
-margin-left:auto;
-margin-right:auto;
+top:0;
+bottom:0;
 max-width: 75vw;
-max-height: 70vh;
-top: 15vh;
-
+max-height: 85vh;
+margin: auto;
 }
 
 /* ////////////////////////////New Page */
@@ -780,6 +781,7 @@ margin: 0;
 #hidden{
   color: transparent;
   opacity: 0;
+  text-shadow: none
 }
 
 .unhidden{
