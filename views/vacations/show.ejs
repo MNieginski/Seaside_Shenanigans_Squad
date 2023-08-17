@@ -1,6 +1,5 @@
 <%- include('../partials/header')%>
 
-<body>
   <section id="show-page">
     <div class="show-info">
       <h1><%=user.name.split(' ')[0].toUpperCase()%>'S TRIP TO <span class="monoton"><%= vacation.location.toUpperCase() %></span></h1>
@@ -29,7 +28,7 @@
     </div>
       
     
-  
+    <div id="shadow-cover" class="lower-shaow"></div>
     
     <form
     id="edit-vacation"
@@ -74,6 +73,10 @@
   <!-- SIDE BAR -->
   <div id="mySidebar" class="sidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <div class="activity-info">
+    <h3 class="activity-location"><%=vacation.location%></h3>
+    <h3 class="activity-date"><%=months[vacation.departure.getUTCMonth()].toUpperCase()%> <%=vacation.departure.getUTCDate()%>, <%= vacation.arrival.getFullYear()%> - <%=months[vacation.arrival.getUTCMonth()].toUpperCase()%> <%=vacation.arrival.getUTCDate()%>, <%= vacation.arrival.getFullYear()%></h3>
+  </div>
     <h2 class="add-activity">ADD AN ACTIVITY</h2>
 
     <form id="edit-activity-form" action="/vacations/<%= vacation._id %>/activities" method="POST">
@@ -100,16 +103,19 @@
     </div>
     <img class='robogif hidden' id='robogif' src="/images/doggonaut.webp" alt="">
   </div>
-
+<%- include('../partials/upload') %>
 </section>
 <!-- sidebar script -->
 <script>
   function openNav() {
     document.getElementById("mySidebar").style.width = "350px";
-  }
+    document.getElementById("shadow-cover").style.backgroundColor = "rgba(0, 0, 0, .5)";
 
+  }
+  
   function closeNav() {
     document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("shadow-cover").style.backgroundColor = "rgba(0, 0, 0, 0)";
   }
 
   function checkDates() {
@@ -133,6 +139,6 @@ roboGifEl.classList.add('unhidden')
   generateBtnEl.addEventListener('click', showBot)
 </script>
 
-</body>
+
 
 <%- include('../partials/footer')%>

@@ -1,0 +1,89 @@
+<section class="show-images">
+  <h1>PHOTO GALLERY</h1>
+  
+  <div class="image-ctr">
+    <% if(vacation.images.length){ %>
+      <% vacation.images.forEach(p => { %>
+        <div class="img-ctr"><img class='uploaded-img' src="<%=p.url%>" alt="<%=p.alt%>" />
+          <form id='img-delete-btn-ctr' method="POST" action="/vacations/<%= vacation._id %>/<%= p._id %>?_method=DELETE"><button id="img-delete" class="img-hover">X</button>
+          </form>
+          <p id="click-to-expand" class="img-hover">- Click to expand -</p>
+        </div>
+        <% }) %>
+        <% } else { %>
+          <p>No images yet...</p>
+          <% } %>
+        </section>
+      </div>
+      
+      <form class='img-form' id="img-form" method="POST" 
+        autocomplete="off" 
+        action="/vacations/<%=vacation._id%>/photos/single" 
+        enctype="multipart/form-data"
+      >
+    <label id="add-photo-btn" class="photo-submit">
+      <input id="img-input" type="file" name="imageUpload" required accept="image/*, pdf">
+      <p id="photo-btn" class='details openbtn'>UPLOAD PHOTO</p>
+    </label>
+  </form>
+<img id="focused-img" class='focused hidden no-click' src="" alt="">
+
+<script>
+  let expanded = false
+  let focusedImg
+const shadowCoverEl = document.getElementById('shadow-cover')
+const uploadedImgEls = document.querySelectorAll('.uploaded-img')
+const imgDeleteEls = document.querySelectorAll('#img-delete')
+const clickToExpandsEls = document.querySelectorAll('#click-to-expand')
+const imgInputEl = document.getElementById('img-input')
+const imgFormEl = document.getElementById('img-form')
+const focusedImgEl = document.getElementById('focused-img')
+
+focusedImgEl.addEventListener('click', expand)
+
+imgDeleteEls.forEach((el)=>{
+  el.addEventListener('click', handleDeleteClick)
+  let parentDiv = el.parentElement
+  el.setAttribute('imgUrl', el.parentElement.parentElement.firstChild.src )
+})  
+
+uploadedImgEls.forEach((el)=>{
+  el.addEventListener('click', expand)
+})  
+
+
+
+imgInputEl.addEventListener('change', submitImgForm)
+  function submitImgForm(){
+ imgFormEl.submit();
+}
+
+
+function expand(e){
+  if(expanded===false){
+//e.target.classList.add('focused')
+focusedImgEl.setAttribute('src', e.target.src)
+focusedImgEl.classList.remove('hidden')
+focusedImgEl.classList.remove('no-click')
+shadowCoverEl.style.backgroundColor = "rgba(0, 0, 0, .5)";
+//focusedImg = e.target
+expanded=true
+}else{
+  focusedImgEl.classList.add('hidden')
+  focusedImgEl.classList.add('no-click')
+  //focusedImg.classList.remove('focused')
+  shadowCoverEl.style.backgroundColor = "rgba(0, 0, 0, 0)";
+  //focusedImg = ''
+  expanded=false
+}
+}
+
+function handleDeleteClick(e){
+    console.log('DELETING THIS PHOTO', e.target.getAttribute('imgurl'))
+  }
+
+
+
+
+</script>
+

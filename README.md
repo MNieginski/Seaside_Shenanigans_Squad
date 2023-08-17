@@ -42,7 +42,8 @@ _________________
 - ChatGPT's API
 
 ## Getting Started
-[Click to Play Connect Four!](your deployment url here)
+[Click to Play Connect Four!](your deployment url here) <br>
+[Scenic Shenanigans Planning Doc](https://docs.google.com/spreadsheets/d/1jKdOorlJZ4x6ejF2cYETL-E8nCiXyT8uhOldVsT1uHQ/edit?usp=sharing)
 
 Click "Log In to Enter" and you'll be directed to log in with your Google account. Once logged in, you'll be able to add trips and view your trips. The "Home" button takes you the the index of all your trips, past and future, and "Plan" will take you to a page where you can create a new trip. Clicking "Log Out" will, of course, log you out. You will be returned to the welcome page with the login button.
 

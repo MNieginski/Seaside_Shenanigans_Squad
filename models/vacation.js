@@ -1,11 +1,16 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-
 const activitiesSchema = new Schema ({
    name: {type: String}, 
    description: {type: String},
    dateTime: {type: Date},
+})
+
+const imageSchema = new mongoose.Schema({
+   url: {type: String, required: true},
+   description: { type: String},
+   alt: {type: String, default:""} 
 })
 
 const vacationSchema = new Schema ({
@@ -18,7 +23,8 @@ const vacationSchema = new Schema ({
       required: true
     },
     userId: String,
-    activities: [activitiesSchema]
+    activities: [activitiesSchema],
+    images: [imageSchema]
 })
 
 module.exports = mongoose.model('Vacation', vacationSchema)

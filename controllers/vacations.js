@@ -16,6 +16,13 @@ const months = [
   "December",
 ];
 
+const cloudinary = require("cloudinary").v2;
+const streamifier = require("streamifier");
+const { clConfig } = require("../config/cloudinary.js");
+
+cloudinary.config(clConfig);
+
+
 async function newVacation(req, res) {
   const users = await User.find();
   let userArray = [];
@@ -95,7 +102,6 @@ async function getVacations(req, res) {
 
 async function index(req, res) {
   const userinfo = req.user;
-  console.log('hit index');
   try {
     if (userinfo.username !== "") {
       const user = await User.findById(req.user._id);
@@ -265,6 +271,47 @@ async function removeVacationFromCompanions(vacation) {
   }
 }
 
+
+async function uploadPhoto(req, res, next) {
+  try {
+    let response = await streamUpload(req);
+    const foundVacation = await Vacation.findById(req.params.id)
+    const photoData = {...req.body, url: response.url}
+    foundVacation.images.push(photoData)
+    await foundVacation.save()
+    res.redirect(`/vacations/${req.params.id}`);
+  } catch (err) {
+    console.log(err);
+    next(Error(err));
+  }
+}
+
+function streamUpload(req) {
+  return new Promise(function (resolve, reject) {
+    let stream = cloudinary.uploader.upload_stream((error, result) => {
+      if (result) {
+        resolve(result);
+      } else {
+        reject(error);
+      }
+    });
+
+    streamifier.createReadStream(req.file.buffer).pipe(stream);
+  });
+}
+
+async function deletePhoto(req, res) {
+    const vacation = await Vacation.findById(req.params.vid)
+    console.log(vacation)
+    let idx = vacation.images.findIndex(photo=>{
+        return photo._id.toString()===req.params.pid
+})
+    vacation.images.splice(idx, 1)
+    await vacation.save()
+    res.redirect(`/vacations/${vacation._id}`)
+}
+
+
 module.exports = {
   new: newVacation,
   vacationCreate,
@@ -277,4 +324,8 @@ module.exports = {
   edit,
   update,
   newUsername,
+  uploadPhoto,
+  deletePhoto
 };
+
+

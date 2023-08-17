@@ -26,10 +26,19 @@
                 </button>
           </form>
         </main>
-        <script>
+        <script defer>
             function checkUsername() {
-                var newUser = document.getElementById("new-username")
-                console.log(newUser)
+                let newUsername = document.getElementById("new-username").value;
+                if (newUsername.length < 3){
+                  alert('Username must be at least 3 characters long!')
+                  return false
+                }
+                for (char of newUsername){
+                  if(!char.match(/\w/)){
+                    alert('Usernames must be alphanumeric')
+                    return false
+                  }  
+                 }
                 }
           document.getElementById("username-form").onsubmit=checkUsername;
         </script>
