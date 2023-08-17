@@ -5,7 +5,8 @@
     <% if(vacation.images.length){ %>
       <% vacation.images.forEach(p => { %>
         <div class="img-ctr"><img class='uploaded-img' src="<%=p.url%>" alt="<%=p.alt%>" />
-          <button id="img-delete" class="img-hover">X</button>
+          <form id='img-delete-btn-ctr' action="#"><button id="img-delete" class="img-hover">X</button>
+          </form>
           <p id="click-to-expand" class="img-hover">- Click to expand -</p>
         </div>
         <% }) %>
@@ -38,7 +39,7 @@ const imgFormEl = document.getElementById('img-form')
 imgDeleteEls.forEach((el)=>{
   el.addEventListener('click', handleDeleteClick)
   let parentDiv = el.parentElement
-  el.setAttribute('imgUrl', el.parentElement.firstChild.src )
+  el.setAttribute('imgUrl', el.parentElement.parentElement.firstChild.src )
 })  
 
 uploadedImgEls.forEach((el)=>{
