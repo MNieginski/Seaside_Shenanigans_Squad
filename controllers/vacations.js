@@ -300,6 +300,18 @@ function streamUpload(req) {
   });
 }
 
+async function deletePhoto(req, res) {
+    const vacation = await Vacation.findById(req.params.vid)
+    console.log(vacation)
+    let idx = vacation.images.findIndex(photo=>{
+        return photo._id.toString()===req.params.pid
+})
+    vacation.images.splice(idx, 1)
+    await vacation.save()
+    res.redirect(`/vacations/${vacation._id}`)
+}
+
+
 module.exports = {
   new: newVacation,
   vacationCreate,
@@ -313,6 +325,7 @@ module.exports = {
   update,
   newUsername,
   uploadPhoto,
+  deletePhoto
 };
 
 

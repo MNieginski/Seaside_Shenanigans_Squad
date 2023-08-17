@@ -28,4 +28,6 @@ router.post(
     vacationCtrl.uploadPhoto
   );
 
+ router.delete('/:vid/:pid', ensureLoggedIn, vacationCtrl.deletePhoto) 
+
 module.exports = router;
