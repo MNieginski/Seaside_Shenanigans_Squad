@@ -1,36 +1,75 @@
 <section class="show-images">
   <h1>PHOTO GALLERY</h1>
-<form class='img-form' id="img-form" method="POST" 
-	autocomplete="off" 
-	action="/vacations/<%=vacation._id%>/photos/single" 
-	enctype="multipart/form-data"
->
-
-<div class="image-ctr">
-  <% if(vacation.images.length){ %>
-    <% vacation.images.forEach(p => { %>
-      <img class='uploaded-img' src="<%=p.url%>" alt="<%=p.alt%>" />
-      <% }) %>
-      <% } else { %>
-        <p>No images yet...</p>
-        <% } %>
-      </section>
-    </div>
-    
+  
+  <div class="image-ctr">
+    <% if(vacation.images.length){ %>
+      <% vacation.images.forEach(p => { %>
+        <div class="img-ctr"><img class='uploaded-img' src="<%=p.url%>" alt="<%=p.alt%>" />
+          <button id="img-delete" class="img-hover">X</button>
+          <p id="click-to-expand" class="img-hover">- Click to expand -</p>
+        </div>
+        <% }) %>
+        <% } else { %>
+          <p>No images yet...</p>
+          <% } %>
+        </section>
+      </div>
+      
+      <form class='img-form' id="img-form" method="POST" 
+        autocomplete="off" 
+        action="/vacations/<%=vacation._id%>/photos/single" 
+        enctype="multipart/form-data"
+      >
     <label id="add-photo-btn" class="photo-submit">
       <input id="img-input" type="file" name="imageUpload" required accept="image/*, pdf">
-    <p id="photo-btn" class='details openbtn'>UPLOAD PHOTO</p>
+      <p id="photo-btn" class='details openbtn'>UPLOAD PHOTO</p>
     </label>
-    </form>
+  </form>
 <script>
-
-  
+  let expanded = false
+  let focusedImg
+const shadowCoverEl = document.getElementById('shadow-cover')
+const uploadedImgEls = document.querySelectorAll('.img-ctr')
+const imgDeleteEls = document.querySelectorAll('#img-delete')
 const imgInputEl = document.getElementById('img-input')
 const imgFormEl = document.getElementById('img-form')
+
+
+imgDeleteEls.forEach((el)=>{
+  el.addEventListener('click', handleDeleteClick)
+})  
+
+uploadedImgEls.forEach((el)=>{
+  el.addEventListener('click', expand)
+})  
+
+
+
 imgInputEl.addEventListener('change', submitImgForm)
   function submitImgForm(){
-    console.log('hit function')
  imgFormEl.submit();
+}
+
+
+function expand(e){
+e.target.classList.add('focused')
+shadowCoverEl.style.backgroundColor = "rgba(0, 0, 0, .5)";
+focusedImg = e.target
+expanded=true
+}
+
+function handleDeleteClick(e){
+  if(expanded===true){
+    focusedImg.classList.remove('focused')
+    shadowCoverEl.style.backgroundColor = "rgba(0, 0, 0, 0)";//WHY DO YOU NOT WORK
+    console.log(shadowCoverEl)
+    focusedImg = ''
+  }else{
+    console.log('DELETING THIS PHOTO')
   }
+  }
+
+
+
 </script>
 
