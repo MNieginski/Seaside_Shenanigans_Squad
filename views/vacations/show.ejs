@@ -110,10 +110,14 @@
 <script>
   function openNav() {
     document.getElementById("mySidebar").style.width = "350px";
-  }
+    document.getElementById("shadow-cover").style.backgroundColor = "rgba(0, 0, 0, .5)";
 
+  }
+  
   function closeNav() {
     document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("shadow-cover").style.backgroundColor = "rgba(0, 0, 0, 0)";
+ //   document.getElementById("shadow-cover").style.display = "none";
   }
 
   function checkDates() {
