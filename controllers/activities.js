@@ -42,6 +42,7 @@ async function deleteActivity(req, res) {
 
 
 async function getResponse(req,res, next) {
+
     const thisVacation = await Vacation.findById(req.params.id)
 
 
