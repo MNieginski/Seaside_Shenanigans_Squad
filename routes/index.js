@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const passport = require('passport')
-const ensureLoggedIn = require('../config/ensureLoggedIn')
+
 
 
 
@@ -37,6 +37,13 @@ router.get('/logout', function(req, res){
   req.logout(function() {
     res.redirect('/');
   });
+});
+
+router.get('/api/test', function(req, res){
+  // req.logout(function() {
+  //   res.redirect('/');
+  // });
+  res.json({message: 'success!!'})
 });
 
 

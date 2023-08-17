@@ -1,39 +1,82 @@
 <%- include('../partials/header')%>
 
-<body>
   <section id="show-page">
     <div class="show-info">
-    <h1><%=user.name.split(' ')[0].toUpperCase()%>'S TRIP TO <span class="monoton"><%= vacation.location.toUpperCase() %></span></h1>
-    <div><span class="bold"><%=months[vacation.departure.getUTCMonth()].toUpperCase()%> <%=vacation.departure.getUTCDate()%>, <%= vacation.arrival.getFullYear()%></span> THROUGH <span class="bold"><%=months[vacation.arrival.getUTCMonth()].toUpperCase()%> <%=vacation.arrival.getUTCDate()%>, <%= vacation.arrival.getFullYear()%></span></div>
-    <p class="dot">•</p>
+      <h1><%=user.name.split(' ')[0].toUpperCase()%>'S TRIP TO <span class="monoton"><%= vacation.location.toUpperCase() %></span></h1>
+      <div>
+        <span class="bold"><%=months[vacation.departure.getUTCMonth()].toUpperCase()%> <%=vacation.departure.getUTCDate()%>, <%= vacation.arrival.getFullYear()%></span> THROUGH <span class="bold"><%=months[vacation.arrival.getUTCMonth()].toUpperCase()%> <%=vacation.arrival.getUTCDate()%>, <%= vacation.arrival.getFullYear()%>
+        </span>
+      </div>
+      <p class="dot">•</p>
 
-
-        <label>Where are you going?
-            <input type="text" name="location" >
-          </label><br>
-        
-          <label>Arrival Date:
-            <input type="date" name="arrival">
-          </label><br>
-        
-          <label>Departure Date:
-            <input type="date" name="departure">
-          </label><br>
-        
-          <button type="submit">Add Vacation</button>
+      <div>
+      <%if(companionNames.length<1){%>
+          NO REGISTERED TRAVEL BUDDIES
+   
+      <%}else if(companionNames.length===1){%>  
+        <span class="bold"><%=companionNames[0].toUpperCase()%></span> IS COMING WITH YOU
+        <%}else{%>
+  
+      <%for(i=0; i<companionNames.length-1; i++){%>
+        <%if(companionNames.length>2){%>
+          <span class="bold"><%= companionNames[i].toUpperCase()%>,</span>
+        <%} else {%> 
+          <span class="bold"><%= companionNames[i].toUpperCase()%></span>
+      <%}}%>
+      & <span class="bold"><%=companionNames[companionNames.length-1].toUpperCase()%></span> ARE COMING WITH YOU
+      <%}%>
+    </div>
+      
+    
+    <div id="shadow-cover" class="lower-shaow"></div>
     
     <form
     id="edit-vacation"
     method="GET"
     action="/vacations/<%= vacation._id %>/edit"
     >
-    <button class="details openbtn">EDIT TRIP DETAILS</button>
+    <button id='edit-trip' class="details openbtn">EDIT TRIP DETAILS</button>
   </form>
+    
+    <div class="activities-list">
+        <%if(vacation.activities.length === 0){%>
+          <div>
+            NO ACTIVITIES PLANNED YET
+          </div>
+        <%}else{%>
+          <div>
+            HERE'S WHAT YOU HAVE PLANNED
+          </div>
+        <%}%>
+        <%vacation.activities.forEach(function(activity){%>
+          <div class="activity">
+            <%if(activity.dateTime){%>
+             <p class="activity-time"><%=activity.dateTime.toLocaleString([], {month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit'})%></p>
+              <%}else{%>
+                <p class="activity-time hidden"><%=new Date().toLocaleString([], {month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit'})%></p>
+
+                <%}%>
+            <h2 class="activity-title"><%=activity.name%> </h2>
+              <p class="activity-description"><%=activity.description%></p>
+              <form id="laurietest" method="POST" action="/vacations/<%= vacation._id %>/<%= activity._id %>?_method=DELETE">
+                <button id="delete-activity" >X</button></form>
+              </div>
+              <%})%>
+              <div id="open-sidebar-ctr">
+                <button class="openbtn details" onclick="openNav()">ADD AN ACTIVITY</button>
+              </div>
+   
+      </div>
+  
   </div>
 
   <!-- SIDE BAR -->
   <div id="mySidebar" class="sidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <div class="activity-info">
+    <h3 class="activity-location"><%=vacation.location%></h3>
+    <h3 class="activity-date"><%=months[vacation.departure.getUTCMonth()].toUpperCase()%> <%=vacation.departure.getUTCDate()%>, <%= vacation.arrival.getFullYear()%> - <%=months[vacation.arrival.getUTCMonth()].toUpperCase()%> <%=vacation.arrival.getUTCDate()%>, <%= vacation.arrival.getFullYear()%></h3>
+  </div>
     <h2 class="add-activity">ADD AN ACTIVITY</h2>
 
     <form id="edit-activity-form" action="/vacations/<%= vacation._id %>/activities" method="POST">
@@ -45,39 +88,57 @@
     </div>
     
     <div class="sidebar-input-ctr">
-  <input type="text" name="name"/>
+  <input type="text" name="name" required/>
 <input id="date-activity" type="datetime-local" name="dateTime"/>
-  <textarea rows="3" name="description"></textarea>
+  <textarea rows="3" name="description" required></textarea>
     </div>
   </div>
   <button class='details activity-btn' type="submit" >SUBMIT</button>
     
     </form>
+    <div class="gpt-ctr">
+      <h2>-OR-</h2>
+    <form  action="/vacations/<%= vacation._id %>/activities/new" method="GET">
+      <button id="generate-activity" class="details">GENERATE NEW SUGGESTION</button> </form>
+    </div>
+    <img class='robogif hidden' id='robogif' src="/images/doggonaut.webp" alt="">
   </div>
-
+<%- include('../partials/upload') %>
 </section>
 <!-- sidebar script -->
 <script>
   function openNav() {
     document.getElementById("mySidebar").style.width = "350px";
-  }
+    document.getElementById("shadow-cover").style.backgroundColor = "rgba(0, 0, 0, .5)";
 
+  }
+  
   function closeNav() {
     document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("shadow-cover").style.backgroundColor = "rgba(0, 0, 0, 0)";
   }
 
   function checkDates() {
     var activityDate = new Date(document.getElementById("date-activity").value);
     var departDate = new Date('<%=vacation.departure%>');
     var arriveDate = new Date('<%=vacation.arrival%>');
-    if (activityDate < departDate || activityDate > arriveDate){
+    if (activityDate <= departDate || activityDate >= arriveDate){
       alert("Honestly, go love yourself (date outside trip range)");
       return false;
     }
   }
+
+  function showBot(){
+roboGifEl.classList.add('unhidden')
+
+  }
+
   document.getElementById("edit-activity-form").onsubmit=checkDates;
+  const generateBtnEl = document.getElementById("generate-activity")
+  const roboGifEl = document.getElementById("robogif")
+  generateBtnEl.addEventListener('click', showBot)
 </script>
 
-</body>
+
 
 <%- include('../partials/footer')%>
