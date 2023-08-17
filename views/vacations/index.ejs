@@ -14,9 +14,7 @@
         f.arrival.getUTCMonth()){%> <%=months[f.arrival.getUTCMonth()].toUpperCase()%> <%}%> <%=
         f.arrival.getUTCDate()%>, <%=f.arrival.getFullYear()%> •
         <a href="/vacations/<%= f._id %>">
-          <button class="details">
-            Details
-            </button>
+          <button class="details">Details</button>
         </a>
 
         <%if(user._id.toString() === f.userId){%>
