@@ -444,51 +444,6 @@ footer>p{
   text-align: center;
 }
 
-.slide-container{
-  position: absolute;
-  z-index: -1;
-  height: 100%;
-  width: 100%;
-}
-
-#myCarousel{
-  height: 100%;
-  position: relative;
-}
-
-.carousel-inner{
-  height: 100%;
-  /* border: 3px solid yellow; */
-}
-
-.item{
-  height: 100%;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-size: cover;
-}
-.beach{
-  background-image: url('/images/aerial-beach.jpg');
-}
-.bus{
-  background-image: url('/images/lil-bus.jpg');
-}
-.dog{
-  background-image: url('/images/travel-dog.jpg');
-}
-.paris{
-  background-image: url('/images/louvre-paris.jpg');
-}
-.lake{
-  background-image: url('/images/mountain-lake.jpg');
-}
-.san-fran{
-  background-image: url('/images/san-francisco.jpg');
-}
-.city{
-  background-image: url('/images/seaside-city.jpg');
-}
-
 .title{
   grid-row: 2;
   align-self: end;
@@ -718,4 +673,61 @@ margin: 0;
 @media screen and (max-height: 450px) {
   .sidebar {padding-top: 15px;}
   .sidebar a {font-size: 18px;}
+}
+
+
+
+
+
+
+
+.carouselcontainer{
+  width: 100%;
+  position: absolute;
+  /* transform: translate(-50%,-50%); */
+  /* top: 50%; */
+  /* left: 50%; */
+  z-index: -1;
+  overflow: hidden;
+  background-size: cover;
+  /* border: 10px solid #ffffff; */
+  /* border-radius: 8px; */
+  /* box-shadow: 10px 25px 30px rgba(0,0,0,0.3); */
+}
+
+.carouselwrap{
+  width: 100%;
+  display: flex;
+  animation: slide 10s infinite;
+}
+
+.caroimg{
+  width: 100%;
+}
+
+@keyframes slide{
+  0%{
+      transform: translateX(0);
+  }
+  25%{
+      transform: translateX(0);
+  }
+  30%{
+      transform: translateX(-100%);
+  }
+  50%{
+      transform: translateX(-100%);
+  }
+  55%{
+      transform: translateX(-200%);
+  }
+  75%{
+      transform: translateX(-200%);
+  }
+  80%{
+      transform: translateX(-300%);
+  }
+  100%{
+      transform: translateX(-300%);
+  }
 }
