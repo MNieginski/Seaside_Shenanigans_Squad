@@ -5,7 +5,7 @@
     <% if(vacation.images.length){ %>
       <% vacation.images.forEach(p => { %>
         <div class="img-ctr"><img class='uploaded-img' src="<%=p.url%>" alt="<%=p.alt%>" />
-          <form id='img-delete-btn-ctr' action="#"><button id="img-delete" class="img-hover">X</button>
+          <form id='img-delete-btn-ctr' action="/vacations"><button id="img-delete" class="img-hover">X</button>
           </form>
           <p id="click-to-expand" class="img-hover">- Click to expand -</p>
         </div>
@@ -30,7 +30,7 @@
   let expanded = false
   let focusedImg
 const shadowCoverEl = document.getElementById('shadow-cover')
-const uploadedImgEls = document.querySelectorAll('.img-ctr')
+const uploadedImgEls = document.querySelectorAll('.uploaded-img')
 const imgDeleteEls = document.querySelectorAll('#img-delete')
 const clickToExpandsEls = document.querySelectorAll('#click-to-expand')
 const imgInputEl = document.getElementById('img-input')
@@ -67,10 +67,8 @@ clickToExpandsEls.forEach((el)=>{
   el.setAttribute('id', 'hidden')
 }) 
 }else{
-  console.log(expanded)
   focusedImg.classList.remove('focused')
   shadowCoverEl.style.backgroundColor = "rgba(0, 0, 0, 0)";
-  console.log(shadowCoverEl)
   focusedImg = ''
   expanded=false
   imgDeleteEls.forEach((el)=>{

@@ -238,11 +238,12 @@ margin: 30px auto 0 auto;
   align-items: center;
   padding-top: 3vh;
   padding: 3vh;
-  margin: 3vh 20vh 3vh 20vh;
+  margin: 3vh auto;
+  width: 80vw;
   background-color: var(--blue-green);
   color: var(--light-white); 
   box-shadow: 0px 0px 10px black;
-
+min-width: 500px;
 }
 
 .activity{
@@ -781,7 +782,8 @@ margin: 0;
 #hidden{
   color: transparent;
   opacity: 0;
-  text-shadow: none
+  text-shadow: none;
+  display: none;
 }
 
 .unhidden{
