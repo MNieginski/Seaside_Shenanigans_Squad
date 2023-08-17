@@ -16,6 +16,9 @@ body {
   background-color: var(--aqua-blue);
   height: 100vh;
   min-width: 800px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 #shadow-cover{
@@ -48,6 +51,8 @@ nav a, h1, h3 {
 
 nav a{
 height: 100%;
+display: flex;
+align-items: center;
 }
 
 header{
@@ -477,7 +482,10 @@ footer{
 display: flex;
 justify-content: center;
 width: 100%;
-margin-top: 30px;
+margin-top: auto;
+/* position: fixed; */
+left: 0;
+bottom: 0;
 }
 
 footer>p{
@@ -790,4 +798,32 @@ pointer-events: none;
 
 .unhidden{
   opacity: 1;
+}
+
+/* ////////////////////////////ERROR Page*/
+#error-page {
+  background-color: var(--aqua-blue);
+  text-align: center;
+}
+
+#error-h1 {
+  color: black;
+  font-size: xx-large;
+}
+
+.oops {
+  font-family: 'Monoton', cursive;
+  color: white;
+  font-weight: 500;
+  font-size: 10rem;
+  margin: 20px;
+}
+
+#error-p {
+  font-size: 2rem;
+}
+
+#error-status {
+  font-size: 3rem;
+  margin: 20px;
 }

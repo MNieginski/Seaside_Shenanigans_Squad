@@ -22,7 +22,6 @@ const { clConfig } = require("../config/cloudinary.js");
 
 cloudinary.config(clConfig);
 
-
 async function newVacation(req, res) {
   const users = await User.find();
   let userArray = [];
@@ -39,20 +38,24 @@ async function newVacation(req, res) {
 }
 
 async function showVacations(req, res) {
-const vacation = await Vacation.findById(req.params.id);
-let creatorUser = await User.findById(vacation.userId);
-let creatorName = creatorUser.name;
-let companionNames = await getFriendsNames(vacation.companions)
-let nameIdx = companionNames.findIndex((name)=>name===req.user.name)
-if (nameIdx !== -1) {
-companionNames.splice(nameIdx, 1, creatorName)
-}
-  res.render("vacations/show", {
-    title: "Vacation Details",
-    vacation,
-    companionNames,
-    months,
-  });
+  try {
+    const vacation = await Vacation.findById(req.params.id);
+    let creatorUser = await User.findById(vacation.userId);
+    let creatorName = creatorUser.name;
+    let companionNames = await getFriendsNames(vacation.companions);
+    let nameIdx = companionNames.findIndex((name) => name === req.user.name);
+    if (nameIdx !== -1) {
+      companionNames.splice(nameIdx, 1, creatorName);
+    }
+    res.render("vacations/show", {
+      title: "Vacation Details",
+      vacation,
+      companionNames,
+      months,
+    });
+  } catch (err) {
+    res.render("error", { error: err, message: err.message });
+  }
 }
 
 async function vacationCreate(req, res) {
@@ -181,7 +184,6 @@ async function edit(req, res) {
   for (i = 0; i < vacation.companions.length; i++) {
     newComp = await User.findById(vacation.companions[i]);
     companionNames += `, ${newComp.username}`;
-    
   }
   let userArray = [];
   users.forEach((user) => {
@@ -194,7 +196,7 @@ async function edit(req, res) {
     a,
     companionNames,
     userArray,
-    user: req.user
+    user: req.user,
   });
 }
 
@@ -271,14 +273,13 @@ async function removeVacationFromCompanions(vacation) {
   }
 }
 
-
 async function uploadPhoto(req, res, next) {
   try {
     let response = await streamUpload(req);
-    const foundVacation = await Vacation.findById(req.params.id)
-    const photoData = {...req.body, url: response.url}
-    foundVacation.images.push(photoData)
-    await foundVacation.save()
+    const foundVacation = await Vacation.findById(req.params.id);
+    const photoData = { ...req.body, url: response.url };
+    foundVacation.images.push(photoData);
+    await foundVacation.save();
     res.redirect(`/vacations/${req.params.id}`);
   } catch (err) {
     console.log(err);
@@ -301,16 +302,15 @@ function streamUpload(req) {
 }
 
 async function deletePhoto(req, res) {
-    const vacation = await Vacation.findById(req.params.vid)
-    console.log(vacation)
-    let idx = vacation.images.findIndex(photo=>{
-        return photo._id.toString()===req.params.pid
-})
-    vacation.images.splice(idx, 1)
-    await vacation.save()
-    res.redirect(`/vacations/${vacation._id}`)
+  const vacation = await Vacation.findById(req.params.vid);
+  console.log(vacation);
+  let idx = vacation.images.findIndex((photo) => {
+    return photo._id.toString() === req.params.pid;
+  });
+  vacation.images.splice(idx, 1);
+  await vacation.save();
+  res.redirect(`/vacations/${vacation._id}`);
 }
-
 
 module.exports = {
   new: newVacation,
@@ -325,7 +325,5 @@ module.exports = {
   update,
   newUsername,
   uploadPhoto,
-  deletePhoto
+  deletePhoto,
 };
-
-
