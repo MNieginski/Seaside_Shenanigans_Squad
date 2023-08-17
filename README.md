@@ -51,4 +51,4 @@ Click "Log In to Enter" and you'll be directed to log in with your Google accoun
 
 ## Next Steps
 Fun future additions to think about:
-- error duck quacks whenever you click him
+- Error Duck quacks whenever you click him
