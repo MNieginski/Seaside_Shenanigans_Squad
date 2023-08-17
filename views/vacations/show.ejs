@@ -58,7 +58,7 @@
                 <%}%>
             <h2 class="activity-title"><%=activity.name%> </h2>
               <p class="activity-description"><%=activity.description%></p>
-              <form id="laurietest" method="POST" action="/vacations/<%= vacation._id %>/<%= activity._id %>?_method=DELETE">
+              <form id="laurietest" method="POST" action="/vacations/activities/<%= vacation._id %>/<%= activity._id %>?_method=DELETE">
                 <button id="delete-activity" >X</button></form>
               </div>
               <%})%>
