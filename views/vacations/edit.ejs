@@ -62,28 +62,28 @@
       }
       if(companions !== ''){
         companions = companions.split(/\s*,\s*/);
-      let match;
-      let duplicates = companions.filter((item, index) => companions.indexOf(item) !== index)
-     duplicates = duplicates.join('')
+        let match;
+        let duplicates = companions.filter((item, index) => companions.indexOf(item) !== index)
+        duplicates = duplicates.join('')
   
-      if(duplicates !== ''){
-        alert("Duplicates found in travel bussies!");
-        return false;
-      }
-      for (companion of companions) {
-        if(companion === user){
-          alert("Can't add youself as a travel buddy!");
-          return false
+        if(duplicates !== ''){
+          alert("Duplicates found in travel bussies!");
+          return false;
+          }
+        for (companion of companions) {
+          if(companion === user){
+            alert("Can't add youself as a travel buddy!");
+            return false
+          }
+          match = usersArray.includes(companion);
+          if(match === false){
+            alert(`${companion} not found`);
+            return false
+          }
         }
-        match = usersArray.includes(companion);
-        if(match === false){
-          alert(`${companion} not found`);
-          return false
-        }
+      return true
       }
-    return true
     }
-  }
 
   </script>
 

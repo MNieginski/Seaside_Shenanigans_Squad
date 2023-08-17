@@ -1,45 +1,49 @@
 <%- include('../partials/header')%>
 <div class="index-page">
   <img src="/images/title3.png" alt="">
-<div class="upcoming-ctr">
-<%if(vacations.length === 0){%>
-<h2 class="no-trips">You have no trips planned! Click PLAN in the menu to plan a trip..</h2>
-<%}%>
-  <ul class="trips upcoming">
-    <h2 class="trip-list-title">UPCOMING TRIPS:</h2>
-    <% vacations.forEach(f=>{%> <% if(Date.now() < f.arrival){%>
-    <li>
-      <%= f.location.toUpperCase() %> • <%=months[f.departure.getUTCMonth()].toUpperCase()%>
-      <%=f.departure.getUTCDate() %> - <%if(f.departure.getUTCMonth() !==
-      f.arrival.getUTCMonth()){%> <%=months[f.arrival.getUTCMonth()].toUpperCase()%> <%}%> <%=
-      f.arrival.getUTCDate()%>, <%=f.arrival.getFullYear()%> •
-      <a href="/vacations/<%= f._id %>"><button class="details">Details</button></a>
+  <div class="upcoming-ctr">
+    <%if(vacations.length === 0){%>
+      <h2 class="no-trips">You have no trips planned! Click PLAN in the menu to plan a trip..</h2>
+    <%}%>
+    <ul class="trips upcoming">
+      <h2 class="trip-list-title">UPCOMING TRIPS:</h2>
+      <% vacations.forEach(f=>{%> <% if(Date.now() < f.arrival){%>
+      <li>
+        <%= f.location.toUpperCase() %> • <%=months[f.departure.getUTCMonth()].toUpperCase()%>
+        <%=f.departure.getUTCDate() %> - <%if(f.departure.getUTCMonth() !==
+        f.arrival.getUTCMonth()){%> <%=months[f.arrival.getUTCMonth()].toUpperCase()%> <%}%> <%=
+        f.arrival.getUTCDate()%>, <%=f.arrival.getFullYear()%> •
+        <a href="/vacations/<%= f._id %>">
+          <button class="details">
+            Details
+            </button>
+        </a>
 
-      <%if(user._id.toString() === f.userId){%>
-      <form id="delete-vacation" method="POST" action="/vacations/<%= f._id %>?_method=DELETE">
-        <button class="details" >Delete</button></form>
-<%}%>
+        <%if(user._id.toString() === f.userId){%>
+        <form id="delete-vacation" method="POST" action="/vacations/<%= f._id %>?_method=DELETE">
+          <button class="details" >Delete</button></form>
+        <%}%>
 
-    </li>
-    <%}%> <% }) %>
-  </ul>
-</div>
+      </li>
+      <%}%> <% }) %>
+    </ul>
+  </div>
 
-<div class="previous-ctr">
-  <ul class="trips upcoming">
-    <h2 class="trip-list-title">PREVIOUS TRIPS:</h2>
-    <% vacations.forEach(f=>{%> <% if(Date.now() > f.arrival){%>
-    <li>
-      <%= f.location.toUpperCase() %> • <%=months[f.departure.getUTCMonth()].toUpperCase()%>
-      <%=f.departure.getUTCDate() %> - <%if(f.departure.getUTCMonth() !==
-      f.arrival.getUTCMonth()){%> <%=months[f.arrival.getUTCMonth()]%> <%}%> <%=
-      f.arrival.getUTCDate()%>, <%=f.arrival.getFullYear()%> •
-      <a href="/vacations/<%= f._id %>"><button class="details">Details</button></a>
-      <form id="delete-vacation" method="POST" action="/vacations/<%= f._id %>?_method=DELETE">
-        <button class="details">Delete</button></form>
-    </li>
-    <%}%> <% }) %>
-  </ul>
-</div>
+  <div class="previous-ctr">
+    <ul class="trips upcoming">
+      <h2 class="trip-list-title">PREVIOUS TRIPS:</h2>
+      <% vacations.forEach(f=>{%> <% if(Date.now() > f.arrival){%>
+      <li>
+        <%= f.location.toUpperCase() %> • <%=months[f.departure.getUTCMonth()].toUpperCase()%>
+        <%=f.departure.getUTCDate() %> - <%if(f.departure.getUTCMonth() !==
+        f.arrival.getUTCMonth()){%> <%=months[f.arrival.getUTCMonth()]%> <%}%> <%=
+        f.arrival.getUTCDate()%>, <%=f.arrival.getFullYear()%> •
+        <a href="/vacations/<%= f._id %>"><button class="details">Details</button></a>
+        <form id="delete-vacation" method="POST" action="/vacations/<%= f._id %>?_method=DELETE">
+          <button class="details">Delete</button></form>
+      </li>
+      <%}%> <% }) %>
+    </ul>
+  </div>
 </div>
 <%- include('../partials/footer')%>

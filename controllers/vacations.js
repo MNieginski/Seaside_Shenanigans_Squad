@@ -1,6 +1,5 @@
 const Vacation = require("../models/vacation");
 const User = require("../models/user");
-const vacation = require("../models/vacation");
 const months = [
   "January",
   "February",
@@ -21,6 +20,22 @@ const streamifier = require("streamifier");
 const { clConfig } = require("../config/cloudinary.js");
 
 cloudinary.config(clConfig);
+
+module.exports = {
+  new: newVacation,
+  vacationCreate,
+  getVacations,
+  vacationDeleteAll,
+  show: showVacations,
+  index,
+  months,
+  delete: deleteVacation,
+  edit,
+  update,
+  newUsername,
+  uploadPhoto,
+  deletePhoto,
+};
 
 async function newVacation(req, res) {
   const users = await User.find();
@@ -61,7 +76,7 @@ async function showVacations(req, res) {
 async function vacationCreate(req, res) {
   const vacationData = { ...req.body };
   for (let key in vacationData) {
-    if (vacationData[key] === "") delete vacationData[key]; // if any fields store an empty string, remove the correspoding key so the default data is sent instead.
+    if (vacationData[key] === "") delete vacationData[key]; 
   }
   if (vacationData.companions) {
     vacationData.companions = vacationData.companions.split(/\s*,\s*/);
@@ -303,7 +318,6 @@ function streamUpload(req) {
 
 async function deletePhoto(req, res) {
   const vacation = await Vacation.findById(req.params.vid);
-  console.log(vacation);
   let idx = vacation.images.findIndex((photo) => {
     return photo._id.toString() === req.params.pid;
   });
@@ -312,18 +326,4 @@ async function deletePhoto(req, res) {
   res.redirect(`/vacations/${vacation._id}`);
 }
 
-module.exports = {
-  new: newVacation,
-  vacationCreate,
-  getVacations,
-  vacationDeleteAll,
-  show: showVacations,
-  index,
-  months,
-  delete: deleteVacation,
-  edit,
-  update,
-  newUsername,
-  uploadPhoto,
-  deletePhoto,
-};
+

@@ -31,58 +31,44 @@
 <script>
   let expanded = false
   let focusedImg
-const shadowCoverEl = document.getElementById('shadow-cover')
-const uploadedImgEls = document.querySelectorAll('.uploaded-img')
-const imgDeleteEls = document.querySelectorAll('#img-delete')
-const clickToExpandsEls = document.querySelectorAll('#click-to-expand')
-const imgInputEl = document.getElementById('img-input')
-const imgFormEl = document.getElementById('img-form')
-const focusedImgEl = document.getElementById('focused-img')
+  const shadowCoverEl = document.getElementById('shadow-cover')
+  const uploadedImgEls = document.querySelectorAll('.uploaded-img')
+  const imgDeleteEls = document.querySelectorAll('#img-delete')
+  const clickToExpandsEls = document.querySelectorAll('#click-to-expand')
+  const imgInputEl = document.getElementById('img-input')
+  const imgFormEl = document.getElementById('img-form')
+  const focusedImgEl = document.getElementById('focused-img')
 
-focusedImgEl.addEventListener('click', expand)
+  focusedImgEl.addEventListener('click', expand)
 
-imgDeleteEls.forEach((el)=>{
-  el.addEventListener('click', handleDeleteClick)
-  let parentDiv = el.parentElement
-  el.setAttribute('imgUrl', el.parentElement.parentElement.firstChild.src )
-})  
+  imgDeleteEls.forEach((el)=>{
+    let parentDiv = el.parentElement
+    el.setAttribute('imgUrl', el.parentElement.parentElement.firstChild.src )
+  })  
 
-uploadedImgEls.forEach((el)=>{
-  el.addEventListener('click', expand)
-})  
+  uploadedImgEls.forEach((el)=>{
+    el.addEventListener('click', expand)
+  })  
 
-
-
-imgInputEl.addEventListener('change', submitImgForm)
-  function submitImgForm(){
- imgFormEl.submit();
-}
-
-
-function expand(e){
-  if(expanded===false){
-//e.target.classList.add('focused')
-focusedImgEl.setAttribute('src', e.target.src)
-focusedImgEl.classList.remove('hidden')
-focusedImgEl.classList.remove('no-click')
-shadowCoverEl.style.backgroundColor = "rgba(0, 0, 0, .5)";
-//focusedImg = e.target
-expanded=true
-}else{
-  focusedImgEl.classList.add('hidden')
-  focusedImgEl.classList.add('no-click')
-  //focusedImg.classList.remove('focused')
-  shadowCoverEl.style.backgroundColor = "rgba(0, 0, 0, 0)";
-  //focusedImg = ''
-  expanded=false
-}
-}
-
-function handleDeleteClick(e){
-    console.log('DELETING THIS PHOTO', e.target.getAttribute('imgurl'))
+  imgInputEl.addEventListener('change', submitImgForm)
+    function submitImgForm(){
+  imgFormEl.submit();
   }
 
-
+  function expand(e){
+    if(expanded===false){
+    focusedImgEl.setAttribute('src', e.target.src)
+    focusedImgEl.classList.remove('hidden')
+    focusedImgEl.classList.remove('no-click')
+    shadowCoverEl.style.backgroundColor = "rgba(0, 0, 0, .5)";
+    expanded=true
+    }else{
+    focusedImgEl.classList.add('hidden')
+    focusedImgEl.classList.add('no-click')
+    shadowCoverEl.style.backgroundColor = "rgba(0, 0, 0, 0)";
+    expanded=false
+    }
+  }
 
 
 </script>

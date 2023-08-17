@@ -10,9 +10,9 @@ const openai = new OpenAIApi(configuration);
 
 
 const limiter = rateLimit({
-windowMs: 1000*60,
-max: 3,
-message:"Robo travel agents can only work so fast! Three requests per minute."
+  windowMs: 1000*60,
+  max: 3,
+  message:"Robo travel agents can only work so fast! Three requests per minute."
 })
 
 const activityCtrl = require('../controllers/activities')
@@ -24,8 +24,5 @@ router.delete('/vacations/:vid/:aid', activityCtrl.delete)
 router.get('/vacations/:id/activities/new', limiter, activityCtrl.getResponse)
 
 router.post('/vacations/:id', activityCtrl.showActivity)
-
-
-
 
 module.exports = router;

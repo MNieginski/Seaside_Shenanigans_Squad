@@ -7,8 +7,6 @@ const userSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Vacation'
   }],
-  //over21: Boolean,
-  //location:
   googleId: {
     type: String,
     required: true

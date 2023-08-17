@@ -1,20 +1,16 @@
 <%- include('./partials/header')%>
 
 <section id="error-page">
-        <% if (message === 'Not Found') { %>
-            <h1 class="oops"> <%= message %>
-            <% } else { %>
-                <h1 id="error-h1"> <span class="oops">Oops!</span><br> Something went wrong. Here's a friend to keep you company. 
-           <% } %>
-        </h1>
-    <h2 id="error-status"><%= error.status %></h2>
-    <p id="error-p">
-        <% if (error.status === 404) { %>
+    <% if (message === 'Not Found') { %>
+        <h1 class="oops"> <%= message %> </h1>
+        <p id="error-p">
             Looks like someone should have packed a map!
-       <% } %>
-    </p>
+        </p>
+    <% } else { %>
+        <h1 id="error-h1"> <span class="oops">Oops!</span><br> Something went wrong. Here's a friend to keep you company. </h1>
+    <% } %>
+    <h2 id="error-status"><%= error.status %></h2>
     <img src="/images/duck.gif" alt="cute lil waddling duck">
-    <!-- <pre><%= error.stack %></pre> -->
 </section>
 
 <%- include('./partials/footer')%>
