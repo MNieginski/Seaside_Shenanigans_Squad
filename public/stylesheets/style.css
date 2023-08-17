@@ -690,6 +690,8 @@ margin: 0;
   z-index: -1;
   overflow: hidden;
   background-size: cover;
+  display: flex;
+
   /* border: 10px solid #ffffff; */
   /* border-radius: 8px; */
   /* box-shadow: 10px 25px 30px rgba(0,0,0,0.3); */
