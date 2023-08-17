@@ -73,7 +73,7 @@ if(companions !== ''){
    duplicates = duplicates.join('')
 
     if(duplicates !== ''){
-      alert("Duplicates found in travel bussies!");
+      alert("Duplicates found in travel buddies!");
       return false;
     }
     for (companion of companions) {
@@ -83,7 +83,7 @@ if(companions !== ''){
       }
       match = usersArray.includes(companion);
       if(match === false){
-        alert("Invalid travel buddies!");
+        alert(`${companion} not found`);
         return false
       }
     }
