@@ -2,8 +2,16 @@
 
 ## Let the shenanigans roll!
 
-### Plan and view your adventures on the Scenic Shenanigans website
-Keep track of upcoming and previous vacations and let our site be your digital journal. Add dates, locations, activities and photos to all vacations, past and present. Travel buddies can be added if they've created an account on our website!
+### Embark on a journey of memories with Scenic Shenanigans!
+Are you ready to turn your vacations into unforgettable stories? Say hello to your new digital travel journal. Whether it's the excitement of upcoming adventures or the nostalgia of past escapades, our platform lets you capture every moment.
+
+🗺️ Plan Ahead: Add dates, locations, and activities for your upcoming getaways. Never miss a detail as you build the perfect itinerary.
+
+📸 Relive the Magic: Dive into your digital scrapbook of past vacations. Add photos and relive those incredible moments that deserve to be cherished.
+
+🌍 Connect and Share: Travel buddies are the best companions on any journey. Connect with them through Scenic Shenanigans and share your experiences seamlessly.
+
+Join us in creating a world of memories. Your next adventure starts here!
 
 ## Select wireframes
 **Homepage**<br>
@@ -30,9 +38,6 @@ _________________
 ![Wireframe screenshot](public/images/Wireframe-images.jpg)  
 
 ## Technology Used
-- HTML
-- CSS
-- JavaScript
 - Node.JS
 - MongoDB
 - Mongoose
@@ -51,4 +56,4 @@ Click "Log In to Enter" and you'll be directed to log in with your Google accoun
 
 ## Next Steps
 Fun future additions to think about:
-- error duck quacks whenever you click him
+- Error Duck quacks whenever you click him
