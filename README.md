@@ -5,6 +5,14 @@
 ### Embark on a journey of memories with Scenic Shenanigans!
 Are you ready to turn your vacations into unforgettable stories? Say hello to your new digital travel journal. Whether it's the excitement of upcoming adventures or the nostalgia of past escapades, our platform lets you capture every moment.
 
+🗺️ Plan Ahead: Add dates, locations, and activities for your upcoming getaways. Never miss a detail as you build the perfect itinerary.
+
+📸 Relive the Magic: Dive into your digital scrapbook of past vacations. Add photos and relive those incredible moments that deserve to be cherished.
+
+🌍 Connect and Share: Travel buddies are the best companions on any journey. Connect with them through Scenic Shenanigans and share your experiences seamlessly.
+
+Join us in creating a world of memories. Your next adventure starts here!
+
 ## Select wireframes
 **Homepage**<br>
 ![Wireframe screenshot](public/images/wireframe-homepage.jpg)<br>
