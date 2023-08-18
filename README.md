@@ -2,8 +2,8 @@
 
 ## Let the shenanigans roll!
 
-### Plan and view your adventures on the Scenic Shenanigans website
-Keep track of upcoming and previous vacations and let our site be your digital journal. Add dates, locations, activities and photos to all vacations, past and present. Travel buddies can be added if they've created an account on our website!
+### Embark on a journey of memories with Scenic Shenanigans!
+Are you ready to turn your vacations into unforgettable stories? Say hello to your new digital travel journal. Whether it's the excitement of upcoming adventures or the nostalgia of past escapades, our platform lets you capture every moment.
 
 ## Select wireframes
 **Homepage**<br>
