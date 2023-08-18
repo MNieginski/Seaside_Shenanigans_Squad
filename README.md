@@ -30,9 +30,6 @@ _________________
 ![Wireframe screenshot](public/images/Wireframe-images.jpg)  
 
 ## Technology Used
-- HTML
-- CSS
-- JavaScript
 - Node.JS
 - MongoDB
 - Mongoose
